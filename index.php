@@ -12,6 +12,8 @@
 		<?php include './header.php' ?>
 
 		<div id="body">
+			<?php include './navigation.php' ?>
+			<div id="content">Testan</div>
 		</div>
 
 		<?php include './footer.php' ?>

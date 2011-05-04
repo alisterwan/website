@@ -18,7 +18,7 @@ a:hover {
 
 /** HEADER **/
 #header {
-  border-bottom: 1px solid #EEE;
+  border-bottom: 1px solid #CCC;
   height: 100px;
   background-color: #DDD;
   position: relative;
@@ -30,6 +30,7 @@ a:hover {
   -moz-box-shadow: 0 0 25px rgba(0, 0, 0, .5);
   -o-box-shadow: 0 0 25px rgba(0, 0, 0, .5);
   box-shadow: 0 0 25px rgba(0, 0, 0, .5);
+  z-index: 9;
 }
 
 #log {
@@ -52,9 +53,55 @@ a:hover {
   border-width: 0 1px 1px;
   border-style: solid;
   margin: 0 50px;
-  height: 500px;
+  min-height: 500px;
 }
 
+#nav {
+  float: left;
+  margin: 0 10px 10px 0;
+  border-bottom-right-radius: 10px;
+  background: #858383;
+  font-size: .9em;
+  text-shadow: 1px 1px 3px #222;
+}
+#nav a {
+  color: #92E57C;
+  cursor: pointer;
+}
+#nav > li:hover > a, #nav a:hover {
+  color: #C5FF84;
+  text-decoration: underline;
+}
+ul {
+  padding: 0;
+}
+#nav li {
+  list-style-type: none;
+  padding: 10px 20px;
+  position: relative;
+}
+li ul {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  border-radius: 5px;
+  background: rgba(133, 131, 131, .9);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  -o-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  font-size: .8em;
+  z-index: 8;
+}
+li:hover ul {
+  display: initial;
+}
+
+
+#content {
+  padding: 15px;
+}
 
 
 /** FOOTER **/
