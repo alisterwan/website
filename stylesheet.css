@@ -104,6 +104,11 @@ li:hover ul {
 }
 
 
+/** REGISTRATION **/
+form tr > td:first-child {
+  text-align: right;
+}
+
 /** FOOTER **/
 #footer {
   margin: 10px 50px;

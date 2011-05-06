@@ -14,28 +14,28 @@
 		<div id="body">
 			<?php include './navigation.php' ?>
 			<div id="content">
-				<p>Pour vous inscrire dans ce club, nous avons besoin de quelques renseignements. Preparez un nom d'usage pour le club et un mot de passe de plus de 8 caracteres dont vous vous souviendrez facilement.</p>
-				<form action="inscription.php" method="post" name="registration">
+				<p>In order to register, please provide necessary information. Your password must be at least 8 characters long.</p>
+				<form action="register.php" method="post" name="registration">
 					<table>
 						<tr>
-							<td>Votre nom:</td>
+							<td>Name</td>
 							<td><input type="text" name="name"></td>
 						</tr>
 						<tr>
-							<td>Votre adresse:</td>
+							<td>Address</td>
 							<td><input type="text" name="address"></td>
 						</tr>
 						<tr>
-							<td>Nom d'utilisateur:</td>
+							<td>Username</td>
 							<td><input type="text" name="username"></td>
 						</tr>
 						<tr>
-							<td>Mot de passe:</td>
+							<td>Password</td>
 							<td><input type="password" name="password"></td>
 						</tr>
 						<tr>
-							<td>Numero de carte bancaire:</td>
-							<td><input type="text" name="num_card"></td>
+							<td>Confirm your password</td>
+							<td><input type="password" name="passcheck"></td>
 						</tr>
 						<tr>
 							<td><input type="submit" name="proceed" value="submit"></td>
