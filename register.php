@@ -1,47 +1,40 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-<title>Registration_2</title>
-<meta name="generator" content="Bluefish 2.0.1" >
-<meta name="author" content="john wan kut kai" >
-<meta name="date" content="2011-05-07T14:21:06+0200" >
-<meta name="copyright" content="">
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
-<meta http-equiv="content-style-type" content="text/css">
-<meta http-equiv="expires" content="0">
-</head>
-<body>
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Registration</title>
+		<meta name="description" content="Projet web">
+		<meta name="author" content="Alister & Mayhem">
+		<link rel="stylesheet" href="stylesheet.css">
+	</head>
+	<body>
 
-<?php
-$name=$_POST["name"];
-$address=$_POST["address"];
-$username=$_POST["username"];
-$password=$_POST["password"];
-$passcheck=$_POST["passcheck"];
-$card=$_POST["numcard"];
+		<?php
+			$name     = $_POST["name"];
+			$address  = $_POST["address"];
+			$user = $_POST["username"];
+			$pass     = $_POST["password"];
 
+			if ($_POST["password"] != $_POST["passcheck"]) {
+					echo "Wrong password.";
+					exit;
+			}
+			//Connexion à la base de donnée
+			$conn = new PDO("pgsql:host=sqletud.univ-mlv.fr;dbname=jwankutk_db","jwankutk","Tqeouoe8");
+			if (!$conn) {
+				echo "Connexion error.";
+				exit;
+			}
 
-$conn = pg_connect("host=sqletud.univ-mlv.fr dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-//Connexion à la base de donnée
-if (!$conn) {
-  echo "Connexion error.\n";
-  exit;
-}
+			// Ajout d'un nouveau client dans la base de donnée
+			$result = pg_query($conn, "INSERT INTO customers(name,address,username,password) values('$name','$address','$user','$pass')");
+			if(!$result){
+				echo "Error during registration.\n";
+				exit;
+			}
 
- echo "test";
-
-// Ajout d'un nouveau client dans la base de donnée
-$result=pg_query($conn,"INSERT INTO customers(name,address,card,username,password) values('$name','$address','$card','$username','$password')");
-if(!$result){
-echo "Error during registration.\n";
-exit;
-}
-
-echo "test";
+echo "test2";
 
 //Envoie du mail de confirmation de l'inscription
      $headers ='From: "laptopmlv"<laptopmlv@gmail.com>'."\n";
@@ -62,5 +55,5 @@ $to=$_POST['username'];
      }
 ?>
 
-</body>
+	</body>
 </html>
