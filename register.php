@@ -13,7 +13,7 @@
 		<?php
 			$name     = $_POST["name"];
 			$address  = $_POST["address"];
-			$user = $_POST["username"];
+			$user     = $_POST["username"];
 			$pass     = $_POST["password"];
 
 			if ($_POST["password"] != $_POST["passcheck"]) {
@@ -28,32 +28,28 @@
 			}
 
 			// Ajout d'un nouveau client dans la base de donnée
-			$result = pg_query($conn, "INSERT INTO customers(name,address,username,password) values('$name','$address','$user','$pass')");
-			if(!$result){
-				echo "Error during registration.\n";
+			$result = $conn -> query("INSERT INTO customers(name,address,username,password) VALUES('$name','$address','$user','$pass')");
+			if(!$result) {
+				echo "Query error.";
 				exit;
 			}
 
-echo "test2";
+			echo "test2";
 
-//Envoie du mail de confirmation de l'inscription
-     $headers ='From: "laptopmlv"<laptopmlv@gmail.com>'."\n";
-     $headers .='Content-Type: text/plain; charset="iso-8859-1"'."\n";
-     $headers .='Content-Transfer-Encoding: 8bit';
-$to=$_POST['username'];
+			//Envoie du mail de confirmation de l'inscription
+			$headers ='From: "laptopmlv"<laptopmlv@gmail.com>'."\n";
+			$headers .='Content-Type: text/plain; charset="iso-8859-1"'."\n";
+			$headers .='Content-Transfer-Encoding: 8bit';
+			$to=$_POST['username'];
 
-     if(mail($to,"Registration to LMLV","You have been correctly registered.", $headers))
-     {
-          echo '<br>';
-          echo 'An email of confirmation has been sent.';
-          echo '<br>';
-          header("Location refresh=3:http://www.gmail.com");
-     }
-     else
-     {
-          echo 'The email has not been sent.';
-     }
-?>
+			if(mail($to,"Registration to LMLV","You have been correctly registered.", $headers)) {
+				echo '<br>An email of confirmation has been sent.<br>';
+				header("Location refresh=3:http://www.gmail.com");
+			}
+			else {
+				echo 'The email has not been sent.';
+			}
+		?>
 
 	</body>
 </html>
