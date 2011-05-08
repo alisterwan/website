@@ -33,6 +33,13 @@ a:hover {
   z-index: 9;
 }
 
+#header img {
+  height: 100px;
+  position: absolute;
+  top: 5px;
+  left: 25px;
+}
+
 #log {
   position: absolute;
   top: 15px;
