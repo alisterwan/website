@@ -20,13 +20,12 @@ $pass = $_POST["password"];
 				exit;
 			}
 //Verification du client dans la base de donnée
-			$result = $conn -> query("SELECT (username,password) from 
-			customers where username='$user' and password='$pass'") 
+$result = $conn -> query("SELECT (username,password) from customers where username='$user' and password='$pass'"); 
 	
-			if($result) {
-				echo "Authentification reussie";
+			if(!$result) {
+				echo "Query error";
 			} 
-else echo "Querry error";
+else echo "Authenfication reussie.";
 ?>
 	</body>
 </html>
