@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Registration</title>
+		<title>Login</title>
 		<meta name="description" content="Projet web">
 		<meta name="author" content="Alister & Mayhem">
 		<link rel="stylesheet" href="stylesheet.css">
@@ -14,17 +14,8 @@
 		<div id="body">
 			<?php include './navigation.php' ?>
 			<div id="content">
-				<p>In order to register, please provide necessary information. You username will be used in order to log in. Your password must be at least 8 characters long.</p>
-				<form action="register.php" method="post" name="registration">
+				<form action="log.php" method="post" name="login">
 					<table>
-						<tr>
-							<td>Name</td>
-							<td><input type="text" name="name"></td>
-						</tr>
-						<tr>
-							<td>Address</td>
-							<td><input type="text" name="address"></td>
-						</tr>
 						<tr>
 							<td>Username</td>
 							<td><input type="text" name="username"></td>
@@ -34,11 +25,7 @@
 							<td><input type="password" name="password"></td>
 						</tr>
 						<tr>
-							<td>Confirm your password</td>
-							<td><input type="password" name="passcheck"></td>
-						</tr>
-						<tr>
-							<td><input type="submit" name="proceed" value="submit"></td>
+							<td><input type="submit" name="proceed" value="Log in"></td>
 						<tr>
 					</table>
 				</form>
