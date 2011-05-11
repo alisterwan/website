@@ -19,7 +19,7 @@
 					function printForm($firstname,$surname,$address,$city,$country,$user,$email) {
 						echo "
 				<p>In order to register, please provide necessary information. You username will be used in order to log in. Your password must be at least 8 characters long.</p>
-				<form action='registration.php' method='post' name='registration'>
+				<form action='registration.php' method='post'>
 					<table>
 						<tr>
 							<td>Firstname</td>
