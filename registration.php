@@ -117,6 +117,8 @@
 				echo 'The email has not been sent.';
 			*/
 					}
+					else
+						printForm('','','','','','','');
 				?>
 			</div>
 		</div>
