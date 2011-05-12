@@ -81,7 +81,7 @@
 							exit;
 						}
 
-						if ($pass && strlen($pass)<8 || $pass != $_POST["passcheck"]) {
+						if (strlen($pass)<8 || $pass != $_POST["passcheck"]) {
 							echo "<span class='error'>Password invalid or too short.</span>";
 							printForm($firstname,$surname,$address,$city,$country,$user,$email);
 							exit;
