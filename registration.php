@@ -77,30 +77,26 @@
 
 						if (!$firstname || !$surname || !$address || !$city || !$country || !$user || !$pass || !$email) {
 							echo "<span class='error'>Form incomplete, please fill it completely.</span>";
-							printForm($firstname,$surname,$address,$city,$country,$user,$email);
-							exit;
+							return printForm($firstname,$surname,$address,$city,$country,$user,$email);
 						}
 
 						if (strlen($pass)<8 || $pass != $_POST["passcheck"]) {
 							echo "<span class='error'>Password invalid or too short.</span>";
-							printForm($firstname,$surname,$address,$city,$country,$user,$email);
-							exit;
+							return printForm($firstname,$surname,$address,$city,$country,$user,$email);
 						}
 
 						//Connexion à la base de donnée
 						$conn = new PDO("pgsql:host=sqletud.univ-mlv.fr;dbname=jwankutk_db","jwankutk","Tqeouoe8");
 						if (!$conn) {
 							echo "<span class='error'>Connexion error.</span>";
-							printForm($firstname,$surname,$address,$city,$country,$user,$email);
-							exit;
+							return printForm($firstname,$surname,$address,$city,$country,$user,$email);
 						}
 
 						// Ajout d'un nouveau client dans la base de donnée
 						$result = $conn -> query("INSERT INTO customers VALUES ('$firstname','$surname','$address','$city','$country','$user','$pass','$email')");
 						if(!$result) {
 							echo "<span class='error'>Query error.</span>";
-							printForm($firstname,$surname,$address,$city,$country,$user,$email);
-							exit;
+							return printForm($firstname,$surname,$address,$city,$country,$user,$email);
 						}
 						else
 							echo "You have been successfully registered.";
