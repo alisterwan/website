@@ -103,7 +103,7 @@
 							exit;
 						}
 						else
-							echo "You have successfully registered.";
+							echo "You have been successfully registered.";
 
 						//Envoie du mail de confirmation de l'inscription
 /*
