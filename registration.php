@@ -64,7 +64,7 @@
 				</form>";
 					}
 
-					if ($_POST["firstname"] && $_POST["surname"]) {
+					if ($_POST) {
 
 						$firstname= $_POST["firstname"];
 						$surname  = $_POST["surname"];
@@ -75,8 +75,14 @@
 						$pass     = $_POST["password"];
 						$email    = $_POST["email"];
 
+						if (!$firstname || !$surname || !$address || !$city || !$country || !$user || !$pass || !$email) {
+							echo "<span class='error'>Form incomplete, please fill it completely.</span>";
+							printForm($firstname,$surname,$address,$city,$country,$user,$email);
+							exit;
+						}
+
 						if ($pass && strlen($pass)<8 || $pass != $_POST["passcheck"]) {
-							echo "Password invalid";
+							echo "<span class='error'>Password invalid or too short.</span>";
 							printForm($firstname,$surname,$address,$city,$country,$user,$email);
 							exit;
 						}
@@ -84,38 +90,35 @@
 						//Connexion à la base de donnée
 						$conn = new PDO("pgsql:host=sqletud.univ-mlv.fr;dbname=jwankutk_db","jwankutk","Tqeouoe8");
 						if (!$conn) {
-							echo "Connexion error.";
+							echo "<span class='error'>Connexion error.</span>";
 							printForm($firstname,$surname,$address,$city,$country,$user,$email);
 							exit;
 						}
 
-
 						// Ajout d'un nouveau client dans la base de donnée
 						$result = $conn -> query("INSERT INTO customers VALUES ('$firstname','$surname','$address','$city','$country','$user','$pass','$email')");
 						if(!$result) {
-							echo "Query error.";
+							echo "<span class='error'>Query error.</span>";
 							printForm($firstname,$surname,$address,$city,$country,$user,$email);
 							exit;
 						}
 						else
 							echo "You have successfully registered.";
 
-
-
-			//Envoie du mail de confirmation de l'inscription
-			/*
-			$headers ='From: "laptopmlv"<laptopmlv@gmail.com>'."\n";
-			$headers .='Content-Type: text/plain; charset="iso-8859-1"'."\n";
-			$headers .='Content-Transfer-Encoding: 8bit';
-			$to=$email;
-
-			if(mail($to,"Registration to LMLV","You have been correctly registered.", $headers)) {
-				echo '<br>An email of confirmation has been sent.<br>';
-
-			}
-			else
-				echo 'The email has not been sent.';
-			*/
+						//Envoie du mail de confirmation de l'inscription
+/*
+						$headers ='From: "laptopmlv"<laptopmlv@gmail.com>'."\n";
+						$headers .='Content-Type: text/plain; charset="iso-8859-1"'."\n";
+						$headers .='Content-Transfer-Encoding: 8bit';
+						$to=$email;
+						if(mail($to,"Registration to LMLV","You have been correctly registered.", $headers)) {
+							echo "An email of confirmation has been sent.";
+						}
+						else {
+							echo '<span class='error'>The email has not been sent.</span>'
+							printForm($firstname,$surname,$address,$city,$country,$user,$email);
+						}
+*/
 					}
 					else
 						printForm('','','','','','','');
