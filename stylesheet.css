@@ -37,7 +37,13 @@ a:hover {
   height: 100px;
   position: absolute;
   top: 5px;
-  left: 25px;
+  left: 55px;
+}
+
+#mlv {
+  height:100px;
+  position: absolute;
+  left: 175px;	
 }
 
 #log {
