@@ -1,56 +1,65 @@
 <ul id="nav">
 	<li>
-		<a>Category&nbsp;1</a>
+		<a>Netbook</a>
 		<ul>
-			<li><a>Sub&nbsp;category&nbsp;1</a></li>
-			<li><a>Sub&nbsp;category&nbsp;2</a></li>
-			<li><a>Sub&nbsp;category&nbsp;3</a></li>
-			<li><a>Sub&nbsp;category&nbsp;4</a></li>
+			<li><a>Asus</a></li>
+			<li><a>Hewlett Packard</a></li>
+			<li><a>Acer</a></li>
+			<li><a>Samsung</a></li>
 		</ul>
 	</li>
 	<li>
-		<a>Category&nbsp;2</a>
+		<a>Performance</a>
 		<ul>
-			<li><a>Sub&nbsp;category&nbsp;1</a></li>
-			<li><a>Sub&nbsp;category&nbsp;2</a></li>
-			<li><a>Sub&nbsp;category&nbsp;3</a></li>
-			<li><a>Sub&nbsp;category&nbsp;4</a></li>
+			<li><a>Asus</a></li>
+			<li><a>Hewlett Packard</a></li>
+			<li><a>Acer</a></li>
+			<li><a>Samsung</a></li>
+			<li><a>Toshiba</a></li>	
+			<li><a>Dell</a></li>			
+			<li><a>Apple</a></li>
 		</ul>
 	</li>
 	<li>
-		<a>Category&nbsp;3</a>
+		<a>Gamers</a>
 		<ul>
-			<li><a>Sub&nbsp;category&nbsp;1</a></li>
-			<li><a>Sub&nbsp;category&nbsp;2</a></li>
-			<li><a>Sub&nbsp;category&nbsp;3</a></li>
-			<li><a>Sub&nbsp;category&nbsp;4</a></li>
+			<li><a>Asus</a></li>
+			<li><a>Hewlett Packard</a></li>
+			<li><a>Acer</a></li>
+			<li><a>Samsung</a></li>
+			<li><a>Dell</a></li>			
+			<li><a>Apple</a></li>
 		</ul>
 	</li>
 	<li>
-		<a>Category&nbsp;4</a>
+		<a>Multimedia</a>
 		<ul>
-			<li><a>Sub&nbsp;category&nbsp;1</a></li>
-			<li><a>Sub&nbsp;category&nbsp;2</a></li>
-			<li><a>Sub&nbsp;category&nbsp;3</a></li>
-			<li><a>Sub&nbsp;category&nbsp;4</a></li>
+			<li><a>Asus</a></li>
+			<li><a>Hewlett Packard</a></li>
+			<li><a>Acer</a></li>
+			<li><a>Samsung</a></li>
+			<li><a>Dell</a></li>		
+			<li><a>Toshiba</a></li>		
+			<li><a>Apple</a></li>
 		</ul>
 	</li>
 	<li>
-		<a>Category&nbsp;5</a>
+		<a>Notebook</a>
 		<ul>
-			<li><a>Sub&nbsp;category&nbsp;1</a></li>
-			<li><a>Sub&nbsp;category&nbsp;2</a></li>
-			<li><a>Sub&nbsp;category&nbsp;3</a></li>
-			<li><a>Sub&nbsp;category&nbsp;4</a></li>
+			<li><a>Asus</a></li>
+			<li><a>Hewlett Packard</a></li>
+			<li><a>Acer</a></li>
+			<li><a>Samsung</a></li>
+			<li><a>Dell</a></li>
 		</ul>
 	</li>
 	<li>
-		<a>Category&nbsp;6</a>
+		<a>Accessories</a>
 		<ul>
-			<li><a>Sub&nbsp;category&nbsp;1</a></li>
-			<li><a>Sub&nbsp;category&nbsp;2</a></li>
-			<li><a>Sub&nbsp;category&nbsp;3</a></li>
-			<li><a>Sub&nbsp;category&nbsp;4</a></li>
+			<li><a>Battery chargers</a></li>
+			<li><a>USB Flash Drive</a></li>
+			<li><a>Laptop case</a></li>
+			<li><a>Printers</a></li>
 		</ul>
 	</li>
 </ul>
