@@ -1,56 +1,72 @@
 <ul id="nav">
 	<li>
-		<a>Netbook</a>
+		<a>Acer</a>
 		<ul>
-			<li><a>Asus</a></li>
-			<li><a>Hewlett Packard</a></li>
-			<li><a>Acer</a></li>
-			<li><a>Samsung</a></li>
+			<li><a>Netbook</a></li>
+			<li><a>Notebook</a></li>
+			<li><a>Performance</a></li>
+			<li><a>Multimedia</a></li>
+			<li><a>Gamers</a></li>
 		</ul>
 	</li>
 	<li>
-		<a>Performance</a>
+		<a>Asus</a>
 		<ul>
-			<li><a>Asus</a></li>
-			<li><a>Hewlett Packard</a></li>
-			<li><a>Acer</a></li>
-			<li><a>Samsung</a></li>
-			<li><a>Toshiba</a></li>	
-			<li><a>Dell</a></li>			
-			<li><a>Apple</a></li>
+			<li><a>Netbook</a></li>
+			<li><a>Notebook</a></li>
+			<li><a>Performance</a></li>
+			<li><a>Multimedia</a></li>
+			<li><a>Gamers</a></li>
 		</ul>
 	</li>
 	<li>
-		<a>Gamers</a>
+		<a>Apple</a>
 		<ul>
-			<li><a>Asus</a></li>
-			<li><a>Hewlett Packard</a></li>
-			<li><a>Acer</a></li>
-			<li><a>Samsung</a></li>
-			<li><a>Dell</a></li>			
-			<li><a>Apple</a></li>
+			<li><a>Netbook</a></li>
+			<li><a>Notebook</a></li>
+			<li><a>Performance</a></li>
+			<li><a>Multimedia</a></li>
+			<li><a>Gamers</a></li>
 		</ul>
 	</li>
 	<li>
-		<a>Multimedia</a>
+		<a>Dell</a>
 		<ul>
-			<li><a>Asus</a></li>
-			<li><a>Hewlett Packard</a></li>
-			<li><a>Acer</a></li>
-			<li><a>Samsung</a></li>
-			<li><a>Dell</a></li>		
-			<li><a>Toshiba</a></li>		
-			<li><a>Apple</a></li>
+		<li><a>Netbook</a></li>
+			<li><a>Notebook</a></li>
+			<li><a>Performance</a></li>
+			<li><a>Multimedia</a></li>
+			<li><a>Gamers</a></li>
 		</ul>
 	</li>
 	<li>
-		<a>Notebook</a>
+		<a>Hewlett Packard</a>
 		<ul>
-			<li><a>Asus</a></li>
-			<li><a>Hewlett Packard</a></li>
-			<li><a>Acer</a></li>
-			<li><a>Samsung</a></li>
-			<li><a>Dell</a></li>
+			<li><a>Netbook</a></li>
+			<li><a>Notebook</a></li>
+			<li><a>Performance</a></li>
+			<li><a>Multimedia</a></li>
+			<li><a>Gamers</a></li>
+		</ul>
+	</li>
+	<li>
+		<a>Toshiba</a>
+		<ul>
+			<li><a>Netbook</a></li>
+			<li><a>Notebook</a></li>
+			<li><a>Performance</a></li>
+			<li><a>Multimedia</a></li>
+			<li><a>Gamers</a></li>
+		</ul>
+	</li>
+		<li>
+		<a>Samsung</a>
+		<ul>
+			<li><a>Netbook</a></li>
+			<li><a>Notebook</a></li>
+			<li><a>Performance</a></li>
+			<li><a>Multimedia</a></li>
+			<li><a>Gamers</a></li>
 		</ul>
 	</li>
 	<li>
