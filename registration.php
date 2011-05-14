@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title>Registration</title>
 		<meta name="description" content="Projet web">
-		<meta name="author" content="john" >
+		<meta name="author" content="Alister & Mayhem">
 		<link rel="stylesheet" href="stylesheet.css">
 	</head>
 	<body>
@@ -85,7 +85,6 @@
 							return printForm($firstname,$surname,$address,$city,$country,$user,$email);
 						}
 
-	
 						//Connexion à la base de donnée
 						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 						if (!$conn) {
@@ -94,27 +93,19 @@
 						}
 
 						//Verification si le username du client est deja dans la base de donnée
-						$result = pg_query($conn,"SELECT username from customers where username='$user'");						
-						$count = pg_num_rows($result);
-
-						if ($count==1) {
-							echo "This username has already been used. Please change it.";
+						$result = pg_query($conn,"SELECT username from customers where username='$user'");
+						if (pg_num_rows($result) == 1) {
+							echo "This username is already used. Please change it.";
 							return printForm($firstname,$surname,$address,$city,$country,'',$email);
 						}
-	
-						else {
-						//Verification si le email n'est pas deja dans la base de donnée
-						$res = pg_query($conn,"SELECT mail from customers where mail='$email'");						
-						$countone = pg_num_rows($res);
-						}
 
-						if ($countone==1) {
-							echo "This e-mail has already been registered. Please change it.";
+						//Verification si le mail n'est pas deja dans la base de donnée
+						$res = pg_query($conn,"SELECT mail from customers where mail='$email'");
+						if (pg_num_rows($res) == 1) {
+							echo "This e-mail is already registered. Please change it.";
 							return printForm($firstname,$surname,$address,$city,$country,$user,'');
 						}
-						
-						else {
-							
+
 						// Ajout d'un nouveau client dans la base de donnée
 						$req = pg_query($conn,"INSERT INTO customers VALUES ('$firstname','$surname','$address','$city','$country','$user','$pass','$email')");
 						if (!$req) {
@@ -124,7 +115,6 @@
 						else
 							echo "You have been successfully registered.";
 
-					}
 						//Envoie du mail de confirmation de l'inscription
 /*
 						$headers ='From: "laptopmlv"<laptopmlv@gmail.com>'."\n";
