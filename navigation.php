@@ -1,66 +1,18 @@
 <ul id="nav">
 	<li>
-		<a>Acer</a>
+		<a>Brands</a>
 		<ul>
-			<li><a>Netbook</a></li>
-			<li><a>Notebook</a></li>
-			<li><a>Performance</a></li>
-			<li><a>Multimedia</a></li>
-			<li><a>Gamers</a></li>
+			<li><a>Acer</a></li>
+			<li><a>Asus</a></li>
+			<li><a>Apple</a></li>
+			<li><a>Dell</a></li>
+			<li><a>Hewlett&nbsp;Packard</a></li>
+			<li><a>Toshiba</a></li>
+			<li><a>Samsung</a></li>
 		</ul>
 	</li>
 	<li>
-		<a>Asus</a>
-		<ul>
-			<li><a>Netbook</a></li>
-			<li><a>Notebook</a></li>
-			<li><a>Performance</a></li>
-			<li><a>Multimedia</a></li>
-			<li><a>Gamers</a></li>
-		</ul>
-	</li>
-	<li>
-		<a>Apple</a>
-		<ul>
-			<li><a>Netbook</a></li>
-			<li><a>Notebook</a></li>
-			<li><a>Performance</a></li>
-			<li><a>Multimedia</a></li>
-			<li><a>Gamers</a></li>
-		</ul>
-	</li>
-	<li>
-		<a>Dell</a>
-		<ul>
-		<li><a>Netbook</a></li>
-			<li><a>Notebook</a></li>
-			<li><a>Performance</a></li>
-			<li><a>Multimedia</a></li>
-			<li><a>Gamers</a></li>
-		</ul>
-	</li>
-	<li>
-		<a>Hewlett Packard</a>
-		<ul>
-			<li><a>Netbook</a></li>
-			<li><a>Notebook</a></li>
-			<li><a>Performance</a></li>
-			<li><a>Multimedia</a></li>
-			<li><a>Gamers</a></li>
-		</ul>
-	</li>
-	<li>
-		<a>Toshiba</a>
-		<ul>
-			<li><a>Netbook</a></li>
-			<li><a>Notebook</a></li>
-			<li><a>Performance</a></li>
-			<li><a>Multimedia</a></li>
-			<li><a>Gamers</a></li>
-		</ul>
-	</li>
-		<li>
-		<a>Samsung</a>
+		<a>Categirues</a>
 		<ul>
 			<li><a>Netbook</a></li>
 			<li><a>Notebook</a></li>
@@ -72,9 +24,9 @@
 	<li>
 		<a>Accessories</a>
 		<ul>
-			<li><a>Battery chargers</a></li>
-			<li><a>USB Flash Drive</a></li>
-			<li><a>Laptop case</a></li>
+			<li><a>Battery&nbsp;chargers</a></li>
+			<li><a>USB&nbsp;Flash&nbsp;Drive</a></li>
+			<li><a>Laptop&nbsp;case</a></li>
 			<li><a>Printers</a></li>
 		</ul>
 	</li>
