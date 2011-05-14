@@ -1,5 +1,6 @@
 <div id="header">
 	<a href="./index.php"><img src="laptop.png" id="logo"></a>
+	<img src="MLV.png" id="mlv">	
 	<?php
 		if ($_SESSION)
 			echo "<span id='log'>Welcome back $_SESSION[name]. <a href='./logout.php'>Log out</a>.</span>";
