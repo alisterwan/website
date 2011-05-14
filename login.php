@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html lang="en">
 	<head>
@@ -46,8 +47,10 @@
 						$result = pg_query($conn,"SELECT (username,password) from customers where username='$user' and password='$pass'");
 						$count = pg_num_rows($result);
 
-						if ($count==1)
+						if ($count==1) {
 							echo "You are successfully logged in. Click <a href='./index.php'>here</a> to continue.";
+							$_SESSION[name] = $user;
+						}
 						else {
 							echo "<span class='error'>Username or password incorrect, try again.</span>";
 							return printForm($user);
