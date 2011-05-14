@@ -94,7 +94,7 @@
 
 						// Ajout d'un nouveau client dans la base de donnée
 						$result = $conn -> query("INSERT INTO customers VALUES ('$firstname','$surname','$address','$city','$country','$user','$pass','$email')");
-						if(!$result) {
+						if (!$result) {
 							echo "<span class='error'>Query error.</span>";
 							return printForm($firstname,$surname,$address,$city,$country,$user,$email);
 						}
@@ -107,7 +107,7 @@
 						$headers .='Content-Type: text/plain; charset="iso-8859-1"'."\n";
 						$headers .='Content-Transfer-Encoding: 8bit';
 						$to=$email;
-						if(mail($to,"Registration to LMLV","You have been correctly registered.", $headers)) {
+						if (mail($to,"Registration to LMLV","You have been correctly registered.", $headers)) {
 							echo "An email of confirmation has been sent.";
 						}
 						else {
