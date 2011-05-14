@@ -12,7 +12,7 @@
 		</ul>
 	</li>
 	<li>
-		<a>Categirues</a>
+		<a>Categories</a>
 		<ul>
 			<li><a>Netbook</a></li>
 			<li><a>Notebook</a></li>
