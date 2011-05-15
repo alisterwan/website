@@ -13,10 +13,10 @@
 
 		<?php
 			if ($_SESSION[masterpass] == laptopmlv)
-				echo "Good job!";
-			#include 'panel.php'
-			else
-				include 'login.php';
+				echo "Please choose a category to upload your product.";
+				echo "<a href='./productpanel.php'><u>Laptop</u></a>";
+				echo "<br/>";
+				echo "<a href><u>Accessories </u></a>";
 		?>
 
 	</body>
