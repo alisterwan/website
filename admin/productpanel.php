@@ -105,8 +105,14 @@
 					return productForm('',$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife);
 				}
 
+				//Verification si le prix ou la quantité est au format numérique
+				if (!is_numeric($price) || !is_numeric($quantity)) {
+					echo "<span class='error'>Price or quantity incorrect.</span>";
+					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife);
+				}
+
 				// Ajout d'un nouveau produit dans la base de donnée
-				$req = pg_query($conn,"INSERT INTO laptop VALUES ('$model','$brand','$type','$price','$size','$quantity','$system', '$processor','$ram','$hdd','$batterylife')");
+				$req = pg_query($conn,"INSERT INTO laptop VALUES ('$model','$brand','$type','$price','$size','$quantity','$system','$processor','$ram','$hdd','$batterylife')");
 				if (!$req) {
 					echo "<span class='error'>Query error.</span>";
 					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife);

@@ -13,3 +13,8 @@ a:hover {
   color: #2365A6;
   text-decoration: underline;
 }
+
+.error {
+  color: red;
+  font-weight: 700;
+}
