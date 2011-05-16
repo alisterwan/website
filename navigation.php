@@ -2,13 +2,13 @@
 	<li>
 		<a>Brands</a>
 		<ul>
-			<li><a>Acer</a></li>
-			<li><a>Asus</a></li>
-			<li><a>Apple</a></li>
-			<li><a>Dell</a></li>
-			<li><a>Hewlett&nbsp;Packard</a></li>
-			<li><a>Toshiba</a></li>
-			<li><a>Samsung</a></li>
+			<li><a href="./brands.php?brand=1">Acer</a></li>
+			<li><a href="./brands.php?brand=2">Asus</a></li>
+			<li><a href="./brands.php?brand=3">Apple</a></li>
+			<li><a href="./brands.php?brand=4">Dell</a></li>
+			<li><a href="./brands.php?brand=5">Hewlett&nbsp;Packard</a></li>
+			<li><a href="./brands.php?brand=6">Toshiba</a></li>
+			<li><a href="./brands.php?brand=7">Samsung</a></li>
 		</ul>
 	</li>
 	<li>
