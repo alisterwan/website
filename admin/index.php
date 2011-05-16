@@ -14,32 +14,12 @@
 		<link rel="stylesheet" href="stylesheet.css">
 	</head>
 	<body>
-<<<<<<< HEAD
-		<?php   
-			if ($_SESSION[masterpass] == laptopmlv)
-				
-				echo "";
-				echo "Welcome webmaster.";
-				echo "<br/>";
-				echo "Choose a category to upload.";
-				echo "<br/>";
-				echo "<a href='./productpanel.php'><u>Laptop</u></a>";
-				echo "<br/>";
-				echo "<a href><u>Accessories </u></a>";
-				echo"<br />";
-=======
 
-		Please choose a category to upload your product.
-		<br>
-		<a href='./productpanel.php'>Laptop</a>
-		<br>
-		<a href>Accessories</a>
->>>>>>> 4b6aa4e4b5c9bdacd059f96531101b7333218c4e
+		Welcome webmaster.<br>
+		Choose a category to upload.<br>
+		<a href='./productpanel.php'>Laptop</a><br>
+		<a href>Accessories</a><br>
+		<a href='../logout.php'>Log out</a>
 
-		?>
-<?php 
-echo "<a href='./login.php'>Log out</a>";
-?>
-		
 	</body>
 </html>
