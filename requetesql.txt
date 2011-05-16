@@ -1,0 +1,7 @@
+
+//Inscription:insert dans la bdd les valeurs recuperees dans le formulaire d'inscription.
+INSERT INTO customers VALUES ('$firstname','$surname','$address','$city','$country','$user','$pass','$email')
+
+//Authentification:verifie si le nom et le mot de passe stockees dans les variables $user et $pass sont dans la bdd.
+SELECT (username,password) from customers where username='$user' and password='$pass'.
+
