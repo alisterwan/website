@@ -1,3 +1,8 @@
+<?php
+	session_start();
+	if($_SESSION[masterpass] != laptopmlv)
+		header("location: login.php");
+?>
 <!doctype html>
 <html lang="en">
 	<head>
@@ -88,7 +93,7 @@
 							echo "<span class='error'>Form incomplete, please fill it completely.</span>";
 							return productForm($model,$brand,$type,$price,$size,$quantity,$system, $processor,$ram,$hdd,$batterylife);
 						}
-						
+
 						//Connexion à la base de donnée
 						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 						if (!$conn) {
