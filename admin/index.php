@@ -10,7 +10,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title>Administration panel</title>
 		<meta name="description" content="Projet web">
-		<meta name="author" content="Alister & Mayhem" >
+		<meta name="author" content="Alister & Mayhem">
 		<link rel="stylesheet" href="stylesheet.css">
 	</head>
 	<body>

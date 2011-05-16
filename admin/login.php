@@ -2,6 +2,7 @@
 	session_start();
 	if ($_POST["password"] == laptopmlv) {
 		$_SESSION[masterpass] = laptopmlv;
+		$_SESSION[name] = Admin;
 		header("location: index.php");
 	}
 ?>
