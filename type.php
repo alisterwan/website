@@ -33,19 +33,19 @@
 					$type = $_GET[type];
 					switch ($type) {
 						case Netbook:
-							echo "<p>HERE BE NETBOOK DESCRIPTION</p>";
+							echo "<img src='./typelogos/$type.png'>";
 							break;
 						case Notebook:
-							echo "<p>HERE BE NOTEBOOK DESCRIPTION</p>";
+							echo "<img src='./typelogos/$type.png'>";
 							break;
 						case Performance:
-							echo "<p>HERE BE PERFORMANCE DESCRIPTION</p>";
+							echo "<img src='./typelogos/$type.png'>";
 							break;
 						case Multimedia:
-							echo "<p>HERE BE MULTIMEDIA DESCRIPTION</p>";
+							echo "<img src='./typelogos/$type.png'>";
 							break;
 						case Gamers:
-							echo "<p>HERE GAMERS DESCRIPTION</p>";
+							echo "<img src='./typelogos/$type.png'>";
 							break;
 					}
 					echo "<br><br><br>";
