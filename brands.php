@@ -31,7 +31,7 @@
 					}
 
 					$brand = $_GET[brand];
-					echo "<img src='./typelogos/$brand.png'>";
+					echo "<img src='./logobrands/$brand.png'>";
 				?>
 
 				<div class="type">
