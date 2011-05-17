@@ -32,6 +32,7 @@
 
 					$brand = $_GET[brand];
 
+
 					switch ($brand) {
 						case Acer:
 							echo "<img src='./logobrands/$brand.png'>";
@@ -56,6 +57,9 @@
 							break;
 					}
 					echo "<br><br><br>";
+
+					echo "<img src='./typelogos/$brand.png'>";
+
 
 					echo "<img src='./typelogos/$brand.png'>";
 
