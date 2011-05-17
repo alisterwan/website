@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Home page</title>
+		<?php echo "<title>$_GET[brand]</title>"; ?>
 		<meta name="description" content="Projet web">
 		<meta name="author" content="Alister & Mayhem">
 		<link rel="stylesheet" href="stylesheet.css">
@@ -17,81 +17,80 @@
 			<div id="content">
 
 				<?php
-					function printDescription($brand) {
-						if ($brand == 1)
-							echo "<p>HERE IS THE BRAND ACER DESCRIPTION</p>";
-						if ($brand == 2)
-							echo "<p>HERE IS THE BRAND ASUS DESCRIPTION</p>";
-						if ($brand == 3)
-							echo "<p>HERE IS THE BRAND APPLE DESCRIPTION</p>";
-						if ($brand == 4)
-							echo "<p>HERE IS THE BRAND DELL DESCRIPTION</p>";
-						if ($brand == 5)
-							echo "<p>HERE IS THE BRAND HEWLETT PACKARD DESCRIPTION</p>";
-						if ($brand == 6)
-							echo "<p>HERE IS THE BRAND TOSHIBA DESCRIPTION</p>";
-						if ($brand == 7)
-							echo "<p>HERE IS THE BRAND SAMSUNG DESCRIPTION</p>";
-						echo "<br><br><br>";
-					}
-					function printLaptop($type) {
-						if ($brand == 1)
-							$branddir = 'Acer';
-						else if ($brand == 2)
-							$branddir = 'Asus';
-						else if ($brand == 3)
-							$branddir = 'Apple';
-						else if ($brand == 4)
-							$branddir = 'Apple';
-						else if ($brand == 5)
-							$branddir = 'Dell';
-						else if ($brand == 6)
-							$branddir = 'Hewlett Packard';
-						else if ($brand == 7)
-							$branddir = 'Samsung';
-						//for $pc in $brand and $type
+					function printLaptop($brand,$type) {
+						//Connexion & requete
+						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
+						$result = pg_query($conn,"SELECT id_laptop, model FROM laptop WHERE brand='$brand' and type='$type'");
+
+						while ($i = pg_fetch_row($result))
 							echo "
-
-				<div class='unit'>
-					<div><img src='./$branddir/$name.png'></div>
-					<div>$name name</div>
-				</div>
-
-							";
+				<a href='./laptop.php?id=$i[0]'><div class='unit'>
+					<div><img src='./$brand/$type/$i[1].png'></div>
+					<div>$i[1]</div>
+				</div></a>";
 					}
+
 					$brand = $_GET[brand];
-					printDescription($brand);
+					switch ($brand) {
+						case Acer:
+							echo "<p>HERE IS THE BRAND ACER DESCRIPTION</p>";
+							break;
+						case Asus:
+							echo "<p>HERE IS THE BRAND ASUS DESCRIPTION</p>";
+							break;
+						case Apple:
+							echo "<p>HERE IS THE BRAND APPLE DESCRIPTION</p>";
+							break;
+						case Dell:
+							echo "<p>HERE IS THE BRAND DELL DESCRIPTION</p>";
+							break;
+						case HP:
+							echo "<p>HERE IS THE BRAND HEWLETT PACKARD DESCRIPTION</p>";
+							break;
+						case Toshiba:
+							echo "<p>HERE IS THE BRAND TOSHIBA DESCRIPTION</p>";
+							break;
+						case Samsung:
+							echo "<p>HERE IS THE BRAND SAMSUNG DESCRIPTION</p>";
+							break;
+					}
+					echo "<br><br><br>";
 				?>
 
 				<div class="type">
 					<div class="title">Netbook</div>
 					<?php
-						printLaptop(1);
+						printLaptop($brand,Netbook);
 					?>
+					<br clear="left">
 				</div>
 				<div class="type">
 					<div class="title">Notebook</div>
 					<?php
-						printLaptop(2);
+						printLaptop($brand,Notebook);
 					?>
+					<br clear="left">
 				</div>
 				<div class="type">
 					<div class="title">Performance</div>
 					<?php
-						printLaptop(3);
+						printLaptop($brand,Performance);
 					?>
+					<br clear="left">
 				</div>
 				<div class="type">
 					<div class="title">Multimedia</div>
 					<?php
-						printLaptop(4);
+						printLaptop($brand,Multimedia);
 					?>
+					<br clear="left">
 				</div>
 				<div class="type">
 					<div class="title">Gamers</div>
 					<?php
-						printLaptop(5);
+						printLaptop($brand,Gamers);
 					?>
+					<br clear="left">
 				</div>
 
 			</div>

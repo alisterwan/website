@@ -137,11 +137,13 @@ li:hover ul {
 }
 .unit {
   margin: 15px;
-  height: 150px;
-  width: 150px;
+  float: left;
 }
-.unit div {
+.unit > div {
   text-align: center;
+}
+.unit img {
+  max-height: 150px;
 }
 
 
