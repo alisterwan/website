@@ -33,25 +33,25 @@
 					$brand = $_GET[brand];
 					switch ($brand) {
 						case Acer:
-							echo "<p>HERE IS THE BRAND ACER DESCRIPTION</p>";
+							echo "<img src='./typelogos/$brand.png'>";
 							break;
 						case Asus:
-							echo "<p>HERE IS THE BRAND ASUS DESCRIPTION</p>";
+							echo "<img src='./typelogos/$brand.png'>";
 							break;
 						case Apple:
-							echo "<p>HERE IS THE BRAND APPLE DESCRIPTION</p>";
+							echo "<img src='./typelogos/$brand.png'>";
 							break;
 						case Dell:
-							echo "<p>HERE IS THE BRAND DELL DESCRIPTION</p>";
+							echo "<img src='./typelogos/$brand.png'>";
 							break;
 						case HP:
-							echo "<p>HERE IS THE BRAND HEWLETT PACKARD DESCRIPTION</p>";
+							echo "<img src='./typelogos/$brand.png'>";
 							break;
 						case Toshiba:
-							echo "<p>HERE IS THE BRAND TOSHIBA DESCRIPTION</p>";
+							echo "<img src='./typelogos/$brand.png'>";
 							break;
 						case Samsung:
-							echo "<p>HERE IS THE BRAND SAMSUNG DESCRIPTION</p>";
+							echo "<img src='./typelogos/$brand.png'>";
 							break;
 					}
 					echo "<br><br><br>";
