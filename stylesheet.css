@@ -59,7 +59,6 @@ a:hover {
 }
 
 
-
 /** BODY **/
 #body {
   border-color: #DDD;
@@ -155,6 +154,15 @@ form tr > td:first-child {
   color: red;
   font-weight: 700;
 }
+
+
+/** CART **/
+#mycart{
+width: 400px;
+border-color:black;
+border-style:groove; 
+}
+
 
 /** FOOTER **/
 #footer {
