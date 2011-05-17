@@ -35,11 +35,25 @@
 						echo "<br><br><br>";
 					}
 					function printLaptop($type) {
+						if ($brand == 1)
+							$branddir = 'Acer';
+						else if ($brand == 2)
+							$branddir = 'Asus';
+						else if ($brand == 3)
+							$branddir = 'Apple';
+						else if ($brand == 4)
+							$branddir = 'Apple';
+						else if ($brand == 5)
+							$branddir = 'Dell';
+						else if ($brand == 6)
+							$branddir = 'Hewlett Packard';
+						else if ($brand == 7)
+							$branddir = 'Samsung';
 						//for $pc in $brand and $type
 							echo "
 
 				<div class='unit'>
-					<div><img src='$pc'></div>
+					<div><img src='./$branddir/$name.png'></div>
 					<div>$name name</div>
 				</div>
 
