@@ -31,24 +31,7 @@
 					}
 
 					$type = $_GET[type];
-					switch ($type) {
-						case Netbook:
-							echo "<img src='./typelogos/$type.png'>";
-							break;
-						case Notebook:
-							echo "<img src='./typelogos/$type.png'>";
-							break;
-						case Performance:
-							echo "<img src='./typelogos/$type.png'>";
-							break;
-						case Multimedia:
-							echo "<img src='./typelogos/$type.png'>";
-							break;
-						case Gamers:
-							echo "<img src='./typelogos/$type.png'>";
-							break;
-					}
-					echo "<br><br><br>";
+					echo "<img src='./typelogos/$type.png'>";
 				?>
 
 				<div class="type">
