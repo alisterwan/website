@@ -173,7 +173,6 @@ li:hover ul {
   margin: 20px;
   max-height: 310px;
   max-width: 400px;
-  vertical-align: middle;
 }
 #descriptions {
   border-left: 1px solid #CCC;
