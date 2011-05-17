@@ -14,11 +14,11 @@
 	<li>
 		<a>Categories</a>
 		<ul>
-			<li><a>Netbook</a></li>
-			<li><a>Notebook</a></li>
-			<li><a>Performance</a></li>
-			<li><a>Multimedia</a></li>
-			<li><a>Gamers</a></li>
+			<li><a href="./type.php?type=Netbook">Netbook</a></li>
+			<li><a href="./type.php?type=Notebook">Notebook</a></li>
+			<li><a href="./type.php?type=Performance">Performance</a></li>
+			<li><a href="./type.php?type=Multimedia">Multimedia</a></li>
+			<li><a href="./type.php?type=Gamers">Gamers</a></li>
 		</ul>
 	</li>
 	<li>

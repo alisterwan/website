@@ -157,10 +157,10 @@ form tr > td:first-child {
 
 
 /** CART **/
-#mycart{
-width: 400px;
-border-color:black;
-border-style:groove; 
+#mycart {
+  width: 400px;
+  border-color: #000;
+  border-style: groove;
 }
 
 
