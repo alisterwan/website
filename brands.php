@@ -31,38 +31,7 @@
 					}
 
 					$brand = $_GET[brand];
-
-
-					switch ($brand) {
-						case Acer:
-							echo "<img src='./logobrands/$brand.png'>";
-							break;
-						case Asus:
-							echo "<img src='./logobrands/$brand.png'>";
-							break;
-						case Apple:
-							echo "<img src='./logobrands/$brand.png'>";
-							break;
-						case Dell:
-							echo "<img src='./logobrands/$brand.png'>";
-							break;
-						case HP:
-							echo "<img src='./logobrands/$brand.png'>";
-							break;
-						case Toshiba:
-							echo "<img src='./logobrands/$brand.png'>";
-							break;
-						case Samsung:
-							echo "<img src='./logobrands/$brand.png'>";
-							break;
-					}
-					echo "<br><br><br>";
-
 					echo "<img src='./typelogos/$brand.png'>";
-
-
-					echo "<img src='./typelogos/$brand.png'>";
-
 				?>
 
 				<div class="type">
