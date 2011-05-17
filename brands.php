@@ -19,19 +19,19 @@
 				<?php
 					function printDescription($brand) {
 						if ($brand == 1)
-							echo "<p>HERE BE BRAND ACER DESCRIPTION</p>";
+							echo "<p>HERE IS THE BRAND ACER DESCRIPTION</p>";
 						if ($brand == 2)
-							echo "<p>HERE BE BRAND ASUS DESCRIPTION</p>";
+							echo "<p>HERE IS THE BRAND ASUS DESCRIPTION</p>";
 						if ($brand == 3)
-							echo "<p>HERE BE BRAND APPLE DESCRIPTION</p>";
+							echo "<p>HERE IS THE BRAND APPLE DESCRIPTION</p>";
 						if ($brand == 4)
-							echo "<p>HERE BE BRAND DELL DESCRIPTION</p>";
+							echo "<p>HERE IS THE BRAND DELL DESCRIPTION</p>";
 						if ($brand == 5)
-							echo "<p>HERE BE BRAND HEWLETT PACKARD DESCRIPTION</p>";
+							echo "<p>HERE IS THE BRAND HEWLETT PACKARD DESCRIPTION</p>";
 						if ($brand == 6)
-							echo "<p>HERE BE BRAND TOSHIBA DESCRIPTION</p>";
+							echo "<p>HERE IS THE BRAND TOSHIBA DESCRIPTION</p>";
 						if ($brand == 7)
-							echo "<p>HERE BE BRAND SAMSUNG DESCRIPTION</p>";
+							echo "<p>HERE IS THE BRAND SAMSUNG DESCRIPTION</p>";
 						echo "<br><br><br>";
 					}
 					function printLaptop($type) {
