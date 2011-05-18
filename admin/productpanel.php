@@ -16,7 +16,7 @@
 	<body>
 
 		<?php
-			function productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife) {
+			function productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic) {
 				echo "
 				<p>Here you can upload a new product, please fill in the blanks to store some information in our database.</p>
 				<form action='productpanel.php' method='post'>
@@ -66,6 +66,10 @@
 							<td><input type='text' name='batterylife' value='$batterylife'></td>
 						</tr>
 						<tr>
+							<td>Graphic card</td>
+							<td><input type='text' name='graphic' value='$graphic'></td>
+						</tr>
+						<tr>
 							<td><input type='submit' name='proceed' value='submit'></td>
 						<tr>
 					</table>
@@ -85,37 +89,39 @@
 				$ram			= $_POST["ram"];
 				$hdd			= $_POST["hdd"];
 				$batterylife	= $_POST["batterylife"];
+				$graphic    	= $_POST["graphic"];
+				
 
-				if (!$model || !$brand || !$type || !$price || !$size || !$quantity || !$system || !$processor || !$ram || !$hdd || !$batterylife) {
+				if (!$model || !$brand || !$type || !$price || !$size || !$quantity || !$system || !$processor || !$ram || !$hdd || !$batterylife || $graphic) {
 					echo "<span class='error'>Form incomplete, please fill it completely.</span>";
-					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife);
+					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
 				//Connexion à la base de donnée
 				$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 				if (!$conn) {
 					echo "<span class='error'>Connexion error.</span>";
-					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife);
+					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
 				//Verification si le modele du produit est deja dans la base de donnée
 				$result = pg_query($conn,"SELECT model from laptop where model='$model'");
 				if (pg_num_rows($result) == 1) {
 					echo "This model is already in our book. Please just check the stock.";
-					return productForm('',$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife);
+					return productForm('',$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
 				//Verification si le prix ou la quantité est au format numérique
 				if (!is_numeric($price) || !is_numeric($quantity)) {
 					echo "<span class='error'>Price or quantity incorrect.</span>";
-					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife);
+					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
 				// Ajout d'un nouveau produit dans la base de donnée
-				$req = pg_query($conn,"INSERT INTO laptop VALUES ('$model','$brand','$type','$price','$size','$quantity','$system','$processor','$ram','$hdd','$batterylife')");
+				$req = pg_query($conn,"INSERT INTO laptop VALUES ('$model','$brand','$type','$price','$size','$quantity','$system','$processor','$ram','$hdd','$batterylife','$graphic')");
 				if (!$req) {
 					echo "<span class='error'>Query error.</span>";
-					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife);
+					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 				else {
 					echo "You have successfully uploaded this product.<br>";
@@ -124,7 +130,7 @@
 			}
 
 			else {
-				productForm('','','','','','','','','','','');
+				productForm('','','','','','','','','','','','');
 			}
 		?>
 
