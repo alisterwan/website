@@ -34,6 +34,7 @@
 						<div><strong>Processor</strong>: $i[7]</div>
 						<div><strong>RAM</strong>: $i[8] MB</div>
 						<div><strong>HDD</strong>: $i[9] GB</div>
+						<div><strong>Graphics</strong>: $i[11] GB</div>
 						<div><strong>Batterly life</strong>: $i[10]</div>
 						<div><strong>Quantity</strong>: $i[5]</div>
 						<div><strong>Price</strong>: $i[3] €</div>
