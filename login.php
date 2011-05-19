@@ -40,6 +40,11 @@
 						$user = $_POST["username"];
 						$pass = $_POST["password"];
 
+						//Session Administrateur
+						if ($user == 'administrator' && $pass == 'laptopmlv') {
+							header("location: admin_index.php");
+						}
+						
 						//Connexion à la base de donnée
 						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 
