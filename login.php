@@ -51,6 +51,9 @@
 							echo "You are successfully logged in. Click <a href='./index.php'>here</a> to continue.";
 							$_SESSION[name] = $user;
 						}
+						
+						
+						
 						else {
 							echo "<span class='error'>Username or password incorrect, try again.</span>";
 							return printForm($user);
