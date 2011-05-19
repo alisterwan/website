@@ -92,7 +92,7 @@
 				$graphic    	= $_POST["graphic"];
 				
 
-				if (!$model || !$brand || !$type || !$price || !$size || !$quantity || !$system || !$processor || !$ram || !$hdd || !$batterylife || $graphic) {
+				if (!$model || !$brand || !$type || !$price || !$size || !$quantity || !$system || !$processor || !$ram || !$hdd || !$batterylife || !$graphic) {
 					echo "<span class='error'>Form incomplete, please fill it completely.</span>";
 					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
@@ -108,7 +108,7 @@
 				$result = pg_query($conn,"SELECT model from laptop where model='$model'");
 				if (pg_num_rows($result) == 1) {
 					echo "This model is already in our book. Please just check the stock.";
-					return productForm('',$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
+					return productForm($brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
 				//Verification si le prix ou la quantité est au format numérique
