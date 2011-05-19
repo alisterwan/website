@@ -1,0 +1,20 @@
+/** GENERAL **/
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: arial, sans-serif;
+}
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+a:hover {
+  color: #2365A6;
+  text-decoration: underline;
+}
+
+.error {
+  color: red;
+  font-weight: 700;
+}
