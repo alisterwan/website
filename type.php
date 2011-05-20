@@ -22,6 +22,11 @@
 						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 						$result = pg_query($conn,"SELECT id_laptop, model FROM laptop WHERE type='$type' and brand='$brand'");
 
+					if($result=='NULL'){
+						return;
+						}
+					
+					
 						while ($i = pg_fetch_row($result))
 							echo "
 				<a href='./laptop.php?id=$i[0]'><div class='unit'>
