@@ -22,53 +22,33 @@
 						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 						$result = pg_query($conn,"SELECT id_laptop, model FROM laptop WHERE brand='$brand' and type='$type'");
 
-						while ($i = pg_fetch_row($result))
+						if (pg_num_rows($result)) {
 							echo "
+				<div class='type'>
+					<div class='title'>$type</div>";
+							while ($i = pg_fetch_row($result))
+								echo "
 				<a href='./laptop.php?id=$i[0]'><div class='unit'>
 					<div><img src='./$brand/$type/$i[1].png'></div>
 					<div>$i[1]</div>
 				</div></a>";
+							echo "
+					<br clear='left'>
+				</div>";
+						}
 					}
 
 					$brand = $_GET[brand];
 					echo "<img src='./logobrands/$brand.png'>";
 				?>
 
-				<div class="type">
-					<div class="title">Netbook</div>
 					<?php
 						printLaptop($brand,Netbook);
-					?>
-					<br clear="left">
-				</div>
-				<div class="type">
-					<div class="title">Notebook</div>
-					<?php
 						printLaptop($brand,Notebook);
-					?>
-					<br clear="left">
-				</div>
-				<div class="type">
-					<div class="title">Performance</div>
-					<?php
 						printLaptop($brand,Performance);
-					?>
-					<br clear="left">
-				</div>
-				<div class="type">
-					<div class="title">Multimedia</div>
-					<?php
 						printLaptop($brand,Multimedia);
-					?>
-					<br clear="left">
-				</div>
-				<div class="type">
-					<div class="title">Gamers</div>
-					<?php
 						printLaptop($brand,Gamers);
 					?>
-					<br clear="left">
-				</div>
 
 			</div>
 		</div>
