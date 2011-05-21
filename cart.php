@@ -2,7 +2,7 @@
 session_start();
 include_once("cart_function.php");
 if (!$_SESSION){include './login.php';}
-=======
+
 	session_start();
 	include_once("cart_function.php");
 
