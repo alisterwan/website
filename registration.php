@@ -20,47 +20,45 @@
 						echo "
 				<p>In order to register, please provide necessary information. You username will be used in order to log in. Your password must be at least 8 characters long.</p>
 				<form action='registration.php' method='post'>
-					<table>
-						<tr>
-							<td>Firstname</td>
-							<td><input type='text' name='firstname' value='$firstname'></td>
-						</tr>
-						<tr>
-							<td>Surname</td>
-							<td><input type='text' name='surname' value='$surname'></td>
-						</tr>
-						<tr>
-							<td>Address</td>
-							<td><input type='text' name='address' value='$address'></td>
-						</tr>
-						<tr>
-							<td>City</td>
-							<td><input type='text' name='city' value='$city'></td>
-						</tr>
-						<tr>
-							<td>Country</td>
-							<td><input type='text' name='country' value='$country'></td>
-						</tr>
-						<tr>
-							<td>Username</td>
-							<td><input type='text' name='username' value='$user'></td>
-						</tr>
-						<tr>
-							<td>Password</td>
-							<td><input type='password' name='password'></td>
-						</tr>
-						<tr>
-							<td>Confirm your password</td>
-							<td><input type='password' name='passcheck'></td>
-						</tr>
-						<tr>
-							<td>E-mail</td>
-							<td><input type='text' name='email' value='$email'></td>
-						</tr>
-						<tr>
-							<td><input type='submit' name='proceed' value='submit'></td>
-						<tr>
-					</table>
+					<div>
+						<span>Firstname</span>
+						<input type='text' name='firstname' value='$firstname'>
+					</div>
+					<div>
+						<span>Surname</span>
+						<input type='text' name='surname' value='$surname'>
+					</div>
+					<div>
+						<span>Address</span>
+						<input type='text' name='address' value='$address'>
+					</div>
+					<div>
+						<span>City</span>
+						<input type='text' name='city' value='$city'>
+					</div>
+					<div>
+						<span>Country</span>
+						<input type='text' name='country' value='$country'>
+					</div>
+					<div>
+						<span>Username</span>
+						<input type='text' name='username' value='$user'>
+					</div>
+					<div>
+						<span>Password</span>
+						<input type='password' name='password'>
+					</div>
+					<div>
+						<span>Confirm password</span>
+						<input type='password' name='passcheck'>
+					</div>
+					<div>
+						<span>E-mail</span>
+						<input type='text' name='email' value='$email'>
+					</div>
+					<div>
+						<input type='submit' name='proceed' value='submit'>
+					</div>
 				</form>";
 					}
 

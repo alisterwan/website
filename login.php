@@ -29,19 +29,17 @@
 					function printForm($name) {
 						echo "
 				<form action='login.php' method='post' name='login'>
-					<table>
-						<tr>
-							<td>Username</td>
-							<td><input type='text' name='username' value='$name'></td>
-						</tr>
-						<tr>
-							<td>Password</td>
-							<td><input type='password' name='password'></td>
-						</tr>
-						<tr>
-							<td><input type='submit' name='proceed' value='Log in'></td>
-						<tr>
-					</table>
+					<div>
+						<span>Username</span>
+						<input type='text' name='username' value='$name'>
+					</div>
+					<div>
+						<span>Password</span>
+						<input type='password' name='password'>
+					</div>
+					<div>
+						<input type='submit' name='proceed' value='Log in'>
+					</div>
 				</form>";
 					}
 
