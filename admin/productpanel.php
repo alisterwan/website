@@ -78,18 +78,18 @@
 
 			if ($_POST) {
 
-				$model			= $_POST["model"];
-				$brand			= $_POST["brand"];
-				$type			= $_POST["type"];
-				$price			= $_POST["price"];
-				$size			= $_POST["size"];
-				$quantity		= $_POST["quantity"];
-				$system			= $_POST["system"];
-				$processor		= $_POST["processor"];
-				$ram			= $_POST["ram"];
-				$hdd			= $_POST["hdd"];
-				$batterylife	= $_POST["batterylife"];
-				$graphic		= $_POST["graphic"];
+				$model			= $_POST[model];
+				$brand			= $_POST[brand];
+				$type			= $_POST[type];
+				$price			= $_POST[price];
+				$size			= $_POST[size];
+				$quantity		= $_POST[quantity];
+				$system			= $_POST[system];
+				$processor		= $_POST[processor];
+				$ram			= $_POST[ram];
+				$hdd			= $_POST[hdd];
+				$batterylife	= $_POST[batterylife];
+				$graphic		= $_POST[graphic];
 
 
 				if (!$model || !$brand || !$type || !$price || !$size || !$quantity || !$system || !$processor || !$ram || !$hdd || !$batterylife || !$graphic) {

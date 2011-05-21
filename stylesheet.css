@@ -180,10 +180,12 @@ li:hover ul {
 }
 #descriptions > div {
   border-bottom: 1px solid #CCC;
-  padding: 11px 10px 12px;
+  padding: 8px 10px;
 }
 #descriptions > div:last-child {
   border: none;
+  font-weight: 700;
+  text-align: center;
 }
 
 

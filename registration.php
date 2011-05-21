@@ -66,21 +66,21 @@
 
 					if ($_POST) {
 
-						$firstname= $_POST["firstname"];
-						$surname  = $_POST["surname"];
-						$address  = $_POST["address"];
-						$city     = $_POST["city"];
-						$country  = $_POST["country"];
-						$user     = $_POST["username"];
-						$pass     = $_POST["password"];
-						$email    = $_POST["email"];
+						$firstname= $_POST[firstname];
+						$surname  = $_POST[surname];
+						$address  = $_POST[address];
+						$city     = $_POST[city];
+						$country  = $_POST[country];
+						$user     = $_POST[username];
+						$pass     = $_POST[password];
+						$email    = $_POST[email];
 
 						if (!$firstname || !$surname || !$address || !$city || !$country || !$user || !$pass || !$email) {
 							echo "<span class='error'>Form incomplete, please fill it completely.</span>";
 							return printForm($firstname,$surname,$address,$city,$country,$user,$email);
 						}
 
-						if (strlen($pass)<8 || $pass != $_POST["passcheck"]) {
+						if (strlen($pass)<8 || $pass != $_POST[passcheck]) {
 							echo "<span class='error'>Password invalid or too short.</span>";
 							return printForm($firstname,$surname,$address,$city,$country,$user,$email);
 						}
@@ -94,15 +94,15 @@
 
 						//Verification si le username du client est deja dans la base de donnée
 						$result = pg_query($conn,"SELECT username from customers where username='$user'");
-						if (pg_num_rows($result) == 1) {
-							echo "This username is already used. Please change it.";
+						if (pg_num_rows($result)) {
+							echo "<span class='error'>This username is already used. Please change it.</span>";
 							return printForm($firstname,$surname,$address,$city,$country,'',$email);
 						}
 
 						//Verification si le mail n'est pas deja dans la base de donnée
 						$res = pg_query($conn,"SELECT mail from customers where mail='$email'");
-						if (pg_num_rows($res) == 1) {
-							echo "This e-mail is already registered. Please change it.";
+						if (pg_num_rows($res)) {
+							echo "<span class='error'>This e-mail is already registered. Please change it.</span>";
 							return printForm($firstname,$surname,$address,$city,$country,$user,'');
 						}
 
