@@ -15,8 +15,8 @@
 		<div id="body">
 			<?php include './navigation.php' ?>
 			<div id="content">
-
-				<?php
+	<?php
+					
 					$id = $_GET[id];
 					//Connexion & requete
 					$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
@@ -34,7 +34,7 @@
 						<div><strong>Processor</strong>: $i[7]</div>
 						<div><strong>RAM</strong>: $i[8] MB</div>
 						<div><strong>HDD</strong>: $i[9] GB</div>
-						<div><strong>Graphics</strong>: $i[12]</div>
+						<div><strong>Graphics</strong>: $i[11]</div>
 						<div><strong>Batterly life</strong>: $i[10]</div>
 						<div><strong>Quantity</strong>: $i[5]</div>
 						<div><strong>Price</strong>: $i[3] €</div>
@@ -42,6 +42,10 @@
 					<br clear='both'>
 				</div>
 			</div>";
+			echo "<a href='cart.php?action=add&amp;l=$i[0]&amp;q=qua&amp;p=$i[3]' onclick='window.open(this.href, '', 
+			'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;'>Add to cart.</a>";
+			
+			
 				?>
 
 			</div>
