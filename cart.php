@@ -40,6 +40,7 @@ if($action != null)
 {
    if(!in_array($action,array('add', 'delete', 'refresh')))
    
+   
    $error=true;
 
    //récuperation des variables en POST ou GET
@@ -100,17 +101,17 @@ if (!$error){
 				echo "<td>".htmlspecialchars($_SESSION['cart']['id_laptop'][$i])."</ td>";
 				echo "<td><input type=\"text\" size=\"4\" name=\"q[]\" value=\"".htmlspecialchars($_SESSION['cart']['quantity'][$i])."\"/></td>";
 				echo "<td>".htmlspecialchars($_SESSION['cart']['price'][$i])."</td>";
-				echo "<td><a href=\"".htmlspecialchars("cart.php?action=suppression&l=".rawurlencode($_SESSION['cart']['id_laptop'][$i]))."\">XX</a></td>";
+				echo "<td><a href=\"".htmlspecialchars("cart.php?action=delete&l=".rawurlencode($_SESSION['cart']['id_laptop'][$i]))."\">delete</a></td>";
 				echo "</tr>";
 			}
 
 			echo "<tr><td colspan=\"2\"> </td>";
 			echo "<td colspan=\"2\">";
-			echo "Total : ".totalAmount();
+			echo "Total : $i[3]".totalAmount();
 			echo "</td></tr>";
 
 			echo "<tr><td colspan=\"4\">";
-			echo "<input type=\"submit\" value=\"Rafraichir\"/>";
+			echo "<input type=\"submit\" value=\"refresh\"/>";
 			echo "<input type=\"hidden\" name=\"action\" value=\"refresh\"/>";
 
 			echo "</td></tr>";
