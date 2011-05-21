@@ -4,8 +4,12 @@ include_once("cart_function.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
-<head>
+	
+<head>	
 <title>Your cart</title>
+<meta name="description" content="Projet web">
+<meta name="author" content="Alister & Mayhem">
+<link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
 <?php include './header.php' ?>
