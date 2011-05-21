@@ -189,9 +189,6 @@ li:hover ul {
 
 
 /** REGISTRATION **/
-form tr > td:first-child {
-  text-align: right;
-}
 .error {
   color: red;
   font-weight: 700;

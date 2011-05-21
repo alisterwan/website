@@ -1,128 +1,113 @@
 <?php
-session_start();
-include_once("cart_function.php");
+	session_start();
+	include_once("cart_function.php");
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
-	
-<head>	
-<title>Your cart</title>
-<meta name="description" content="Projet web">
-<meta name="author" content="Alister & Mayhem">
-<link rel="stylesheet" href="stylesheet.css">
-</head>
-<body>
-<?php include './header.php' ?>
-	<div id="body">
+<?php session_start(); ?>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Home page</title>
+		<meta name="description" content="Projet web">
+		<meta name="author" content="Alister & Mayhem">
+		<link rel="stylesheet" href="stylesheet.css">
+	</head>
+	<body>
+		<?php include './header.php' ?>
+
+		<div id="body">
 			<?php include './navigation.php' ?>
 			<div id="content">
+				<p>Your cart</p>
 
-<form method="post" action="cart.php">
-<table style="width: 400px">
-	<tr>
-		<td colspan="4">YOUR CART</td>
-	</tr>
-	<tr>
-		<td>Model</td>
-		<td>Quantity</td>
-		<td>Price</td>
-	</tr>
+				<form method="post" action="cart.php">
+					<table>
+						<tr>
+							<td>Model</td>
+							<td>Quantity</td>
+							<td>Price</td>
+						</tr>
 
+						<?php
+							$action = (isset($_POST[action])? $_POST[action]: (isset($_GET[action])? $_GET[action]:null));
+							if($action) {
+								//récuperation des variables en POST ou GET
+								$l = (isset($_POST[l])? $_POST[l]: (isset($_GET[l])? $_GET[l]:null));
+								$p = (isset($_POST[p])? $_POST[p]: (isset($_GET[p])? $_GET[p]:null));
+								$q = (isset($_POST[q])? $_POST[q]: (isset($_GET[q])? $_GET[q]:null));
 
-	<?php
-	
+								//Suppression des espaces verticaux
+								$l = preg_replace('#\v#','',$l);
+								//On verifie que $p soit un float
+								$p = floatval($p);
 
-$error = false;
+								//On traite $q qui peut etre un entier simple ou un tableau d'entier
+								if (is_array($q)) {
+									$quantity = array();
+									$i=0;
+									foreach ($q as $content) {
+										$quantity[$i++] = intval($content);
+									}
+								}
+								else
+									$q = intval($q);
+							}
 
-$action = (isset($_POST['action'])? $_POST['action']:  (isset($_GET['action'])? $_GET['action']:null )) ;
-if($action != null)
-{
-   if(!in_array($action,array('add', 'delete', 'refresh')))
-   
-   
-   $error=true;
+							switch($action) {
+								Case "add":
+									addLaptop($l,$q,$p);
+									break;
+								Case "delete":
+									deleteProduct($l);
+									break;
+								Case "refresh":
+									for ($i=0;$i<count($quantity);$i++)
+										modifyQtyProduct($_SESSION[cart][model][$i],round($quantity[$i]));
+										break;
+								Default:
+									break;
+							}
 
-   //récuperation des variables en POST ou GET
-   $l = (isset($_POST['l'])? $_POST['l']:  (isset($_GET['l'])? $_GET['l']:null )) ;
-   $p = (isset($_POST['p'])? $_POST['p']:  (isset($_GET['p'])? $_GET['p']:null )) ;
-   $q = (isset($_POST['q'])? $_POST['q']:  (isset($_GET['q'])? $_GET['q']:null )) ;
+							if ($nbProduct = count($_SESSION[cart][model])) {
+								for ($i=0;$i<$nbProduct;$i++) {
+									echo "
+									<tr>
+										<td>
+											".htmlspecialchars($_SESSION[cart][model][$i])."
+										</td>
+										<td>
+											<input type='text' size='3' name='q[]' value='".htmlspecialchars($_SESSION[cart][quantity][$i])."'>
+										</td>
+										<td>
+											".htmlspecialchars($_SESSION[cart][price][$i])."
+										</td>
+										<td>
+											<a href='".htmlspecialchars("cart.php?action=delete&l=".rawurlencode($_SESSION[cart][model][$i]))."'>delete</a>
+										</td>
+									</tr>";
+								}
 
-   //Suppression des espaces verticaux
-   $l = preg_replace('#\v#', '',$l);
-   //On verifie que $p soit un float
-   $p = floatval($p);
+								$total = totalAmount();
+								echo "
+									<tr><td colspan='4'>
+										Total: $total
+									</td></tr>
+									<tr><td colspan='4'>
+										<input type='submit' value='Refresh'>
+										<input type='submit' value='Order'>
+										<input type='hidden' name='action' value='refresh'>
+									</td></tr>";
+							}
+							else
+								echo "<tr><td>Your cart is currently empty</td></tr>";
+						?>
 
-   //On traite $q qui peut etre un entier simple ou un tableau d'entier
-    
-   if (is_array($q)){
-      $quantity = array();
-      $i=0;
-      foreach ($q as $content){
-         $quantity[$i++] = intval($content);
-      }
-   }
-   else
-   $q = intval($q);
-    
-}
+					</table>
+				</form>
+			</div>
+		</div>
 
-if (!$error){
-   switch($action){
-      Case "add":
-         addLaptop($l,$q,$p);
-         break;
-
-      Case "delete":
-         deleteProduct($l);
-         break;
-
-      Case "refresh" :
-         for ($i = 0 ; $i < count($quantity) ; $i++)
-         {
-            modifyQtyProduct($_SESSION['cart']['model'][$i],round($quantity[$i]));
-         }
-         break;
-
-      Default:
-         break;
-   }
-}	
-	if (creationcart())
-	{
-		$nbProduct=count($_SESSION['cart']['model']);
-		if ($nbProduct <= 0)
-		echo "<tr><td>Your cart is currently empty </ td></tr>";
-		else
-		{
-			for ($i=0 ;$i < $nbProduct ; $i++)
-			{
-				echo "<tr>";
-				echo "<td>".htmlspecialchars($_SESSION['cart']['model'][$i])."</ td>";
-				echo "<td><input type=\"text\" size=\"4\" name=\"q[]\" value=\"".htmlspecialchars($_SESSION['cart']['quantity'][$i])."\"/></td>";
-				echo "<td>".htmlspecialchars($_SESSION['cart']['price'][$i])."</td>";
-				echo "<td><a href=\"".htmlspecialchars("cart.php?action=delete&l=".rawurlencode($_SESSION['cart']['model'][$i]))."\">delete</a></td>";
-				echo "</tr>";
-			}
-
-			echo "<tr><td colspan=\"2\"> </td>";
-			echo "<td colspan=\"2\">";
-			$total=totalAmount();
-			echo "Total : $total";
-			echo "</td></tr>";
-
-			echo "<tr><td colspan=\"4\">";
-			echo "<input type=\"submit\" value=\"refresh\"/>";
-			echo "<input type=\"submit\" value=\"Order\"/>";
-			echo "<input type=\"hidden\" name=\"action\" value=\"refresh\"/>";
-
-			echo "</td></tr>";
-		}
-	}
-	?>
-	
-</table>
-</form>
-</div>
-	<?php include './footer.php' ?>
-</body>
+		<?php include './footer.php' ?>
+	</body>
 </html>
