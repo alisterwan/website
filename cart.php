@@ -1,14 +1,17 @@
 <?php
 session_start();
 include_once("cart_function.php");
-
-echo '<?xml version="1.0" encoding="utf-8"?>';?>
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
 <head>
 <title>Your cart</title>
 </head>
 <body>
+<?php include './header.php' ?>
+	<div id="body">
+			<?php include './navigation.php' ?>
+			<div id="content">
 
 <form method="post" action="cart.php">
 <table style="width: 400px">
@@ -56,5 +59,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
 	?>
 </table>
 </form>
+</div>
+	<?php include './footer.php' ?>
 </body>
 </html>
