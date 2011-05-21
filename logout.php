@@ -1,5 +1,6 @@
 <?php
 	session_start();
-	session_destroy(); // On détruit la session
+	session_unregister(name);
+	session_unregister(masterpass);
 	header("location: index.php"); // On renvoie ensuite sur la page d'accueil
 ?>

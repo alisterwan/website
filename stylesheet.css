@@ -171,8 +171,7 @@ li:hover ul {
 }
 #picture img {
   margin: 20px;
-  max-height: 310px;
-  max-width: 400px;
+  max-height: 325px;
 }
 #descriptions {
   border-left: 1px solid #CCC;
@@ -180,20 +179,28 @@ li:hover ul {
 }
 #descriptions > div {
   border-bottom: 1px solid #CCC;
-  padding: 11px 10px 12px;
+  padding: 8px 10px;
 }
 #descriptions > div:last-child {
   border: none;
+  font-weight: 700;
+  text-align: center;
 }
 
 
 /** REGISTRATION **/
-form tr > td:first-child {
-  text-align: right;
-}
 .error {
   color: red;
   font-weight: 700;
+}
+form {
+  clear: both;
+  text-align: center;
+}
+form span {
+  display: inline-block;
+  width: 130px;
+  text-align: right;
 }
 
 
