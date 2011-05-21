@@ -20,13 +20,12 @@ include_once("cart_function.php");
 <form method="post" action="cart.php">
 <table style="width: 400px">
 	<tr>
-		<td colspan="4">your cart</td>
+		<td colspan="4">YOUR CART</td>
 	</tr>
 	<tr>
-		<td>id_laptop</td>
-		<td>quantity</td>
-		<td>price</td>
-		<td>action</td>
+		<td>Model</td>
+		<td>Quantity</td>
+		<td>Price</td>
 	</tr>
 
 
@@ -80,7 +79,7 @@ if (!$error){
       Case "refresh" :
          for ($i = 0 ; $i < count($quantity) ; $i++)
          {
-            modifyQtyProduct($_SESSION['cart']['id_laptop'][$i],round($quantity[$i]));
+            modifyQtyProduct($_SESSION['cart']['model'][$i],round($quantity[$i]));
          }
          break;
 
@@ -90,7 +89,7 @@ if (!$error){
 }	
 	if (creationcart())
 	{
-		$nbProduct=count($_SESSION['cart']['id_laptop']);
+		$nbProduct=count($_SESSION['cart']['model']);
 		if ($nbProduct <= 0)
 		echo "<tr><td>Your cart is currently empty </ td></tr>";
 		else
@@ -98,20 +97,22 @@ if (!$error){
 			for ($i=0 ;$i < $nbProduct ; $i++)
 			{
 				echo "<tr>";
-				echo "<td>".htmlspecialchars($_SESSION['cart']['id_laptop'][$i])."</ td>";
+				echo "<td>".htmlspecialchars($_SESSION['cart']['model'][$i])."</ td>";
 				echo "<td><input type=\"text\" size=\"4\" name=\"q[]\" value=\"".htmlspecialchars($_SESSION['cart']['quantity'][$i])."\"/></td>";
 				echo "<td>".htmlspecialchars($_SESSION['cart']['price'][$i])."</td>";
-				echo "<td><a href=\"".htmlspecialchars("cart.php?action=delete&l=".rawurlencode($_SESSION['cart']['id_laptop'][$i]))."\">delete</a></td>";
+				echo "<td><a href=\"".htmlspecialchars("cart.php?action=delete&l=".rawurlencode($_SESSION['cart']['model'][$i]))."\">delete</a></td>";
 				echo "</tr>";
 			}
 
 			echo "<tr><td colspan=\"2\"> </td>";
 			echo "<td colspan=\"2\">";
-			echo "Total : $i[3]".totalAmount();
+			$total=totalAmount();
+			echo "Total : $total";
 			echo "</td></tr>";
 
 			echo "<tr><td colspan=\"4\">";
 			echo "<input type=\"submit\" value=\"refresh\"/>";
+			echo "<input type=\"submit\" value=\"Order\"/>";
 			echo "<input type=\"hidden\" name=\"action\" value=\"refresh\"/>";
 
 			echo "</td></tr>";
