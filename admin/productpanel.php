@@ -1,7 +1,7 @@
 <?php
 	session_start();
-	if($_SESSION[masterpass] != laptopmlv)
-		header("location: login.php");
+	if($_SESSION[masterpass] != '415ab40ae9b7cc4e66d6769cb2c08106e8293b48')
+		header("location: ../login.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -89,8 +89,8 @@
 				$ram			= $_POST["ram"];
 				$hdd			= $_POST["hdd"];
 				$batterylife	= $_POST["batterylife"];
-				$graphic    	= $_POST["graphic"];
-				
+				$graphic		= $_POST["graphic"];
+
 
 				if (!$model || !$brand || !$type || !$price || !$size || !$quantity || !$system || !$processor || !$ram || !$hdd || !$batterylife || !$graphic) {
 					echo "<span class='error'>Form incomplete, please fill it completely.</span>";
@@ -106,7 +106,7 @@
 
 				//Verification si le modele du produit est deja dans la base de donnée
 				$result = pg_query($conn,"SELECT model from laptop where model='$model'");
-				if (pg_num_rows($result) == 1) {
+				if (pg_num_rows($result)) {
 					echo "This model is already in our book. Please just check the stock.";
 					return productForm($brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}

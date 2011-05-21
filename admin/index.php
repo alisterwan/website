@@ -1,7 +1,7 @@
 <?php
 	session_start();
-	if($_SESSION[masterpass] != laptopmlv)
-		header("location: login.php");
+	if($_SESSION[masterpass] != '415ab40ae9b7cc4e66d6769cb2c08106e8293b48')
+		header("location: ../login.php");
 ?>
 <!doctype html>
 <html lang="en">
