@@ -1,13 +1,3 @@
-
-<?php
-session_start();
-include_once("cart_function.php");
-if (!$_SESSION){include './login.php';
-	session_start();
-	include_once("cart_function.php");
-
-?>
-
 <?php session_start(); ?>
 <!doctype html>
 <html lang="en">
@@ -39,7 +29,10 @@ if (!$_SESSION){include './login.php';
 						//Connexion
 						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 
-						if ($id = $_GET[add] and is_int($id) and !$_SESSION[cart][$id])
+						if (!count($_SESSION[cart]))
+							$_SESSION[cart][0] = 1;
+
+						if ($id = $_GET[add] and is_int((int)$id) and !$_SESSION[cart][$id])
 							$_SESSION[cart][$id] = 1;
 						else foreach ($_POST as $action=>$id)
 							switch ($action) {
