@@ -37,7 +37,7 @@
 						<div><strong>Batterly life</strong>: $i[10]</div>
 						<div><strong>Quantity</strong>: $i[5]</div>
 						<div><strong>Price</strong>: $i[3] €</div>
-						<div><a href='cart.php?action=add&l=$i[0]&q=qua&p=$i[3]'>Add to cart.</a></div>
+						<div><a href='cart.php?add=$i[12]'>Add to cart.</a></div>
 					</div>
 					<br clear='both'>
 				</div>

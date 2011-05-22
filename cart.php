@@ -1,12 +1,3 @@
-<?php
-session_start();
-include_once("cart_function.php");
-if (!$_SESSION){include './login.php';}
-
-	session_start();
-	include_once("cart_function.php");
-
-?>
 <?php session_start(); ?>
 <!doctype html>
 <html lang="en">
@@ -15,7 +6,7 @@ if (!$_SESSION){include './login.php';}
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title>Your cart</title>
 		<meta name="description" content="Projet web">
-		<meta name="author" content="john" >
+		<meta name="author" content="Alister & Mayhem">
 		<link rel="stylesheet" href="stylesheet.css">
 	</head>
 	<body>
@@ -24,89 +15,63 @@ if (!$_SESSION){include './login.php';}
 		<div id="body">
 			<?php include './navigation.php' ?>
 			<div id="content">
-				<p>Your cart</p>
-
-				<form method="post" action="cart.php">
+				<form action="./cart.php" method="post">
 					<table>
+						<thead><th>Your cart</th></thead>
 						<tr>
+							<td>Brand</td>
 							<td>Model</td>
 							<td>Quantity</td>
 							<td>Price</td>
 						</tr>
 
-						<?php
-							$action = (isset($_POST[action])? $_POST[action]: (isset($_GET[action])? $_GET[action]:null));
-							if($action) {
-								//récuperation des variables en POST ou GET
-								$l = (isset($_POST[l])? $_POST[l]: (isset($_GET[l])? $_GET[l]:null));
-								$p = (isset($_POST[p])? $_POST[p]: (isset($_GET[p])? $_GET[p]:null));
-								$q = (isset($_POST[q])? $_POST[q]: (isset($_GET[q])? $_GET[q]:null));
+					<?php
+						//Connexion & requete
+						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
+						$result = pg_query($conn,"SELECT brand, model, price FROM laptop");
 
-								//Suppression des espaces verticaux
-								$l = preg_replace('#\v#','',$l);
-								//On verifie que $p soit un float
-								$p = floatval($p);
-
-								//On traite $q qui peut etre un entier simple ou un tableau d'entier
-								if (is_array($q)) {
-									$quantity = array();
-									$i=0;
-									foreach ($q as $content) {
-										$quantity[$i++] = intval($content);
-									}
-								}
-								else
-									$q = intval($q);
+						if ($_GET || $_POST) {
+							if($id = $_GET[add]) {
+								if (!$_SESSION[cart][$id])
+									$_SESSION[cart][$id] = 1;
 							}
-
-							switch($action) {
-								Case "add":
-									addLaptop($l,$q,$p);
-									break;
-								Case "delete":
-									deleteProduct($l);
-									break;
-								Case "refresh":
-									for ($i=0;$i<count($quantity);$i++)
-										modifyQtyProduct($_SESSION[cart][model][$i],round($quantity[$i]));
-										break;
-								Default:
-									break;
+							else if ($id = $_POST[rm])
+								$_SESSION[cart][$id] = 0;
+							else if ($id = $_POST[inc]) {
+								if ($_SESSION[cart][$id])
+									$_SESSION[cart][$id]++;
 							}
+							else if ($id = $_POST[dec])
+								if ($_SESSION[cart][$id])
+									$_SESSION[cart][$id]--;
+						}
 
-							if ($nbProduct = count($_SESSION[cart][model])) {
-								for ($i=0;$i<$nbProduct;$i++) {
-									echo "
-									<tr>
-										<td>
-											".htmlspecialchars($_SESSION[cart][model][$i])."
-										</td>
-										<td>
-											<input type='text' size='3' name='q[]' value='".htmlspecialchars($_SESSION[cart][quantity][$i])."'>
-										</td>
-										<td>
-											".htmlspecialchars($_SESSION[cart][price][$i])."
-										</td>
-										<td>
-											<a href='".htmlspecialchars("cart.php?action=delete&l=".rawurlencode($_SESSION[cart][model][$i]))."'>delete</a>
-										</td>
-									</tr>";
-								}
-
-								$total = totalAmount();
+						for ($i=0;$i<=pg_num_rows($result);$i++)
+							if ($_SESSION[cart][$i] > 0) {
+								$laptop = pg_fetch_row($result,$i-1);
+								$price = $laptop[2]*$_SESSION[cart][$i];
+								$total += $price;
 								echo "
-									<tr><td colspan='4'>
-										Total: $total
-									</td></tr>
-									<tr><td colspan='4'>
-										<input type='submit' value='Refresh'>
-										<input type='submit' value='Order'>
-										<input type='hidden' name='action' value='refresh'>
-									</td></tr>";
+								<tr>
+									<td>$laptop[0]</td>
+									<td><a href='./laptop.php?id=$i'>$laptop[1]</a></td>
+									<td>".$_SESSION[cart][$i]."
+										<button type='submit' name='inc' value='$i'>+</button>
+										<button type='submit' name='dec' value='$i'>-</button>
+									</td>
+									<td>$price €</td>
+									<td><button type='submit' name='rm' value='$i'>Remove</button></td>
+								</tr>";
 							}
-							else
-								echo "<tr><td>Your cart is currently empty</td></tr>";
-						?>
+						if ($total)
+							echo "
+						<tr>
+							<td colspan='3'>Total:</td>
+							<td>$total €</td>
+						</tr>";
+						else
+							echo "<tr><td>Empty cart.</td></tr>";
+					?>
 
 					</table>
 				</form>
