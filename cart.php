@@ -26,43 +26,45 @@
 						</tr>
 
 					<?php
-						//Connexion & requete
+						//Connexion
 						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-						$result = pg_query($conn,"SELECT brand, model, price FROM laptop");
 
-						if ($_GET || $_POST) {
-							if($id = $_GET[add]) {
-								if (!$_SESSION[cart][$id])
-									$_SESSION[cart][$id] = 1;
-							}
-							else if ($id = $_POST[rm])
-								$_SESSION[cart][$id] = 0;
-							else if ($id = $_POST[inc]) {
-								if ($_SESSION[cart][$id])
+						if ($id = $_GET[add] and is_int($id) and !$_SESSION[cart][$id])
+							$_SESSION[cart][$id] = 1;
+						else foreach ($_POST as $action=>$id)
+							switch ($action) {
+								case inc:
 									$_SESSION[cart][$id]++;
-							}
-							else if ($id = $_POST[dec])
-								if ($_SESSION[cart][$id])
+									break;
+								case dec:
 									$_SESSION[cart][$id]--;
+									break;
+								case rm:
+									unset($_SESSION[cart][$id]);
+									break;
+							}
+
+						foreach ($_SESSION[cart] as $id=>$quantity) {
+							$laptop = pg_fetch_row(pg_query($conn,"SELECT brand, model, price FROM laptop WHERE id_laptop=$id"));
+							$price = $laptop[2]*$quantity;
+							if (!$price) {
+								unset($_SESSION[cart][$id]);
+								continue;
+							}
+							$total += $price;
+							echo "
+							<tr>
+								<td>$laptop[0]</td>
+								<td><a href='./laptop.php?id=$id'>$laptop[1]</a></td>
+								<td>$quantity
+									<button type='submit' name='inc' value='$id'>+</button>
+									<button type='submit' name='dec' value='$id'>-</button>
+								</td>
+								<td>$price €</td>
+								<td><button type='submit' name='rm' value='$id'>Remove</button></td>
+							</tr>";
 						}
 
-						for ($i=0;$i<=pg_num_rows($result);$i++)
-							if ($_SESSION[cart][$i] > 0) {
-								$laptop = pg_fetch_row($result,$i-1);
-								$price = $laptop[2]*$_SESSION[cart][$i];
-								$total += $price;
-								echo "
-								<tr>
-									<td>$laptop[0]</td>
-									<td><a href='./laptop.php?id=$i'>$laptop[1]</a></td>
-									<td>".$_SESSION[cart][$i]."
-										<button type='submit' name='inc' value='$i'>+</button>
-										<button type='submit' name='dec' value='$i'>-</button>
-									</td>
-									<td>$price €</td>
-									<td><button type='submit' name='rm' value='$i'>Remove</button></td>
-								</tr>";
-							}
 						if ($total)
 							echo "
 						<tr>
