@@ -34,10 +34,10 @@
 						<div><strong>RAM</strong>: $i[8] MB</div>
 						<div><strong>HDD</strong>: $i[9] GB</div>
 						<div><strong>Graphics</strong>: $i[11]</div>
-						<div><strong>Batterly life</strong>: $i[10]</div>
+						<div><strong>Battery life</strong>: $i[10]</div>
 						<div><strong>Quantity</strong>: $i[5]</div>
 						<div><strong>Price</strong>: $i[3] €</div>
-						<div><a href='cart.php?add=$i[12]'>Add to cart.</a></div>
+						<div><a href='cart.php?add=$i[12]'><img src='./add.png' width='30'><img src='./cart.png'></a></div>
 					</div>
 					<br clear='both'>
 				</div>
