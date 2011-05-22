@@ -15,7 +15,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title>Login</title>
 		<meta name="description" content="Projet web">
-		<meta name="author" content="john" >
+		<meta name="author" content="Alister & Mayhem">
 		<link rel="stylesheet" href="stylesheet.css">
 	</head>
 	<body>
@@ -43,7 +43,7 @@
 				</form>";
 					}
 
-			
+
 					if ($_POST) {
 						$user = $_POST[username];
 						$pass = $_POST[password];
