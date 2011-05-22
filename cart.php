@@ -15,22 +15,10 @@
 		<div id="body">
 			<?php include './navigation.php' ?>
 			<div id="content">
-				<form action="./cart.php" method="post">
-					<table>
-						<thead><th>Your cart</th></thead>
-						<tr>
-							<td>Brand</td>
-							<td>Model</td>
-							<td>Quantity</td>
-							<td>Price</td>
-						</tr>
 
 					<?php
 						//Connexion
 						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-
-						if (!count($_SESSION[cart]))
-							$_SESSION[cart][0] = 1;
 
 						if ($id = $_GET[add] and is_int((int)$id) and !$_SESSION[cart][$id])
 							$_SESSION[cart][$id] = 1;
@@ -46,6 +34,16 @@
 									unset($_SESSION[cart][$id]);
 									break;
 							}
+
+						if (!count($_SESSION[cart])) {
+							$_SESSION[cart][0] = 1;
+							echo "<strong>Empty cart.</strong>";
+						}
+						else
+							echo "<form action='./cart.php' method='post'>
+								<table><thead><th>Your cart</th></thead>
+								<tr><td>Brand</td><td>Model</td>
+								<td>Quantity</td><td>Price</td></tr>";
 
 						foreach ($_SESSION[cart] as $id=>$quantity) {
 							$laptop = pg_fetch_row(pg_query($conn,"SELECT brand, model, price FROM laptop WHERE id_laptop=$id"));
@@ -69,17 +67,9 @@
 						}
 
 						if ($total)
-							echo "
-						<tr>
-							<td colspan='3'>Total:</td>
-							<td>$total €</td>
-						</tr>";
-						else
-							echo "<tr><td>Empty cart.</td></tr>";
+							echo "<tr><td colspan='3'>Total:</td><td>$total €</td></tr></table></form>";
 					?>
 
-					</table>
-				</form>
 			</div>
 		</div>
 
