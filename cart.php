@@ -17,9 +17,11 @@
 			<div id="content">
 
 					<?php
-						//Connexion
+						
+						//Connexion a la bdd.
 						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 
+						
 						if ($id = $_GET[add] and is_int((int)$id) and !$_SESSION[cart][$id])
 							$_SESSION[cart][$id] = 1;
 						else foreach ($_POST as $action=>$id)
@@ -64,10 +66,13 @@
 								<td>$price €</td>
 								<td><button type='submit' name='rm' value='$id'>Remove</button></td>
 							</tr>";
+					
 						}
+						
 
 						if ($total)
-							echo "<tr><td colspan='3'>Total:</td><td>$total €</td></tr></table></form>";
+							echo "<tr><td colspan='3'>Total:</td><td>$total €</td></tr></table></form>
+					<button type='submit' name='order'>order</button>";
 					?>
 
 			</div>
