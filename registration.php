@@ -105,6 +105,7 @@
 						}
 
 						// Ajout d'un nouveau client dans la base de donnée
+						$pass = sha1($pass);
 						$req = pg_query($conn,"INSERT INTO customers VALUES ('$firstname','$surname','$address','$city','$country','$user','$pass','$email')");
 						if (!$req) {
 							echo "<span class='error'>Query error.</span>";

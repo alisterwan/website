@@ -46,7 +46,7 @@
 
 					if ($_POST) {
 						$user = $_POST[username];
-						$pass = $_POST[password];
+						$pass = sha1($_POST[password]);
 
 						//Connexion à la base de donnée
 						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
