@@ -14,12 +14,6 @@
 		<link rel="stylesheet" href="stylesheet.css">
 	</head>
 	<body>
-
-		Welcome webmaster.<br>
-		Choose a category to upload.<br>
-		<a href='./productpanel.php'>Laptop</a><br>
-		<a href>Accessories</a><br>
-		<a href='../logout.php'>Log out</a>
-
+		<?php include './navigation.php' ?>
 	</body>
 </html>

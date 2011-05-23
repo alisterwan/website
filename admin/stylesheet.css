@@ -5,6 +5,10 @@ html, body {
   font-family: arial, sans-serif;
 }
 
+body {
+  margin-left: 180px;
+}
+
 a {
   color: #4183C4;
   text-decoration: none;
@@ -12,6 +16,15 @@ a {
 a:hover {
   color: #2365A6;
   text-decoration: underline;
+}
+
+#nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  padding: 10px;
+  border-right: 1px dashed #CCC;
 }
 
 .error {

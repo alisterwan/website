@@ -15,6 +15,8 @@
 	</head>
 	<body>
 
+		<?php include './navigation.php' ?>
+
 		<?php
 			function productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic) {
 				echo "
