@@ -17,10 +17,19 @@
 
 		<?php include './navigation.php' ?>
 
-	<a href='./newusb.php'>Add a USB device.</a> <br/>	
-	<a href='./newcharger.php'>Add a universal laptop charger.</a><br/> 	
-	<a href='./newprinter.php'>Add a new printer.</a> <br/>	
 
+
+<?php
+	 
+	echo "<p>Select a product in the drop-down list.</p><div><select name='choice'>
+	<form action='./manageaccessories' method='post'>
+	<option>Add a USB device.</option>
+	<option>Add a universal laptop charger.</option>
+	<option>Add a new printer. </option>
+	</select> <button type='submit' name='select' value='true'>Select</button></div>
+	</form>";
+
+?>
 	</body>
 </html>
 
