@@ -22,16 +22,16 @@
 					if (pg_num_rows($result)) {
 						echo "<div class='type'><div class='title'>$type</div>";
 						while ($i = pg_fetch_row($result))
-							echo "	<a href='./laptop.php?id=$i[0]'><div class='unit'>
-										<div><img src='./$brand/$type/$i[1].png'></div>
+							echo "	<a class='unit' href='./laptop.php?id=$i[0]'>
+										<img src='./$brand/$type/$i[1].png'>
 										<div>$i[1]</div>
-									</div></a>";
-						echo "<br clear='left'></div>";
+									</a>";
+						echo "</div>";
 					}
 				}
 
 				$brand = $_GET[brand];
-				echo "<img src='./logobrands/$brand.png'>";
+				echo "<div class='logo'><img src='./logobrands/$brand.png'></div>";
 
 				printLaptop($brand,Netbook);
 				printLaptop($brand,Notebook);

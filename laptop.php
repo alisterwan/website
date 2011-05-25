@@ -23,8 +23,7 @@
 				echo "
 		<div id='product'>
 			<div class='title'>$i[1] $i[0]</div>
-			<div>
-				<div id='picture'><img src='./$i[1]/$i[2]/$i[0].png'></div>
+			<div class='product'>
 				<div id='descriptions'>
 					<div><strong>Scree size</strong>: $i[4]\"</div>
 					<div><strong>System</strong>: $i[6]</div>
@@ -37,7 +36,7 @@
 					<div><strong>Price</strong>: $i[3] €</div>
 					<div><a href='cart.php?add=$i[12]'><img src='./add.png' width='30'><img src='./cart.png'></a></div>
 				</div>
-				<br clear='both'>
+				<div id='picture'><img src='./$i[1]/$i[2]/$i[0].png'></div>
 			</div>
 		</div>";
 			?>

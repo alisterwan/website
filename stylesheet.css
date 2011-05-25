@@ -16,6 +16,11 @@ a:hover {
   text-decoration: underline;
 }
 
+#nav:after, .type:after, .product:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 
 /** HEADER **/
@@ -69,12 +74,6 @@ a:hover {
   position: relative;
 }
 
-#nav:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 #nav a {
   float: left;
   padding: 6px 0;
@@ -122,7 +121,7 @@ a:hover {
   border-style: solid;
   margin: 0 50px;
   padding: 15px;
-  min-height: 500px;
+  min-height: 450px;
   -webkit-box-shadow: 0 0 20px #000;
   -moz-box-shadow: 0 0 20px #000;
   -o-box-shadow: 0 0 20px #000;
@@ -131,28 +130,33 @@ a:hover {
 
 
 /** CATEGORY BROWSING **/
+.logo {
+  text-align: center;
+}
 .type {
   -webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
   -moz-box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
   -o-box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
   box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
-  margin: 0 10px 10px;
+  margin: 10px;
   border-radius: 10px;
 }
 .title {
-  background-color: #4183C4;
+  background-color: #303030;
+  background-image: -webkit-linear-gradient(#404040, #202020);
+  background-image: -moz-linear-gradient(#404040, #202020);
+  background-image: -o-linear-gradient(#404040, #202020);
+  background-image: linear-gradient(#404040, #202020);
+  color: #DDD;
+  font-weight: 700;
+  text-shadow: 0 -1px 1px #000;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  color: #FFF;
-  font-weight: 700;
   padding: 2px 10px;
-  text-shadow: 1px 1px 3px #222;
 }
 .unit {
   margin: 15px;
   float: left;
-}
-.unit > div {
   text-align: center;
 }
 .unit img {
@@ -162,26 +166,23 @@ a:hover {
 
 /** LAPTOP PAGE **/
 #product {
-  display: table;
   -webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
   -moz-box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
   -o-box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
   box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
 }
-#product .title {
+#picture,
+#product .title,
+#descriptions > div:last-child {
   text-align: center;
 }
-#product > div:last-child {
+.product {
   border-width: 0 1px 1px;
   border-style: solid;
   border-color: #CCC;
 }
 #picture {
-  float: left;
-}
-#picture img {
-  margin: 20px;
-  max-height: 325px;
+  padding: 20px;
 }
 #descriptions {
   border-left: 1px solid #CCC;
@@ -189,12 +190,7 @@ a:hover {
 }
 #descriptions > div {
   border-bottom: 1px solid #CCC;
-  padding: 8px 10px;
-}
-#descriptions > div:last-child {
-  border: none;
-  font-weight: 700;
-  text-align: center;
+  padding: 10px;
 }
 
 
