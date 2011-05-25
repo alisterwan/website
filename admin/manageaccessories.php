@@ -17,9 +17,9 @@
 
 		<?php include './navigation.php' ?>
 
-	<a href='./newusb.php'>Add a USB device.</a> 	
-	<a href='./newcharger.php'>Add a universal laptop charger.</a> 	
-	<a href='./newprinter.php'>Add a new printer.</a> 	
+	<a href='./newusb.php'>Add a USB device.</a> <br/>	
+	<a href='./newcharger.php'>Add a universal laptop charger.</a><br/> 	
+	<a href='./newprinter.php'>Add a new printer.</a> <br/>	
 
 	</body>
 </html>
