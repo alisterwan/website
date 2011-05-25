@@ -13,39 +13,34 @@
 		<?php include './header.php' ?>
 
 		<div id="body">
-			<?php include './navigation.php' ?>
-			<div id="content">
+			<?php
+				function printLaptop($type,$brand) {
+					//Connexion & requete
+					$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
+					$result = pg_query($conn,"SELECT id_laptop, model FROM laptop WHERE type='$type' and brand='$brand'");
 
-				<?php
-					function printLaptop($type,$brand) {
-						//Connexion & requete
-						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-						$result = pg_query($conn,"SELECT id_laptop, model FROM laptop WHERE type='$type' and brand='$brand'");
-
-						if (pg_num_rows($result)) {
-							echo "<div class='type'><div class='title'>$brand</div>";
-							while ($i = pg_fetch_row($result))
-								echo "	<a href='./laptop.php?id=$i[0]'><div class='unit'>
-											<div><img src='./$brand/$type/$i[1].png'></div>
-											<div>$i[1]</div>
-										</div></a>";
-							echo "<br clear='left'></div>";
-						}
+					if (pg_num_rows($result)) {
+						echo "<div class='type'><div class='title'>$brand</div>";
+						while ($i = pg_fetch_row($result))
+							echo "	<a href='./laptop.php?id=$i[0]'><div class='unit'>
+										<div><img src='./$brand/$type/$i[1].png'></div>
+										<div>$i[1]</div>
+									</div></a>";
+						echo "<br clear='left'></div>";
 					}
+				}
 
-					$type = $_GET[type];
-					echo "<img src='./typelogos/$type.png'>";
+				$type = $_GET[type];
+				echo "<img src='./typelogos/$type.png'>";
 
-					printLaptop($type,Acer);
-					printLaptop($type,Asus);
-					printLaptop($type,Apple);
-					printLaptop($type,Dell);
-					printLaptop($type,HP);
-					printLaptop($type,Toshiba);
-					printLaptop($type,Samsung);
-				?>
-
-			</div>
+				printLaptop($type,Acer);
+				printLaptop($type,Asus);
+				printLaptop($type,Apple);
+				printLaptop($type,Dell);
+				printLaptop($type,HP);
+				printLaptop($type,Toshiba);
+				printLaptop($type,Samsung);
+			?>
 		</div>
 
 		<?php include './footer.php' ?>

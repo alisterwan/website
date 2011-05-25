@@ -9,3 +9,33 @@
 	?>
 	<a href="./cart.php" id="cart">Cart <img src="cart.png"></a>
 </div>
+
+<div id="nav">
+	<a href="./index.php">Home</a>
+	<a>Brands</a>
+	<div>
+		<a href="./brands.php?brand=Acer">Acer</a>
+		<a href="./brands.php?brand=Asus">Asus</a>
+		<a href="./brands.php?brand=Apple">Apple</a>
+		<a href="./brands.php?brand=Dell">Dell</a>
+		<a href="./brands.php?brand=HP">Hewlett&nbsp;Packard</a>
+		<a href="./brands.php?brand=Toshiba">Toshiba</a>
+		<a href="./brands.php?brand=Samsung">Samsung</a>
+	</div>
+	<a>Categories</a>
+	<div>
+		<a href="./type.php?type=Netbook">Netbook</a>
+		<a href="./type.php?type=Notebook">Notebook</a>
+		<a href="./type.php?type=Performance">Performance</a>
+		<a href="./type.php?type=Multimedia">Multimedia</a>
+		<a href="./type.php?type=Gamers">Gamers</a>
+	</div>
+	<a>Accessories</a>
+	<div>
+		<a href="#">Battery&nbsp;chargers</a>
+		<a href="#">USB&nbsp;Flash&nbsp;Drive</a>
+		<a href="#">Laptop&nbsp;case</a>
+		<a href="#">Printers</a>
+	</div>
+	<a href="#">Contacts</a>
+</div>

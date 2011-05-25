@@ -13,11 +13,8 @@
 		<?php include './header.php' ?>
 
 		<div id="body">
-			<?php include './navigation.php' ?>
-			<div id="content">
-				Welcome to our site. Do you have difficulties to find a laptop? Or are you searching for a gift?<br>
-				Here you will find all your answers. New customer? Register <a href='./registration.php'>here</a>.
-			</div>
+			Welcome to our site. Do you have difficulties to find a laptop? Or are you searching for a gift?<br>
+			Here you will find all your answers. New customer? Register <a href='./registration.php'>here</a>.
 		</div>
 
 		<?php include './footer.php' ?>

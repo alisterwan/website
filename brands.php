@@ -13,37 +13,32 @@
 		<?php include './header.php' ?>
 
 		<div id="body">
-			<?php include './navigation.php' ?>
-			<div id="content">
+			<?php
+				function printLaptop($brand,$type) {
+					//Connexion & requete
+					$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
+					$result = pg_query($conn,"SELECT id_laptop, model FROM laptop WHERE brand='$brand' and type='$type'");
 
-				<?php
-					function printLaptop($brand,$type) {
-						//Connexion & requete
-						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-						$result = pg_query($conn,"SELECT id_laptop, model FROM laptop WHERE brand='$brand' and type='$type'");
-
-						if (pg_num_rows($result)) {
-							echo "<div class='type'><div class='title'>$type</div>";
-							while ($i = pg_fetch_row($result))
-								echo "	<a href='./laptop.php?id=$i[0]'><div class='unit'>
-											<div><img src='./$brand/$type/$i[1].png'></div>
-											<div>$i[1]</div>
-										</div></a>";
-							echo "<br clear='left'></div>";
-						}
+					if (pg_num_rows($result)) {
+						echo "<div class='type'><div class='title'>$type</div>";
+						while ($i = pg_fetch_row($result))
+							echo "	<a href='./laptop.php?id=$i[0]'><div class='unit'>
+										<div><img src='./$brand/$type/$i[1].png'></div>
+										<div>$i[1]</div>
+									</div></a>";
+						echo "<br clear='left'></div>";
 					}
+				}
 
-					$brand = $_GET[brand];
-					echo "<img src='./logobrands/$brand.png'>";
+				$brand = $_GET[brand];
+				echo "<img src='./logobrands/$brand.png'>";
 
-					printLaptop($brand,Netbook);
-					printLaptop($brand,Notebook);
-					printLaptop($brand,Performance);
-					printLaptop($brand,Multimedia);
-					printLaptop($brand,Gamers);
-				?>
-
-			</div>
+				printLaptop($brand,Netbook);
+				printLaptop($brand,Notebook);
+				printLaptop($brand,Performance);
+				printLaptop($brand,Multimedia);
+				printLaptop($brand,Gamers);
+			?>
 		</div>
 
 		<?php include './footer.php' ?>

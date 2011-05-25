@@ -22,50 +22,46 @@
 		<?php include './header.php' ?>
 
 		<div id="body">
+			<?php
+				function printForm($name) {
+					echo "
+			<form action='login.php' method='post' name='login'>
+				<div>
+					<span>Username</span>
+					<input type='text' name='username' value='$name'>
+				</div>
+				<div>
+					<span>Password</span>
+					<input type='password' name='password'>
+				</div>
+				<div>
+					<input type='submit' name='proceed' value='Log in'>
+				</div>
+			</form>";
+				}
 
-			<?php include './navigation.php' ?>
-			<div id="content">
-				<?php
-					function printForm($name) {
-						echo "
-				<form action='login.php' method='post' name='login'>
-					<div>
-						<span>Username</span>
-						<input type='text' name='username' value='$name'>
-					</div>
-					<div>
-						<span>Password</span>
-						<input type='password' name='password'>
-					</div>
-					<div>
-						<input type='submit' name='proceed' value='Log in'>
-					</div>
-				</form>";
+
+				if ($_POST) {
+					$user = $_POST[username];
+					$pass = sha1($_POST[password]);
+
+					//Connexion à la base de donnée
+					$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
+
+					//Verification du client dans la base de donnée
+					$result = pg_query($conn,"SELECT (username,password) from customers where username='$user' and password='$pass'");
+					$count = pg_num_rows($result);
+					if ($count) {
+						echo "You are successfully logged in. Click <a href='./index.php'>here</a> to continue.";
+						return $_SESSION[name] = $user;
 					}
 
-
-					if ($_POST) {
-						$user = $_POST[username];
-						$pass = sha1($_POST[password]);
-
-						//Connexion à la base de donnée
-						$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-
-						//Verification du client dans la base de donnée
-						$result = pg_query($conn,"SELECT (username,password) from customers where username='$user' and password='$pass'");
-						$count = pg_num_rows($result);
-						if ($count) {
-							echo "You are successfully logged in. Click <a href='./index.php'>here</a> to continue.";
-							return $_SESSION[name] = $user;
-						}
-
-						echo "<span class='error'>Username or password incorrect, try again.</span>";
-						printForm($user);
-					}
-					else
-						printForm('');
-				?>
-			</div>
+					echo "<span class='error'>Username or password incorrect, try again.</span>";
+					printForm($user);
+				}
+				else
+					printForm('');
+			?>
 		</div>
 
 		<?php include './footer.php' ?>

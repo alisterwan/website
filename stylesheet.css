@@ -3,10 +3,12 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: arial, sans-serif;
+  background-color: #202020;
 }
 
 a {
   color: #4183C4;
+  cursor: pointer;
   text-decoration: none;
 }
 a:hover {
@@ -18,18 +20,13 @@ a:hover {
 
 /** HEADER **/
 #header {
-  border-bottom: 1px solid #CCC;
-  height: 100px;
   background-color: #DDD;
-  position: relative;
   color: #444;
   font-size: .9em;
   font-weight: 700;
-  text-shadow: 0 1px 0 #EEE;
-  -webkit-box-shadow: 0 0 25px rgba(0, 0, 0, .5);
-  -moz-box-shadow: 0 0 25px rgba(0, 0, 0, .5);
-  -o-box-shadow: 0 0 25px rgba(0, 0, 0, .5);
-  box-shadow: 0 0 25px rgba(0, 0, 0, .5);
+  text-shadow: 0 1px 1px #FFF;
+  height: 100px;
+  position: relative;
   z-index: 9;
 }
 
@@ -58,65 +55,77 @@ a:hover {
   right: 55px;
 }
 
+#nav {
+  background-color: #303030;
+  background-image: -webkit-linear-gradient(#404040, #202020);
+  background-image: -moz-linear-gradient(#404040, #202020);
+  background-image: -o-linear-gradient(#404040, #202020);
+  background-image: linear-gradient(#404040, #202020);
+  -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, .7);
+  -moz-box-shadow: 0 0 30px rgba(0, 0, 0, .7);
+  -o-box-shadow: 0 0 30px rgba(0, 0, 0, .7);
+  box-shadow: 0 0 30px rgba(0, 0, 0, .7);
+  padding: 0 50px;
+  position: relative;
+}
+
+#nav:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#nav a {
+  float: left;
+  padding: 6px 50px;
+  font-weight: 700;
+  text-shadow: 0 -1px 1px #000;
+  color: #DDD;
+}
+
+#nav div {
+  background-color: rgba(0, 0, 0, .9);
+  border-bottom: 3px solid #333;
+  -webkit-box-shadow: 0 15px 30px rgba(0, 0, 0, .7);
+  -moz-box-shadow: 0 0 30px rgba(0, 0, 0, .7);
+  -o-box-shadow: 0 0 30px rgba(0, 0, 0, .7);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .7);
+  padding: 0 50px;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: visibility 0s ease-in-out .4s, opacity .4s ease-in-out;
+  -moz-transition: visibility 0s ease-in-out .4s, opacity .4s ease-in-out;
+  -o-transition: visibility 0s ease-in-out .4s, opacity .4s ease-in-out;
+  transition: visibility 0s ease-in-out .4s, opacity .4s ease-in-out;
+}
+
+#nav a:hover + div, #nav div:hover {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  transition-delay: 0s;
+}
+
 
 /** BODY **/
 #body {
-  border-color: #DDD;
+  background-color: #FFF;
+  border-color: #999;
   border-width: 0 1px 1px;
   border-style: solid;
   margin: 0 50px;
-  min-height: 500px;
-  -webkit-box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
-  -moz-box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
-  -o-box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
-}
-
-#nav {
-  float: left;
-  margin: 0 10px 10px 0;
-  border-bottom-right-radius: 10px;
-  background: #858383;
-  font-size: .9em;
-  text-shadow: 1px 1px 3px #222;
-}
-#nav a {
-  color: #92E57C;
-  cursor: pointer;
-}
-#nav > li:hover > a, #nav a:hover {
-  color: #C5FF84;
-  text-decoration: underline;
-}
-ul {
-  padding: 0;
-}
-#nav li {
-  list-style-type: none;
-  padding: 10px 20px;
-  position: relative;
-}
-li ul {
-  display: none;
-  position: absolute;
-  left: 100%;
-  top: 0;
-  border-radius: 5px;
-  background: rgba(133, 131, 131, .9);
-  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-  -o-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-  font-size: .8em;
-  z-index: 8;
-}
-li:hover ul {
-  display: block;
-}
-
-
-#content {
   padding: 15px;
+  min-height: 500px;
+  -webkit-box-shadow: 0 0 20px #000;
+  -moz-box-shadow: 0 0 20px #000;
+  -o-box-shadow: 0 0 20px #000;
+  box-shadow: 0 0 20px #000;
 }
 
 
@@ -204,18 +213,12 @@ form span {
 }
 
 
-/** CART **/
-#mycart {
-  width: 400px;
-  border-color: #000;
-  border-style: groove;
-}
-
-
 /** FOOTER **/
 #footer {
   margin: 10px 50px;
   color: #888;
   text-align: center;
   font-size: .7em;
+  font-weight: 700;
+  text-shadow: 0 2px 1px #000;
 }
