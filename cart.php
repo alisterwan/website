@@ -73,9 +73,12 @@
 								<tr>
 									<td colspan='3'>Total:</td>
 									<td>$total €</td>
-									<td><button type='submit' name='order'>Order</button></td>
+									<td><button type='submit' name='order'><a href='./order.php'>Order</a></button></td>
 								</tr></table></form>";
+						
+
 					?>
+
 
 			</div>
 		</div>
