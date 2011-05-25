@@ -69,27 +69,27 @@
 				$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 				if (!$conn) {
 					echo "<span class='error'>Connexion error.</span>";
-					return productForm($model,$brand,$quantity,$capacity;$price);
+					return productForm($model,$brand,$quantity,$capacity,$price);
 				}
 
 				//Verification si le modele du produit est deja dans la base de donnée
 				$result = pg_query($conn,"SELECT model from usb where model='$model'");
 				if (pg_num_rows($result)) {
 					echo "This model is already in our book. Please just check the stock.";
-					return productForm($model,$brand,$quantity,$capacity;$price);
+					return productForm($model,$brand,$quantity,$capacity,$price);
 				}
 
 				//Verification si le prix ou la quantité est au format numérique
 				if (!is_numeric($price) || !is_numeric($quantity)) {
 					echo "<span class='error'>Price or quantity incorrect.</span>";
-					return productForm($model,$brand,$quantity,$capacity;$price);
+					return productForm($model,$brand,$quantity,$capacity,$price);
 				}
 
 				// Ajout d'un nouveau produit dans la base de donnée
 				$req = pg_query($conn,"INSERT INTO usb VALUES ('$model','$brand','$quantity','$capacity','$price')");
 				if (!$req) {
 					echo "<span class='error'>Query error.</span>";
-					return productForm($model,$brand,$quantity,$capacity;$price);
+					return productForm($model,$brand,$quantity,$capacity,$price);
 				}
 				else {
 					echo "You have successfully uploaded this product.<br>";
