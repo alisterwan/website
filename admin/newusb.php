@@ -60,9 +60,9 @@
 				$capacity		= $_POST[capacity];
 				
 
-				if (!$model || !$brand  || !$price  || !$quantity || $capacity) {
+				if (!$model || !$brand  || !$price  || !$quantity || !$capacity) {
 					echo "<span class='error'>Form incomplete, please fill it completely.</span>";
-					return productForm($model,$brand,$quantity,$capacity;$price);
+					return productForm($model,$brand,$quantity,$capacity,$price);
 				}
 
 				//Connexion à la base de donnée
