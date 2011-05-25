@@ -77,7 +77,8 @@ a:hover {
 
 #nav a {
   float: left;
-  padding: 6px 50px;
+  padding: 6px 0;
+  margin: 0 50px;
   font-weight: 700;
   text-shadow: 0 -1px 1px #000;
   color: #DDD;
