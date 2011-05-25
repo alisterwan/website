@@ -32,7 +32,7 @@
 							<td><input type='text' name='brand' value='$brand'></td>
 						</tr>
 						<tr>
-							<td>Quantity/td>
+							<td>Quantity</td>
 							<td><input type='text' name='quantity' value='$quantity'></td>
 						</tr>
 						<tr>
