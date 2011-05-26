@@ -21,7 +21,7 @@
 			function productForm($model,$brand,$type,$quantity,$price) {
 				echo "
 				<p>Here you can upload a new product, please fill in the blanks to store some information in our database.</p>
-				<form action='newcharger.php' method='post'>
+				<form action='newprinter.php' method='post'>
 					<table>
 						<tr>
 							<td>Model</td>
