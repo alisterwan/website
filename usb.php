@@ -14,28 +14,28 @@
 
 		<div id="body">
 			<?php
-				function printUsb() {
+				function printUsb($brand) {
 					//Connexion & requete
 					$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-					$result = pg_query($conn,"SELECT id_usb, model,brand FROM usb");
+					$result = pg_query($conn,"SELECT id_usb, model FROM usb WHERE brand='$brand'");
 
 					if (pg_num_rows($result)) {
 						echo "<div class='type'><div class='title'>USB Storage Devices</div>";
 						while ($i = pg_fetch_row($result))
 							echo "	<a class='unit' href='./usbform.php?id=$i[0]'>
-										<img src='./USB/$i[2]/$i[1].png'>
+										<img src='./USB/$brand/$i[1].png'>
 										<div>$i[1]</div>
 									</a>";
 						echo "</div>";
 					}
 				}
 
-				$type = $_GET[type];
+				$id_usb = $_GET[id_usb];
 				echo "<div class='logo'><img src='./typelogos/usb.png'></div>";
 
-				function printUsb();
-				function printUsb();
-				function printUsb();
+				printUsb(Sandisk);
+				printUsb(Corsair);
+				printUsb(Kingston);
 				
 			?>
 		</div>
