@@ -184,6 +184,9 @@ a:hover {
 #picture {
   padding: 20px;
 }
+#picture {
+  max-width: 850px;
+}
 #descriptions {
   border-left: 1px solid #CCC;
   float: right;
