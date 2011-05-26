@@ -33,7 +33,7 @@
 	<a>Accessories</a>
 	<div>
 		<a href="#">Battery&nbsp;chargers</a>
-		<a href="#">USB&nbsp;Flash&nbsp;Drive</a>
+		<a href='./usb.php'>USB&nbsp;Flash&nbsp;Drive</a>
 		<a href="#">Laptop&nbsp;case</a>
 		<a href="#">Printers</a>
 	</div>
