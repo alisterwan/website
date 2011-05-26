@@ -93,7 +93,7 @@
 			}
 
 			else {
-				productForm('','','','');
+				productForm('','','','','');
 			}
 		?>
 
