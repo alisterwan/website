@@ -20,7 +20,7 @@
 					$result = pg_query($conn,"SELECT id_usb, model FROM usb WHERE brand='$brand'");
 
 					if (pg_num_rows($result)) {
-						echo "<div class='type'><div class='title'>USB Storage Devices</div>";
+						echo "<div class='type'><div class='title'>$brand</div>";
 						while ($i = pg_fetch_row($result))
 							echo "	<a class='unit' href='./usbform.php?id=$i[0]'>
 										<img src='./USB/$brand/$i[1].png'>
