@@ -18,7 +18,7 @@
 		<?php include './navigation.php' ?>
 
 		<?php
-			function productForm($model,$brand,$type,$quantity,$price) {
+			function productForm($model,$brand,$type,$quantity,$price,$description) {
 				echo "
 				<p>Here you can upload a new product, please fill in the blanks to store some information in our database.</p>
 				<form action='newprinter.php' method='post'>
@@ -33,7 +33,7 @@
 						</tr>
 						<tr>
 							<td>Type</td>
-							<td><input type='text' name='type' value='$type'></td>
+							<td><input type='text' name='typea' value='$type'></td>
 						</tr>
 						<tr>
 							<td>Quantity</td>
@@ -42,6 +42,10 @@
 						<tr>
 							<td>Price</td>
 							<td><input type='text' name='price' value='$price'></td>
+						</tr>
+						<tr>
+							<td>Description</td>
+							<td><textarea name='details' value='$description'></textarea></td>
 						</tr>
 						<tr>
 							<td><input type='submit' name='proceed' value='submit'></td>
@@ -54,42 +58,42 @@
 
 				$model			= $_POST[model];
 				$brand			= $_POST[brand];
-				$type			= $_POST[type];
+				$type			= $_POST[typea];
 				$price			= $_POST[price];
 				$quantity		= $_POST[quantity];
-	
+				$description	= $_POST[details];	
 				
 
-				if (!$model || !$brand  || !$price  || !$quantity || !$type) {
+				if (!$model || !$brand  || !$price  || !$quantity || !$type || !$description) {
 					echo "<span class='error'>Form incomplete, please fill it completely.</span>";
-					return productForm($model,$brand,$type,$quantity,$price);
+					return productForm($model,$brand,$type,$quantity,$price,$description);
 				}
 
 				//Connexion à la base de donnée
 				$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 				if (!$conn) {
 					echo "<span class='error'>Connexion error.</span>";
-					return productForm($model,$brand,$type,$quantity,$price);
+					return productForm($model,$brand,$type,$quantity,$price,$description);
 				}
 
 				//Verification si le modele du produit est deja dans la base de donnée
 				$result = pg_query($conn,"SELECT model from printers where model='$model'");
 				if (pg_num_rows($result)) {
 					echo "This model is already in our book. Please just check the stock.";
-					return productForm($model,$brand,$type,$quantity,$price);
+					return productForm($model,$brand,$type,$quantity,$price,$description);
 				}
 
 				//Verification si le prix ou la quantité est au format numérique
 				if (!is_numeric($price) || !is_numeric($quantity)) {
 					echo "<span class='error'>Price or quantity incorrect.</span>";
-					return productForm($model,$brand,$type,$quantity,$price);
+					return productForm($model,$brand,$type,$quantity,$price,$description);
 				}
 
 				// Ajout d'un nouveau produit dans la base de donnée
-				$req = pg_query($conn,"INSERT INTO printers VALUES ('$model','$brand','$type','$quantity','$price')");
+				$req = pg_query($conn,"INSERT INTO printers VALUES ('$model','$brand','$type','$quantity','$price','$description')");
 				if (!$req) {
 					echo "<span class='error'>Query error.</span>";
-					return productForm($model,$brand,$type,$quantity,$price);
+					return productForm($model,$brand,$type,$quantity,$price,$description);
 				}
 				else {
 					echo "You have successfully uploaded this product.<br>";
@@ -98,7 +102,7 @@
 			}
 
 			else {
-				productForm('','','','','');
+				productForm('','','','','','');
 			}
 		?>
 
