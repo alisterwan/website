@@ -8,7 +8,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Add a new printer</title>
+		<title>Add a new laptop case</title>
 		<meta name="description" content="Projet web">
 		<meta name="author" content="Alister & Mayhem">
 		<link rel="stylesheet" href="stylesheet.css">
@@ -77,11 +77,12 @@
 				}
 
 				//Verification si le modele du produit est deja dans la base de donnée
-				$result = pg_query($conn,"SELECT model from case where model='$model'");
+				$result = pg_query($conn,"SELECT model from laptopcase where model='$model'");
 				if (pg_num_rows($result)) {
 					echo "This model is already in our book. Please just check the stock.";
 					return productForm($model,$brand,$size,$quantity,$price,$description);
 				}
+
 
 				//Verification si le prix ou la quantité est au format numérique
 				if (!is_numeric($price) || !is_numeric($quantity)) {
@@ -90,7 +91,7 @@
 				}
 
 				// Ajout d'un nouveau produit dans la base de donnée
-				$req = pg_query($conn,"INSERT INTO case VALUES ('$model','$brand','$size','$quantity','$price','$description')");
+				$req = pg_query($conn,"INSERT INTO laptopcase VALUES ('$model','$brand','$size','$quantity','$price','$description')");
 				if (!$req) {
 					echo "<span class='error'>Query error.</span>";
 					return productForm($model,$brand,$size,$quantity,$price,$description);
