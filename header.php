@@ -32,7 +32,7 @@
 	</div>
 	<a>Accessories</a>
 	<div>
-		<a href="#">Battery&nbsp;chargers</a>
+		<a href='./charger.php'>Battery&nbsp;chargers</a>
 		<a href='./usb.php'>USB&nbsp;Flash&nbsp;Drive</a>
 		<a href="#">Laptop&nbsp;case</a>
 		<a href='./printer.php'>Printers</a>
