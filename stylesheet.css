@@ -23,13 +23,13 @@ a:hover {
 }
 
 #aboutus {
-text-align:justify;
-margin-right:725px;
+  text-align: justify;
+  margin-right: 725px;
 }
 
-.names{
-margin-left:726px;
-text-align:justify;	
+.names {
+  margin-left: 726px;
+  text-align: justify;
 }
 
 /** HEADER **/
@@ -193,12 +193,14 @@ text-align:justify;
 #picture {
   padding: 20px;
 }
-#picture {
+#picture img {
   max-width: 850px;
 }
 #descriptions {
   border-left: 1px solid #CCC;
   float: right;
+  margin-bottom: -1px;
+  max-width: 300px;
 }
 #descriptions > div {
   border-bottom: 1px solid #CCC;

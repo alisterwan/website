@@ -32,13 +32,11 @@
 	</div>
 	<a>Accessories</a>
 	<div>
-		<a href='./charger.php'>Battery&nbsp;chargers</a>
-		<a href='./usb.php'>USB&nbsp;Flash&nbsp;Drive</a>
-		<a href='./case.php'>Laptop&nbsp;case</a>
-		<a href='./printer.php'>Printers</a>
+		<a href='./chargers.php'>Battery&nbsp;chargers</a>
+		<a href='./usbs.php'>USB&nbsp;Flash&nbsp;Drive</a>
+		<a href='./cases.php'>Laptop&nbsp;case</a>
+		<a href='./printers.php'>Printers</a>
 	</div>
-	<a href="#">About us</a>
-	<div>
-    </div>
+	<a href="./aboutus.php">About us</a>
 	<a href="#">Contact us</a>
 </div>
