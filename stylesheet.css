@@ -27,6 +27,11 @@ text-align:justify;
 margin-right:725px;
 }
 
+.names{
+margin-left:726px;
+text-align:justify;	
+}
+
 /** HEADER **/
 #header {
   background-color: #DDD;
