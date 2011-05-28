@@ -22,6 +22,10 @@ a:hover {
   clear: both;
 }
 
+#aboutus {
+color:blue;
+margin-right:725px;
+}
 
 /** HEADER **/
 #header {
