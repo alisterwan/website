@@ -37,5 +37,8 @@
 		<a href='./case.php'>Laptop&nbsp;case</a>
 		<a href='./printer.php'>Printers</a>
 	</div>
-	<a href="#">Contacts</a>
+	<a href="#">About us</a>
+	<div>
+    </div>
+	<a href="#">Contact us</a>
 </div>
