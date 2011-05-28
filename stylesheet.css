@@ -25,11 +25,16 @@ a:hover {
 #aboutus {
 text-align:justify;
 margin-right:725px;
+width: 45%;
 }
 
 .names{
-margin-left:726px;
-text-align:justify;	
+text-align:justify;
+position: absolute;
+top: 8em;
+margin-left:534px;
+width: 40%;
+height:70%;
 }
 
 /** HEADER **/
