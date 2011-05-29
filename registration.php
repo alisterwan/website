@@ -80,6 +80,11 @@
 						return printForm($firstname,$surname,$address,$city,$country,$user,$email);
 					}
 
+					if (!preg_match('/^[^@]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$/',$email)) {
+						echo "<span class='error'>E-mail invalid.</span>";
+						return printForm($firstname,$surname,$address,$city,$country,$user,$email);
+					}
+
 					//Connexion à la base de donnée
 					$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 					if (!$conn) {
