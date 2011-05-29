@@ -61,8 +61,8 @@
 				$size			= $_POST[size];
 				$price			= $_POST[price];
 				$quantity		= $_POST[quantity];
-				$description	= $_POST[details];	
-				
+				$description	= $_POST[details];
+
 
 				if (!$model || !$brand  || !$price  || !$quantity || !$size || !$description) {
 					echo "<span class='error'>Form incomplete, please fill it completely.</span>";

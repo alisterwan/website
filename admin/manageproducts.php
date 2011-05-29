@@ -21,7 +21,7 @@
 
 			<?php
 				function update($conn,$id) {
-					$query = pg_query($conn,"SELECT brand, model, price, quantity FROM laptop WHERE id_laptop=$id");
+					$query = pg_query($conn,"SELECT brand, model, price, quantity FROM laptop WHERE id=$id");
 					$laptop = pg_fetch_row($query);
 					echo "<p>Update its price or its quantity.</p>";
 					echo "<div><strong>$laptop[0] $laptop[1]</strong></div>";
@@ -33,7 +33,7 @@
 
 				//Connexion à la base de donnée
 				$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-				$query = pg_query($conn,"SELECT id_laptop, brand, model FROM laptop");
+				$query = pg_query($conn,"SELECT id, brand, model FROM laptop");
 				echo "<p>Select a product in the drop-down list.</p><div><select name='choice'>";
 				while ($laptop = pg_fetch_row($query))
 					echo "<option value='$laptop[0]'>$laptop[1] $laptop[2]</option>";
@@ -47,7 +47,7 @@
 					$id = $_POST[updateid];
 					$price = (int)$_POST[price];
 					$quantity = (int)$_POST[quantity];
-					$query = pg_query($conn,"UPDATE laptop SET price=$price, quantity=$quantity WHERE id_laptop=$id;");
+					$query = pg_query($conn,"UPDATE laptop SET price=$price, quantity=$quantity WHERE id=$id;");
 					if ($query)
 						echo "<p>Successful update.</p>";
 					else {

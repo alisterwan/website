@@ -17,7 +17,7 @@
 				$id = $_GET[id];
 				//Connexion & requete
 				$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-				$result = pg_query($conn,"SELECT * FROM laptop WHERE id_laptop='$id'");
+				$result = pg_query($conn,"SELECT * FROM laptop WHERE id='$id'");
 				$i = pg_fetch_row($result);
 
 				echo "
@@ -34,7 +34,7 @@
 					<div><strong>Battery life</strong>: $i[10]</div>
 					<div><strong>Quantity</strong>: $i[5]</div>
 					<div><strong>Price</strong>: $i[3] €</div>
-					<div><a href='cart.php?add=$i[12]'><img src='./add.png' width='30'><img src='./cart.png'></a></div>
+					<div><a href='cart.php?type=laptop&add=$i[12]'><img src='./add.png' width='30'><img src='./cart.png'></a></div>
 				</div>
 				<div id='picture'><img src='./$i[1]/$i[2]/$i[0].png'></div>
 			</div>

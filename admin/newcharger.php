@@ -57,8 +57,8 @@
 				$price			= $_POST[price];
 				$quantity		= $_POST[quantity];
 				$description	= $_POST[details];
-	
-				
+
+
 
 				if (!$model || !$brand  || !$price  || !$quantity || !$description) {
 					echo "<span class='error'>Form incomplete, please fill it completely.</span>";
@@ -73,7 +73,7 @@
 				}
 
 				//Verification si le modele du produit est deja dans la base de donnée
-				$result = pg_query($conn,"SELECT model from chargers where model='$model'");
+				$result = pg_query($conn,"SELECT model from charger where model='$model'");
 				if (pg_num_rows($result)) {
 					echo "This model is already in our book. Please just check the stock.";
 					return productForm($model,$brand,$quantity,$price,$description);
@@ -86,7 +86,7 @@
 				}
 
 				// Ajout d'un nouveau produit dans la base de donnée
-				$req = pg_query($conn,"INSERT INTO chargers VALUES ('$model','$brand','$quantity','$price','$description')");
+				$req = pg_query($conn,"INSERT INTO charger VALUES ('$model','$brand','$quantity','$price','$description')");
 				if (!$req) {
 					echo "<span class='error'>Query error.</span>";
 					return productForm($model,$brand,$quantity,$price,$description);

@@ -17,61 +17,64 @@
 					//Connexion a la bdd.
 					$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 
-					if ($id = (int)$_GET[add] and is_int($id) and !$_SESSION[cart][$id])
-						$_SESSION[cart][$id] = 1;
-					else foreach ($_POST as $action=>$id)
-						switch ($action) {
-							case inc:
-								$_SESSION[cart][$id]++;
-								break;
-							case dec:
-								$_SESSION[cart][$id]--;
-								if (!$_SESSION[cart][$id])
-									unset($_SESSION[cart][$id]);
-								break;
-							case rm:
-								unset($_SESSION[cart][$id]);
-								break;
+					if ($type = $_GET[type] or $type = $_POST[type]) {
+						if ($id = (int)$_GET[add] and is_int($id) and !$_SESSION[cart][$id])
+							$_SESSION[cart][$type][$id] = 1;
+
+						else if ($id = $_POST[inc])
+							$_SESSION[cart][$type][$id]++;
+
+						else if ($id = $_POST[dec]) {
+							$_SESSION[cart][$type][$id]--;
+							if (!$_SESSION[cart][$type][$id])
+								unset($_SESSION[cart][$type][$id]);
 						}
 
-					if (!count($_SESSION[cart])) {
-						$_SESSION[cart][0] = 1;
-						echo "<strong>Empty cart.</strong>";
+						else if ($id = $_POST[rm])
+							unset($_SESSION[cart][$type][$id]);
 					}
-					else
-						echo "<form action='./cart.php' method='post'>
+
+					$html =	"<form action='./cart.php' method='post' id='order'></form>
 							<table><thead><th>Your cart</th></thead>
 							<tr><td>Brand</td><td>Model</td>
 							<td>Quantity</td><td>Price</td></tr>";
 
-					foreach ($_SESSION[cart] as $id=>$quantity) {
-						$laptop = pg_fetch_row(pg_query($conn,"SELECT brand, model, price FROM laptop WHERE id_laptop=$id"));
-						$price = $laptop[2]*$quantity;
-						if (!$price) {
-							unset($_SESSION[cart][$id]);
-							continue;
-						}
-						$total += $price;
-						echo "
+					if ($_SESSION[cart])
+					foreach ($_SESSION[cart] as $type=>$id) {
+						echo "	<form action='./cart.php' method='post' id='$type'>
+									<input type='hidden' name='type' value='$type'>
+								</form>";
+						foreach ($id as $id_product=>$quantity) {
+							$product = pg_fetch_row(pg_query($conn,"SELECT brand, model, price FROM $type WHERE id=$id_product"));
+							$price = $product[2]*$quantity;
+							if (!$price) {
+								unset($_SESSION[cart][$type][$id_product]);
+								continue;
+							}
+							$total += $price;
+							$html = "$html
 						<tr>
-							<td>$laptop[0]</td>
-							<td><a href='./laptop.php?id=$id'>$laptop[1]</a></td>
+							<td>$product[0]</td>
+							<td><a href='./$type.php?id=$id_product'>$product[1]</a></td>
 							<td>$quantity
-								<button type='submit' name='inc' value='$id'>+</button>
-								<button type='submit' name='dec' value='$id'>-</button>
+								<button type='submit' name='inc' value='$id_product' form='$type'>+</button>
+								<button type='submit' name='dec' value='$id_product' form='$type'>-</button>
 							</td>
 							<td>$price €</td>
-							<td><button type='submit' name='rm' value='$id'>Remove</button></td>
+							<td><button type='submit' name='rm' value='$id_product' form='$type'>Remove</button></td>
 						</tr>";
+						}
 					}
 
 					if ($total)
-						echo "
+						echo "$html
 							<tr>
 								<td colspan='3'>Total:</td>
 								<td>$total €</td>
-								<td><button type='submit' name='order'>Order</button></td>
-							</tr></table></form>";
+								<td><button type='submit' name='order' form='order'>Order</button></td>
+							</tr></table>";
+					else
+						echo "<strong>Empty cart.</strong>";
 				?>
 		</div>
 

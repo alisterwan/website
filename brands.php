@@ -17,7 +17,7 @@
 				function printLaptop($brand,$type) {
 					//Connexion & requete
 					$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-					$result = pg_query($conn,"SELECT id_laptop, model FROM laptop WHERE brand='$brand' and type='$type'");
+					$result = pg_query($conn,"SELECT id, model FROM laptop WHERE brand='$brand' and type='$type'");
 
 					if (pg_num_rows($result)) {
 						echo "<div class='type'><div class='title'>$type</div>";

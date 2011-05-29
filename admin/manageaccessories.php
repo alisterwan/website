@@ -24,7 +24,7 @@
 	<a href='./newcharger.php'>Add a universal laptop charger</a><br/>
 	<a href='./newprinter.php'>Add a new printer</a><br/>
 	<a href='./newcase.php'>Add a new laptop case</a>
-	
+
 	</body>
 </html>
 

@@ -61,8 +61,8 @@
 				$type			= $_POST[typea];
 				$price			= $_POST[price];
 				$quantity		= $_POST[quantity];
-				$description	= $_POST[details];	
-				
+				$description	= $_POST[details];
+
 
 				if (!$model || !$brand  || !$price  || !$quantity || !$type || !$description) {
 					echo "<span class='error'>Form incomplete, please fill it completely.</span>";
@@ -77,7 +77,7 @@
 				}
 
 				//Verification si le modele du produit est deja dans la base de donnée
-				$result = pg_query($conn,"SELECT model from printers where model='$model'");
+				$result = pg_query($conn,"SELECT model from printer where model='$model'");
 				if (pg_num_rows($result)) {
 					echo "This model is already in our book. Please just check the stock.";
 					return productForm($model,$brand,$type,$quantity,$price,$description);
@@ -90,7 +90,7 @@
 				}
 
 				// Ajout d'un nouveau produit dans la base de donnée
-				$req = pg_query($conn,"INSERT INTO printers VALUES ('$model','$brand','$type','$quantity','$price','$description')");
+				$req = pg_query($conn,"INSERT INTO printer VALUES ('$model','$brand','$type','$quantity','$price','$description')");
 				if (!$req) {
 					echo "<span class='error'>Query error.</span>";
 					return productForm($model,$brand,$type,$quantity,$price,$description);

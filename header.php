@@ -34,7 +34,7 @@
 	<div>
 		<a href='./chargers.php'>Battery&nbsp;chargers</a>
 		<a href='./usbs.php'>USB&nbsp;Flash&nbsp;Drive</a>
-		<a href='./cases.php'>Laptop&nbsp;case</a>
+		<a href='./laptopcases.php'>Laptop&nbsp;case</a>
 		<a href='./printers.php'>Printers</a>
 	</div>
 	<a href="./aboutus.php">About us</a>

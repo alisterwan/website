@@ -59,10 +59,10 @@
 				$model			= $_POST[model];
 				$brand			= $_POST[brand];
 				$price			= $_POST[price];
-				$description	= $_POST[details];			
+				$description	= $_POST[details];
 				$quantity		= $_POST[quantity];
 				$capacity		= $_POST[capacity];
-				
+
 
 				if (!$model || !$brand  || !$price  || !$quantity || !$capacity || !$description) {
 					echo "<span class='error'>Form incomplete, please fill it completely.</span>";

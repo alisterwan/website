@@ -20,7 +20,7 @@
 				function printUsb($brand) {
 					//Connexion & requete
 					$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-					$result = pg_query($conn,"SELECT id_usb, model FROM usb WHERE brand='$brand'");
+					$result = pg_query($conn,"SELECT id, model FROM usb WHERE brand='$brand'");
 
 					if (pg_num_rows($result)) {
 						echo "<div class='type'><div class='title'>$brand</div>";
