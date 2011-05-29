@@ -20,7 +20,7 @@
  <p>Are you searching for additional information? Please contact us:
  <p id="contact">contact:laptopmlv@gmail.com<br/>
  2 Rue Albert Einstein,<br/>
- Institute of Marne la Vallee,<br/>
+ University Institutes for Technology of Marne la Vallee,<br/>
  Champs-sur-marne.</p>
  </p>               
 			</div>
