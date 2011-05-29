@@ -18,7 +18,7 @@
 				$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 
 				if ($type = $_GET[type] or $type = $_POST[type]) {
-					if ($id = (int)$_GET[add] and is_int($id) and !$_SESSION[cart][$id])
+					if ($id = (int)$_GET[add] and is_int($id) and !$_SESSION[cart][$type][$id])
 						$_SESSION[cart][$type][$id] = 1;
 
 					else if ($id = $_POST[inc])
@@ -69,13 +69,14 @@
 					}
 				}
 
-				if ($total)
-					echo "$forms$html
-						<tr>
-							<td colspan='3'>Total:</td>
-							<td>$total €</td>
-							<td><a href='./order.php'><input type='button' value='Order'></a></td>
-						</tr></tbody></table>";
+				if ($total) {
+					echo "$forms$html<tr><td colspan='3'>Total:</td><td>$total €</td><td>";
+					if ($_SESSION[name])
+						echo "<a href='./order.php'><input type='button' value='Order'></a>";
+					else
+						echo "<a href='./login.php'>Log in to order.</a>";
+					echo "</td></tr></tbody></table>";
+				}
 				else
 					echo "<strong>Empty cart.</strong>";
 			?>
