@@ -71,38 +71,38 @@
 					$email     = $_POST[email];
 
 					if (!$firstname || !$surname || !$address || !$city || !$country || !$user || !$pass || !$email) {
-						echo "<span class='error'>Form incomplete, please fill it completely.</span>";
+						echo "<p class='error'>Form incomplete, please fill it completely.</p>";
 						return printForm($firstname,$surname,$address,$city,$country,$user,$email);
 					}
 
 					if (strlen($pass)<8 || $pass != $_POST[passcheck]) {
-						echo "<span class='error'>Password invalid or too short.</span>";
+						echo "<p class='error'>Password invalid or too short.</p>";
 						return printForm($firstname,$surname,$address,$city,$country,$user,$email);
 					}
 
 					if (!preg_match('/^[^@]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$/',$email)) {
-						echo "<span class='error'>E-mail invalid.</span>";
+						echo "<p class='error'>E-mail invalid.</p>";
 						return printForm($firstname,$surname,$address,$city,$country,$user,$email);
 					}
 
 					//Connexion à la base de donnée
 					$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 					if (!$conn) {
-						echo "<span class='error'>Connexion error.</span>";
+						echo "<p class='error'>Connexion error.</p>";
 						return printForm($firstname,$surname,$address,$city,$country,$user,$email);
 					}
 
 					//Verification si le username du client est deja dans la base de donnée
 					$result = pg_query($conn,"SELECT username from customers where username='$user'");
 					if (pg_num_rows($result)) {
-						echo "<span class='error'>This username is already used. Please change it.</span>";
+						echo "<p class='error'>This username is already used. Please change it.</p>";
 						return printForm($firstname,$surname,$address,$city,$country,'',$email);
 					}
 
 					//Verification si le mail n'est pas deja dans la base de donnée
 					$res = pg_query($conn,"SELECT mail from customers where mail='$email'");
 					if (pg_num_rows($res)) {
-						echo "<span class='error'>This e-mail is already registered. Please change it.</span>";
+						echo "<p class='error'>This e-mail is already registered. Please change it.</p>";
 						return printForm($firstname,$surname,$address,$city,$country,$user,'');
 					}
 
@@ -110,11 +110,11 @@
 					$pass = sha1($pass);
 					$req = pg_query($conn,"INSERT INTO customers VALUES ('$firstname','$surname','$address','$city','$country','$user','$pass','$email')");
 					if (!$req) {
-						echo "<span class='error'>Query error.</span>";
+						echo "<p class='error'>Query error.</p>";
 						return printForm($firstname,$surname,$address,$city,$country,$user,$email);
 					}
 					else
-						echo "You have been successfully registered.";
+						echo "<p>You have been successfully registered.</p>";
 
 					//Envoie du mail de confirmation de l'inscription
 /*
@@ -122,11 +122,10 @@
 					$headers .='Content-Type: text/plain; charset="iso-8859-1"'."\n";
 					$headers .='Content-Transfer-Encoding: 8bit';
 					$to=$email;
-					if (mail($to,"Registration to LMLV","You have been correctly registered.", $headers)) {
-						echo "An email of confirmation has been sent.";
-					}
+					if (mail($to,"Registration to LMLV","You have been correctly registered.", $headers))
+						echo "<p>An email of confirmation has been sent.</p>";
 					else {
-						echo '<span class='error'>The email has not been sent.</span>'
+						echo "<p class='error'>The email has not been sent.</p>";
 						printForm($firstname,$surname,$address,$city,$country,$user,$email);
 					}
 */

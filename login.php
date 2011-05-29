@@ -56,7 +56,7 @@
 						return $_SESSION[name] = $user;
 					}
 
-					echo "<span class='error'>Username or password incorrect, try again.</span>";
+					echo "<p class='error'>Username or password incorrect, try again.</p>";
 					printForm($user);
 				}
 				else
