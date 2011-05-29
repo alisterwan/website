@@ -198,6 +198,37 @@ a:hover {
 }
 
 
+/** CART **/
+.cart {
+  background-color: #E5E5E5;
+  border: 1px solid #AAA;
+  text-align: left;
+  width: 100%;
+}
+.cart tbody tr:nth-child(2n+1) {
+  background-color: #D9D9D9;
+}
+.cart tbody tr:nth-child(2n) {
+  background-color: #CCC;
+}
+.cart tr:nth-child(2) th {
+  width: 10%;
+}
+.cart tr:nth-child(2) th:nth-child(2) {
+  width: 60%;
+}
+.cart th:nth-child(3),
+.cart th:nth-child(4),
+.cart td:nth-child(3),
+.cart td:nth-child(5) {
+  text-align: center;
+}
+.cart td:nth-child(4),
+.cart tbody tr:last-child td:nth-child(2) {
+  text-align: right;
+}
+
+
 /** LOGIN & REGISTRATION **/
 .error {
   color: red;
