@@ -56,7 +56,11 @@
 				<div>
 					<input type='submit' name='proceed' value='submit'>
 				</div>
-			</form>";
+			</form>
+		</div>";
+					include './footer.php';
+					echo "</body></html>";
+					exit;
 				}
 
 				if ($_POST) {
@@ -72,38 +76,38 @@
 
 					if (!$firstname || !$surname || !$address || !$city || !$country || !$user || !$pass || !$email) {
 						echo "<p class='error'>Form incomplete, please fill it completely.</p>";
-						return printForm($firstname,$surname,$address,$city,$country,$user,$email);
+						printForm($firstname,$surname,$address,$city,$country,$user,$email);
 					}
 
 					if (strlen($pass)<8 || $pass != $_POST[passcheck]) {
 						echo "<p class='error'>Password invalid or too short.</p>";
-						return printForm($firstname,$surname,$address,$city,$country,$user,$email);
+						printForm($firstname,$surname,$address,$city,$country,$user,$email);
 					}
 
 					if (!preg_match('/^[^@]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$/',$email)) {
 						echo "<p class='error'>E-mail invalid.</p>";
-						return printForm($firstname,$surname,$address,$city,$country,$user,$email);
+						printForm($firstname,$surname,$address,$city,$country,$user,$email);
 					}
 
 					//Connexion à la base de donnée
 					$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 					if (!$conn) {
 						echo "<p class='error'>Connexion error.</p>";
-						return printForm($firstname,$surname,$address,$city,$country,$user,$email);
+						printForm($firstname,$surname,$address,$city,$country,$user,$email);
 					}
 
 					//Verification si le username du client est deja dans la base de donnée
 					$result = pg_query($conn,"SELECT username from customers where username='$user'");
 					if (pg_num_rows($result)) {
 						echo "<p class='error'>This username is already used. Please change it.</p>";
-						return printForm($firstname,$surname,$address,$city,$country,'',$email);
+						printForm($firstname,$surname,$address,$city,$country,'',$email);
 					}
 
 					//Verification si le mail n'est pas deja dans la base de donnée
 					$res = pg_query($conn,"SELECT mail from customers where mail='$email'");
 					if (pg_num_rows($res)) {
 						echo "<p class='error'>This e-mail is already registered. Please change it.</p>";
-						return printForm($firstname,$surname,$address,$city,$country,$user,'');
+						printForm($firstname,$surname,$address,$city,$country,$user,'');
 					}
 
 					// Ajout d'un nouveau client dans la base de donnée
@@ -111,7 +115,7 @@
 					$req = pg_query($conn,"INSERT INTO customers VALUES ('$firstname','$surname','$address','$city','$country','$user','$pass','$email')");
 					if (!$req) {
 						echo "<p class='error'>Query error.</p>";
-						return printForm($firstname,$surname,$address,$city,$country,$user,$email);
+						printForm($firstname,$surname,$address,$city,$country,$user,$email);
 					}
 					else
 						echo "<p>You have been successfully registered.</p>";
@@ -133,8 +137,3 @@
 				else
 					printForm('','','','','','','');
 			?>
-		</div>
-
-		<?php include './footer.php' ?>
-	</body>
-</html>
