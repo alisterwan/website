@@ -198,19 +198,20 @@ a:hover {
 }
 
 
-/** REGISTRATION **/
+/** LOGIN & REGISTRATION **/
 .error {
   color: red;
   font-weight: 700;
 }
-form[name="login"], form[name="registration"] {
-  clear: both;
+.form {
   text-align: center;
 }
-form span {
+.form form {
   display: inline-block;
-  width: 130px;
   text-align: right;
+}
+.form form > div:last-child {
+  text-align: center;
 }
 
 

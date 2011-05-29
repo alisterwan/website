@@ -21,7 +21,7 @@
 	<body>
 		<?php include './header.php' ?>
 
-		<div id="body">
+		<div id="body" class="form">
 			<?php
 				function printForm($name) {
 					echo "
