@@ -16,25 +16,10 @@ a:hover {
   text-decoration: underline;
 }
 
-#nav:after, .type:after, .product:after {
+#body:after, #nav:after, .type:after, .product:after {
   content: "";
   display: table;
   clear: both;
-}
-
-#aboutus {
-  text-align: justify;
-  margin-right: 725px;
-  width: 45%;
-}
-
-.names {
-  text-align: justify;
-  position: absolute;
-  top: 10em;
-  margin-left: 534px;
-  width: 40%;
-  height: 70%;
 }
 
 /** HEADER **/
@@ -226,6 +211,28 @@ form span {
   display: inline-block;
   width: 130px;
   text-align: right;
+}
+
+
+/** ABOUT US **/
+.col {
+  float: left;
+  padding: 1%;
+  text-align: justify;
+  width: 48%;
+}
+
+.col h1 {
+  color: #CC5539;
+  margin: 10px 0 0;
+  text-shadow: 0 1px 2px black;
+}
+
+.col h3 {
+  color: #D9A444;
+  margin: 10px 0 0;
+  padding-bottom: 0.83em;
+  text-shadow: 0 1px 2px black;
 }
 
 
