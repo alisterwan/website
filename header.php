@@ -38,5 +38,4 @@
 		<a href='./printers.php'>Printers</a>
 	</div>
 	<a href="./aboutus.php">About us</a>
-	<a href="#">Contact us</a>
 </div>

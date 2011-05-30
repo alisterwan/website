@@ -255,21 +255,16 @@ a:hover {
 }
 
 .col h1 {
-  color: #CC5539;
+  color: #222;
   margin: 10px 0 0;
-  text-shadow: 0 1px 2px black;
+  text-shadow: 0 1px 3px #777;
 }
 
 .col h3 {
-  color: #D9A444;
+  color: #222;
   margin: 10px 0 0;
   padding-bottom: 0.83em;
-  text-shadow: 0 1px 2px black;
-}
-
-#contact{
-border:groove;
-width:50%;
+  text-shadow: 0 1px 3px #777;
 }
 
 /** FOOTER **/
