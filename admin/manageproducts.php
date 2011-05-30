@@ -27,7 +27,10 @@
 					<div><input type='hidden' name='productid' value='$id'></div>
 					<div><input name='price' value='$product[2]'> Price</div>
 					<div><input name='quantity' value='$product[3]'> Quantity</div>
-					<div><button type='submit' name='update' value='$type'>Update</button></div>
+					<div>
+						<button type='submit' name='update' value='$type'>Update</button>
+						<button type='submit' name='delete' value='$type'>Delete</button>
+					</div>
 					</form>";
 			}
 
@@ -90,6 +93,10 @@
 					echo "<p class='error'>Query error.</p>";
 					form($conn,$type,$id);
 				}
+			}
+			else if ($type = $_POST[delete]) {
+				$id = $_POST[productid];
+				pg_query($conn,"DELETE FROM $type WHERE id=$id;");
 			}
 		?>
 
