@@ -138,7 +138,7 @@
 
 				else {
 					echo "<p>You have successfully uploaded this product.<br>
-						<a href='./index.php'>Click here</a></p>";
+						<a href='./newlaptop.php'>Click here</a></p>";
 				}
 			}
 

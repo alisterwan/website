@@ -48,6 +48,10 @@
 							<td><textarea name='description'>$description</textarea></td>
 						</tr>
 						<tr>
+							<td>Picture</td>
+							<td><input type='file' name='picture' accept='image/png'></td>
+						</tr>
+						<tr>
 							<td><input type='submit' name='proceed' value='submit'></td>
 						<tr>
 					</table>
@@ -86,6 +90,12 @@
 				//Verification si le prix ou la quantité est au format numérique
 				if (!is_numeric($price) || !is_numeric($quantity)) {
 					echo "<p class='error'>Price or quantity incorrect.</p>";
+					return productForm($model,$brand,$quantity,$capacity,$price,$description);
+				}
+
+				//Envoie d'image
+				if (!move_uploaded_file($_FILES[picture][tmp_name],"../USB/$brand/$model.png")) {
+					echo "<p class='error'>File upload error.</p>";
 					return productForm($model,$brand,$quantity,$capacity,$price,$description);
 				}
 
