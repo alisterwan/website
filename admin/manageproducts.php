@@ -17,48 +17,88 @@
 
 		<?php include './navigation.php' ?>
 
-		<form action="./manageproducts.php" method="post">
+		<?php
+			function form($conn,$type,$id) {
+				$query = pg_query($conn,"SELECT brand, model, price, quantity FROM $type WHERE id=$id");
+				$product = pg_fetch_row($query);
+				echo "<form action='./manageproducts.php' method='post'>
+					<p>Delete or update its price/quantity.</p>
+					<div><strong>$product[0] $product[1]</strong></div>
+					<div><input type='hidden' name='productid' value='$id'></div>
+					<div><input name='price' value='$product[2]'> Price</div>
+					<div><input name='quantity' value='$product[3]'> Quantity</div>
+					<div>
+						<button type='submit' name='update' value='$type'>Update</button>
+						<button type='submit' name='delete' value='$type'>Delete</button>
+					</div>
+					</form>";
+			}
 
-			<?php
-				function update($conn,$id) {
-					$query = pg_query($conn,"SELECT brand, model, price, quantity FROM laptop WHERE id=$id");
-					$laptop = pg_fetch_row($query);
-					echo "<p>Update its price or its quantity.</p>";
-					echo "<div><strong>$laptop[0] $laptop[1]</strong></div>";
-					echo "<div><input type='hidden' name='updateid' value='$id'></div>";
-					echo "<div><input name='price' value='$laptop[2]'> Price</div>";
-					echo "<div><input name='quantity' value='$laptop[3]'> Quantity</div>";
-					echo "<div><button type='submit' name='update' value='true'>Update</button></div>";
+			//Connexion à la base de donnée
+			$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
+			echo "<p>Select a product in one of the drop-down list.</p>";
+
+			echo "<form action='./manageproducts.php' method='post'>
+				<button type='submit' name='select' value='laptop'>Select</button>
+				<select name='choice'>";
+			$query = pg_query($conn,"SELECT id, brand, model FROM laptop");
+			while ($product = pg_fetch_row($query))
+				echo "<option value='$product[0]'>$product[1] $product[2]</option>";
+			echo "</select></form>";
+
+			echo "<form action='./manageproducts.php' method='post'>
+				<button type='submit' name='select' value='charger'>Select</button>
+				<select name='choice'>";
+			$query = pg_query($conn,"SELECT id, brand, model FROM charger");
+			while ($product = pg_fetch_row($query))
+				echo "<option value='$product[0]'>$product[1] $product[2]</option>";
+			echo "</select></form>";
+
+			echo "<form action='./manageproducts.php' method='post'>
+				<button type='submit' name='select' value='laptopcase'>Select</button>
+				<select name='choice'>";
+			$query = pg_query($conn,"SELECT id, brand, model FROM laptopcase");
+			while ($product = pg_fetch_row($query))
+				echo "<option value='$product[0]'>$product[1] $product[2]</option>";
+			echo "</select></form>";
+
+			echo "<form action='./manageproducts.php' method='post'>
+				<button type='submit' name='select' value='usb'>Select</button>
+				<select name='choice'>";
+			$query = pg_query($conn,"SELECT id, brand, model FROM usb");
+			while ($product = pg_fetch_row($query))
+				echo "<option value='$product[0]'>$product[1] $product[2]</option>";
+			echo "</select></form>";
+
+			echo "<form action='./manageproducts.php' method='post'>
+				<button type='submit' name='select' value='printer'>Select</button>
+				<select name='choice'>";
+			$query = pg_query($conn,"SELECT id, brand, model FROM printer");
+			while ($product = pg_fetch_row($query))
+				echo "<option value='$product[0]'>$product[1] $product[2]</option>";
+			echo "</select></form>";
+
+			if ($type = $_POST[select]) {
+				$id = $_POST[choice];
+				form($conn,$type,$id);
+			}
+			else if ($type = $_POST[update]) {
+				$id       = $_POST[productid];
+				$price    = (int)$_POST[price];
+				$quantity = (int)$_POST[quantity];
+				$query    = pg_query($conn,"UPDATE $type SET price=$price, quantity=$quantity WHERE id=$id;");
+				if ($query)
+					echo "<p>Successful update.</p>";
+				else {
+					echo "<p class='error'>Query error.</p>";
+					form($conn,$type,$id);
 				}
-
-				//Connexion à la base de donnée
-				$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-				$query = pg_query($conn,"SELECT id, brand, model FROM laptop");
-				echo "<p>Select a product in the drop-down list.</p><div><select name='choice'>";
-				while ($laptop = pg_fetch_row($query))
-					echo "<option value='$laptop[0]'>$laptop[1] $laptop[2]</option>";
-				echo "</select> <button type='submit' name='select' value='true'>Select</button></div>";
-
-				if ($_POST[select]) {
-					$id = $_POST[choice];
-					update($conn,$id);
-				}
-				else if ($_POST[update]) {
-					$id = $_POST[updateid];
-					$price = (int)$_POST[price];
-					$quantity = (int)$_POST[quantity];
-					$query = pg_query($conn,"UPDATE laptop SET price=$price, quantity=$quantity WHERE id=$id;");
-					if ($query)
-						echo "<p>Successful update.</p>";
-					else {
-						echo "<p class='error'>Error.</p>";
-						$id = $_POST[updateid];
-						update($conn,$id);
-					}
-				}
-			?>
-
-		</form>
+			}
+			else if ($type = $_POST[delete]) {
+				$id = $_POST[productid];
+				pg_query($conn,"DELETE FROM $type WHERE id=$id;");
+			}
+		?>
 
 	</body>
 </html>
