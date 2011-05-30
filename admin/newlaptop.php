@@ -73,7 +73,7 @@
 						</tr>
 						<tr>
 							<td>Picture</td>
-							<td><input type='file' name='picture'></td>
+							<td><input type='file' name='picture' accept='image/png'></td>
 						</tr>
 						<tr>
 							<td><input type='submit' name='proceed' value='submit'></td>
@@ -84,108 +84,67 @@
 
 			if ($_POST) {
 
-				$model			= $_POST[model];
-				$brand			= $_POST[brand];
-				$type			= $_POST[type];
-				$price			= $_POST[price];
-				$size			= $_POST[size];
-				$quantity		= $_POST[quantity];
-				$system			= $_POST[system];
-				$processor		= $_POST[processor];
-				$ram			= $_POST[ram];
-				$hdd			= $_POST[hdd];
-				$batterylife	= $_POST[batterylife];
-				$graphic		= $_POST[graphic];
+				$model       = $_POST[model];
+				$brand       = $_POST[brand];
+				$type        = $_POST[type];
+				$price       = $_POST[price];
+				$size        = $_POST[size];
+				$quantity    = $_POST[quantity];
+				$system      = $_POST[system];
+				$processor   = $_POST[processor];
+				$ram         = $_POST[ram];
+				$hdd         = $_POST[hdd];
+				$batterylife = $_POST[batterylife];
+				$graphic     = $_POST[graphic];
 
 				if (!$model || !$brand || !$type || !$price || !$size || !$quantity || !$system || !$processor || !$ram || !$hdd || !$batterylife || !$graphic) {
-					echo "<span class='error'>Form incomplete, please fill it completely.</span>";
+					echo "<p class='error'>Form incomplete, please fill it completely.</p>";
 					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
 				//Connexion à la base de donnée
 				$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 				if (!$conn) {
-					echo "<span class='error'>Connexion error.</span>";
+					echo "<p class='error'>Connexion error.</p>";
 					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
 				//Verification si le modele du produit est deja dans la base de donnée
 				$result = pg_query($conn,"SELECT model from laptop where model='$model'");
 				if (pg_num_rows($result)) {
-					echo "This model is already in our book. Please just check the stock.";
+					echo "<p class='error'>This model is already in our book. Please check the stock.</p>";
 					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
 				//Verification si le prix ou la quantité est au format numérique
 				if (!is_numeric($price) || !is_numeric($quantity)) {
-					echo "<span class='error'>Price or quantity incorrect.</span>";
+					echo "<p class='error'>Price or quantity incorrect.</p>";
 					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
-				
+				//Envoie d'image
+				if (!move_uploaded_file($_FILES[picture][tmp_name],"../$brand/$type/$model.png")) {
+					echo "<p class='error'>File upload error.</p>";
+					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
+				}
 
-    			// on vérifie maintenant l'extension de l'image
-    			$type_file = $_FILES['picture']['type'];
-
-    			if( !strstr($type_file, 'jpg') && !strstr($type_file, 'jpeg') && !strstr($type_file, 'bmp') && !strstr($type_file, 'png') )
-    				{
-        			echo "Your file is not a picture";
-    				return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
-					}
-		else {
-			// Ajout d'un nouveau produit dans la base de donnée
+				// Ajout d'un nouveau produit dans la base de donnée
 				$req = pg_query($conn,"INSERT INTO laptop VALUES ('$model','$brand','$type','$price','$size','$quantity','$system','$processor','$ram','$hdd','$batterylife','$graphic')");
- 
- 
- 				// dossier où sera déplacé le fichier
- 				$content_dir = 'website/$brand/$type/'; 
 
- 				$tmp_file = $_FILES['picture']['tmp_name'];
-
- 				if( !is_uploaded_file($tmp_file) )
- 				{
-  				echo"Your file has not been founded.";
-				return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
-  				}
-			}			
-
-    				// on copie le fichier dans le dossier de destination
-    				$name_file = $_FILES['picture'][$model.png];
-
-					if( preg_match('#[\x00-\x1F\x7F-\x9F/\\\\]#', $name_file) )
-					{
-    				echo"please rename your file correctly before uploading.";
-					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
-					}
-
-else if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
-        {
-        echo"Your demand to copy the picture to $content_dir has not been 		
-		possible.";
-		return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
-		}			
-				if ($req && !$name_file) {
-					echo "<span class='error'>Query error.</span>";
-					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
-				}
-				
 				if (!$req) {
-					echo "<span class='error'>Query error.</span>";
+					echo "<p class='error'>Query error.</p>";
 					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
-	
 
 				else {
-					echo "Successfully uploaded.";
-					echo "You have successfully uploaded this product.<br>";
-					echo "<a href='./index.php'>Click here</a>";
+					echo "<p>You have successfully uploaded this product.<br>
+						<a href='./index.php'>Click here</a></p>";
 				}
 			}
 
-			else {
+			else
 				productForm('','','','','','','','','','','','');
-			}
 		?>
-        
+
 	</body>
 </html>
