@@ -24,7 +24,7 @@
 				echo "<form action='./manageproducts.php' method='post'>
 					<p>Delete or update its price/quantity.</p>
 					<div><strong>$product[0] $product[1]</strong></div>
-					<div><input type='hidden' name='productid' value='$id' required></div>
+					<div><input type='hidden' name='productid' value='$id'></div>
 					<div><input name='price' value='$product[2]' required> Price</div>
 					<div><input name='quantity' value='$product[3]' required> Quantity</div>
 					<div>
