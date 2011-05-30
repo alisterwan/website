@@ -13,8 +13,14 @@
 		<?php include './header.php' ?>
 
 		<div id="body">
-			Welcome to our site. Do you have difficulties to find a laptop? Or are you searching for a gift?<br>
-			Here you will find all your answers. New customer? Register <a href='./registration.php'>here</a>.
+			Welcome to our site.
+			Do you have difficulties to find a laptop?
+			Or are you searching for a gift?<br>
+			Here is where you will find all your answers.
+			<?php
+				if (!$_SESSION[name])
+					echo "New customer? Register <a href='./registration.php'>here</a>.";
+			?>
 		</div>
 
 		<?php include './footer.php' ?>
