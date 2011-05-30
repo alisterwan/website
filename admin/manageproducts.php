@@ -25,8 +25,8 @@
 					<p>Delete or update its price/quantity.</p>
 					<div><strong>$product[0] $product[1]</strong></div>
 					<div><input type='hidden' name='productid' value='$id'></div>
-					<div><input name='price' value='$product[2]' required> Price</div>
-					<div><input name='quantity' value='$product[3]' required> Quantity</div>
+					<div><input type='number' name='price' value='$product[2]' required> Price</div>
+					<div><input type='number' name='quantity' value='$product[3]' required> Quantity</div>
 					<div>
 						<button type='submit' name='update' value='$type'>Update</button>
 						<button type='submit' name='delete' value='$type'>Delete</button>
@@ -84,8 +84,8 @@
 			}
 			else if ($type = $_POST[update]) {
 				$id       = $_POST[productid];
-				$price    = (int)$_POST[price];
-				$quantity = (int)$_POST[quantity];
+				$price    = $_POST[price];
+				$quantity = $_POST[quantity];
 				$query    = pg_query($conn,"UPDATE $type SET price=$price, quantity=$quantity WHERE id=$id;");
 				if ($query)
 					echo "<p>Successful update.</p>";

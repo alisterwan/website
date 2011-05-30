@@ -33,15 +33,15 @@
 						</tr>
 						<tr>
 							<td>Size</td>
-							<td><input type='text' name='size' value='$size' required></td>
+							<td><input type='number' name='size' value='$size' required></td>
 						</tr>
 						<tr>
 							<td>Quantity</td>
-							<td><input type='text' name='quantity' value='$quantity' required></td>
+							<td><input type='number' name='quantity' value='$quantity' required></td>
 						</tr>
 						<tr>
 							<td>Price</td>
-							<td><input type='text' name='price' value='$price' required></td>
+							<td><input type='number' name='price' value='$price' required></td>
 						</tr>
 						<tr>
 							<td>Description</td>
@@ -79,12 +79,6 @@
 				$result = pg_query($conn,"SELECT model from laptopcase where model='$model'");
 				if (pg_num_rows($result)) {
 					echo "<p class='error'>This model is already in our book. Please check the stock.</p>";
-					return productForm($model,$brand,$size,$quantity,$price,$description);
-				}
-
-				//Verification si le prix ou la quantité est au format numérique
-				if (!is_numeric($price) || !is_numeric($quantity)) {
-					echo "<p class='error'>Price or quantity incorrect.</p>";
 					return productForm($model,$brand,$size,$quantity,$price,$description);
 				}
 
