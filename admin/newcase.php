@@ -45,7 +45,7 @@
 						</tr>
 						<tr>
 							<td>Description</td>
-							<td><textarea name='details' value='$description'></textarea></td>
+							<td><textarea name='description'>$description</textarea></td>
 						</tr>
 						<tr>
 							<td><input type='submit' name='proceed' value='submit'></td>
@@ -56,49 +56,48 @@
 
 			if ($_POST) {
 
-				$model			= $_POST[model];
-				$brand			= $_POST[brand];
-				$size			= $_POST[size];
-				$price			= $_POST[price];
-				$quantity		= $_POST[quantity];
-				$description	= $_POST[details];
+				$model       = $_POST[model];
+				$brand       = $_POST[brand];
+				$size        = $_POST[size];
+				$quantity    = $_POST[quantity];
+				$price       = $_POST[price];
+				$description = $_POST[description];
 
 
 				if (!$model || !$brand  || !$price  || !$quantity || !$size || !$description) {
-					echo "<span class='error'>Form incomplete, please fill it completely.</span>";
+					echo "<p class='error'>Form incomplete, please fill it completely.</p>";
 					return productForm($model,$brand,$size,$quantity,$price,$description);
 				}
 
 				//Connexion à la base de donnée
 				$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 				if (!$conn) {
-					echo "<span class='error'>Connexion error.</span>";
+					echo "<p class='error'>Connexion error.</p>";
 					return productForm($model,$brand,$size,$quantity,$price,$description);
 				}
 
 				//Verification si le modele du produit est deja dans la base de donnée
 				$result = pg_query($conn,"SELECT model from laptopcase where model='$model'");
 				if (pg_num_rows($result)) {
-					echo "This model is already in our book. Please just check the stock.";
+					echo "<p class='error'>This model is already in our book. Please check the stock.</p>";
 					return productForm($model,$brand,$size,$quantity,$price,$description);
 				}
 
-
 				//Verification si le prix ou la quantité est au format numérique
 				if (!is_numeric($price) || !is_numeric($quantity)) {
-					echo "<span class='error'>Price or quantity incorrect.</span>";
+					echo "<p class='error'>Price or quantity incorrect.</p>";
 					return productForm($model,$brand,$size,$quantity,$price,$description);
 				}
 
 				// Ajout d'un nouveau produit dans la base de donnée
 				$req = pg_query($conn,"INSERT INTO laptopcase VALUES ('$model','$brand','$size','$quantity','$price','$description')");
 				if (!$req) {
-					echo "<span class='error'>Query error.</span>";
+					echo "<p class='error'>Query error.</p>";
 					return productForm($model,$brand,$size,$quantity,$price,$description);
 				}
 				else {
-					echo "You have successfully uploaded this product.<br>";
-					echo "<a href='./index.php'>Click here</a>";
+					echo "<p>You have successfully uploaded this product.<br>
+						<a href='./newcase.php'>Click here</a></p>";
 				}
 			}
 
@@ -109,4 +108,3 @@
 
 	</body>
 </html>
-
