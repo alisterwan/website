@@ -52,9 +52,9 @@
 						<div>Total: $total €</div>
 						<p>Provide your credit card information:</p>
 						<div>Credit card number:</div>
-						<div><input type='text' name='card'></div>
+						<div><input type='text' name='card' required></div>
 						<div>Pictogram: </div>
-						<div><input type='text' name='pict'></div>
+						<div><input type='text' name='pict' required></div>
 						<div><input type='submit' value='Proceed'></div>
 					</form>";
 				}
