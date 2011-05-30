@@ -22,7 +22,7 @@
 				$query = pg_query($conn,"SELECT brand, model, price, quantity FROM $type WHERE id=$id");
 				$product = pg_fetch_row($query);
 				echo "<form action='./manageproducts.php' method='post'>
-					<p>Update its price or its quantity.</p>
+					<p>Delete or update its price/quantity.</p>
 					<div><strong>$product[0] $product[1]</strong></div>
 					<div><input type='hidden' name='productid' value='$id'></div>
 					<div><input name='price' value='$product[2]'> Price</div>
