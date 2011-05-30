@@ -21,7 +21,7 @@
 			function productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic) {
 				echo "
 				<p>Here you can upload a new product, please fill in the blanks to store some information in our database.</p>
-				<form action='newlaptop.php' method='post'>
+				<form action='newlaptop.php' enctype='multipart/form-data' method='post'>
 					<table>
 						<tr>
 							<td>Model</td>
@@ -72,6 +72,10 @@
 							<td><input type='text' name='graphic' value='$graphic'></td>
 						</tr>
 						<tr>
+							<td>Picture</td>
+							<td><input type='file' name='picture'></td>
+						</tr>
+						<tr>
 							<td><input type='submit' name='proceed' value='submit'></td>
 						<tr>
 					</table>
@@ -92,7 +96,6 @@
 				$hdd			= $_POST[hdd];
 				$batterylife	= $_POST[batterylife];
 				$graphic		= $_POST[graphic];
-
 
 				if (!$model || !$brand || !$type || !$price || !$size || !$quantity || !$system || !$processor || !$ram || !$hdd || !$batterylife || !$graphic) {
 					echo "<span class='error'>Form incomplete, please fill it completely.</span>";
@@ -119,13 +122,61 @@
 					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
-				// Ajout d'un nouveau produit dans la base de donnée
+				
+
+    			// on vérifie maintenant l'extension de l'image
+    			$type_file = $_FILES['picture']['type'];
+
+    			if( !strstr($type_file, 'jpg') && !strstr($type_file, 'jpeg') && !strstr($type_file, 'bmp') && !strstr($type_file, 'png') )
+    				{
+        			echo "Your file is not a picture";
+    				return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
+					}
+		else {
+			// Ajout d'un nouveau produit dans la base de donnée
 				$req = pg_query($conn,"INSERT INTO laptop VALUES ('$model','$brand','$type','$price','$size','$quantity','$system','$processor','$ram','$hdd','$batterylife','$graphic')");
+ 
+ 
+ 				// dossier où sera déplacé le fichier
+ 				$content_dir = 'website/$brand/$type/'; 
+
+ 				$tmp_file = $_FILES['picture']['tmp_name'];
+
+ 				if( !is_uploaded_file($tmp_file) )
+ 				{
+  				echo"Your file has not been founded.";
+				return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
+  				}
+			}			
+
+    				// on copie le fichier dans le dossier de destination
+    				$name_file = $_FILES['picture'][$model.png];
+
+					if( preg_match('#[\x00-\x1F\x7F-\x9F/\\\\]#', $name_file) )
+					{
+    				echo"please rename your file correctly before uploading.";
+					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
+					}
+
+else if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
+        {
+        echo"Your demand to copy the picture to $content_dir has not been 		
+		possible.";
+		return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
+		}			
+				if ($req && !$name_file) {
+					echo "<span class='error'>Query error.</span>";
+					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
+				}
+				
 				if (!$req) {
 					echo "<span class='error'>Query error.</span>";
 					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
+	
+
 				else {
+					echo "Successfully uploaded.";
 					echo "You have successfully uploaded this product.<br>";
 					echo "<a href='./index.php'>Click here</a>";
 				}
@@ -135,6 +186,6 @@
 				productForm('','','','','','','','','','','','');
 			}
 		?>
-
+        
 	</body>
 </html>
