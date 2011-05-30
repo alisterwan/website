@@ -25,55 +25,55 @@
 					<table>
 						<tr>
 							<td>Model</td>
-							<td><input type='text' name='model' value='$model'></td>
+							<td><input type='text' name='model' value='$model' required></td>
 						</tr>
 						<tr>
 							<td>Brand</td>
-							<td><input type='text' name='brand' value='$brand'></td>
+							<td><input type='text' name='brand' value='$brand' required></td>
 						</tr>
 						<tr>
 							<td>Type</td>
-							<td><input type='text' name='type' value='$type'></td>
+							<td><input type='text' name='type' value='$type' required></td>
 						</tr>
 						<tr>
 							<td>Price</td>
-							<td><input type='text' name='price' value='$price'></td>
+							<td><input type='text' name='price' value='$price' required></td>
 						</tr>
 						<tr>
 							<td>Size</td>
-							<td><input type='text' name='size' value='$size'></td>
+							<td><input type='text' name='size' value='$size' required></td>
 						</tr>
 						<tr>
 							<td>Quantity</td>
-							<td><input type='text' name='quantity' value='$quantity'></td>
+							<td><input type='text' name='quantity' value='$quantity' required></td>
 						</tr>
 						<tr>
 							<td>System</td>
-							<td><input type='text' name='system' value='$system'></td>
+							<td><input type='text' name='system' value='$system' required></td>
 						</tr>
 						<tr>
 							<td>Processor</td>
-							<td><input type='text' name='processor' value='$processor'></td>
+							<td><input type='text' name='processor' value='$processor' required></td>
 						</tr>
 						<tr>
 							<td>RAM</td>
-							<td><input type='text' name='ram' value='$ram'></td>
+							<td><input type='text' name='ram' value='$ram' required></td>
 						</tr>
 						<tr>
 							<td>HDD</td>
-							<td><input type='text' name='hdd' value='$hdd'></td>
+							<td><input type='text' name='hdd' value='$hdd' required></td>
 						</tr>
 						<tr>
 							<td>Battery life</td>
-							<td><input type='text' name='batterylife' value='$batterylife'></td>
+							<td><input type='text' name='batterylife' value='$batterylife' required></td>
 						</tr>
 						<tr>
 							<td>Graphic card</td>
-							<td><input type='text' name='graphic' value='$graphic'></td>
+							<td><input type='text' name='graphic' value='$graphic' required></td>
 						</tr>
 						<tr>
 							<td>Picture</td>
-							<td><input type='file' name='picture' accept='image/png'></td>
+							<td><input type='file' name='picture' accept='image/png' required></td>
 						</tr>
 						<tr>
 							<td><input type='submit' name='proceed' value='submit'></td>
@@ -97,10 +97,6 @@
 				$batterylife = $_POST[batterylife];
 				$graphic     = $_POST[graphic];
 
-				if (!$model || !$brand || !$type || !$price || !$size || !$quantity || !$system || !$processor || !$ram || !$hdd || !$batterylife || !$graphic) {
-					echo "<p class='error'>Form incomplete, please fill it completely.</p>";
-					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
-				}
 
 				//Connexion à la base de donnée
 				$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
@@ -136,10 +132,9 @@
 					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
-				else {
+				else
 					echo "<p>You have successfully uploaded this product.<br>
 						<a href='./newlaptop.php'>Click here</a></p>";
-				}
 			}
 
 			else

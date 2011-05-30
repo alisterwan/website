@@ -25,31 +25,31 @@
 					<table>
 						<tr>
 							<td>Model</td>
-							<td><input type='text' name='model' value='$model'></td>
+							<td><input type='text' name='model' value='$model' required></td>
 						</tr>
 						<tr>
 							<td>Brand</td>
-							<td><input type='text' name='brand' value='$brand'></td>
+							<td><input type='text' name='brand' value='$brand' required></td>
 						</tr>
 						<tr>
 							<td>Size</td>
-							<td><input type='text' name='size' value='$size'></td>
+							<td><input type='text' name='size' value='$size' required></td>
 						</tr>
 						<tr>
 							<td>Quantity</td>
-							<td><input type='text' name='quantity' value='$quantity'></td>
+							<td><input type='text' name='quantity' value='$quantity' required></td>
 						</tr>
 						<tr>
 							<td>Price</td>
-							<td><input type='text' name='price' value='$price'></td>
+							<td><input type='text' name='price' value='$price' required></td>
 						</tr>
 						<tr>
 							<td>Description</td>
-							<td><textarea name='description'>$description</textarea></td>
+							<td><textarea name='description' required>$description</textarea></td>
 						</tr>
 						<tr>
 							<td>Picture</td>
-							<td><input type='file' name='picture' accept='image/png'></td>
+							<td><input type='file' name='picture' accept='image/png' required></td>
 						</tr>
 						<tr>
 							<td><input type='submit' name='proceed' value='submit'></td>
@@ -67,11 +67,6 @@
 				$price       = $_POST[price];
 				$description = $_POST[description];
 
-
-				if (!$model || !$brand  || !$price  || !$quantity || !$size || !$description) {
-					echo "<p class='error'>Form incomplete, please fill it completely.</p>";
-					return productForm($model,$brand,$size,$quantity,$price,$description);
-				}
 
 				//Connexion à la base de donnée
 				$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
@@ -105,10 +100,9 @@
 					echo "<p class='error'>Query error.</p>";
 					return productForm($model,$brand,$size,$quantity,$price,$description);
 				}
-				else {
+				else
 					echo "<p>You have successfully uploaded this product.<br>
 						<a href='./newcase.php'>Click here</a></p>";
-				}
 			}
 
 			else {

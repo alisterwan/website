@@ -28,11 +28,11 @@
 			<form action='login.php' method='post' name='login'>
 				<div>
 					<span>Username</span>
-					<input type='text' name='username' value='$name'>
+					<input type='text' name='username' value='$name' required>
 				</div>
 				<div>
 					<span>Password</span>
-					<input type='password' name='password'>
+					<input type='password' name='password' required>
 				</div>
 				<div>
 					<input type='submit' name='proceed' value='Log in'>

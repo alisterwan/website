@@ -23,13 +23,13 @@
 				$customer = pg_fetch_row($query);
 				echo "<form action='./managecustomers.php' method='post'>
 					<p>Delete or update its details.</p>
-					<div><input name='firstname' value='$customer[0]'> Firstname</div>
-					<div><input name='surname' value='$customer[1]'> Surname</div>
-					<div><input name='username' value='$customer[5]'> Username</div>
-					<div><input name='address' value='$customer[2]'> Address</div>
-					<div><input name='city' value='$customer[3]'> City</div>
-					<div><input name='country' value='$customer[4]'> Country</div>
-					<div><input name='mail' value='$customer[7]'> Email</div>
+					<div><input name='firstname' value='$customer[0]' required> Firstname</div>
+					<div><input name='surname' value='$customer[1]' required> Surname</div>
+					<div><input name='username' value='$customer[5]' required> Username</div>
+					<div><input name='address' value='$customer[2]' required> Address</div>
+					<div><input name='city' value='$customer[3]' required> City</div>
+					<div><input name='country' value='$customer[4]' required> Country</div>
+					<div><input name='mail' value='$customer[7]' required> Email</div>
 					<div>
 						<button type='submit' name='update' value='$id'>Update</button>
 						<button type='submit' name='delete' value='$id'>Delete</button>

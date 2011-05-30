@@ -19,39 +19,39 @@
 			<form action='registration.php' method='post' name='registration'>
 				<div>
 					<span>Firstname</span>
-					<input type='text' name='firstname' value='$firstname'>
+					<input type='text' name='firstname' value='$firstname' required>
 				</div>
 				<div>
 					<span>Surname</span>
-					<input type='text' name='surname' value='$surname'>
+					<input type='text' name='surname' value='$surname' required>
 				</div>
 				<div>
 					<span>Address</span>
-					<input type='text' name='address' value='$address'>
+					<input type='text' name='address' value='$address' required>
 				</div>
 				<div>
 					<span>City</span>
-					<input type='text' name='city' value='$city'>
+					<input type='text' name='city' value='$city' required>
 				</div>
 				<div>
 					<span>Country</span>
-					<input type='text' name='country' value='$country'>
+					<input type='text' name='country' value='$country' required>
 				</div>
 				<div>
 					<span>Username</span>
-					<input type='text' name='username' value='$user'>
+					<input type='text' name='username' value='$user' required>
 				</div>
 				<div>
 					<span>Password</span>
-					<input type='password' name='password'>
+					<input type='password' name='password' required>
 				</div>
 				<div>
 					<span>Confirm password</span>
-					<input type='password' name='passcheck'>
+					<input type='password' name='passcheck' required>
 				</div>
 				<div>
 					<span>E-mail</span>
-					<input type='text' name='email' value='$email'>
+					<input type='text' name='email' value='$email' required>
 				</div>
 				<div>
 					<input type='submit' name='proceed' value='submit'>
@@ -73,11 +73,6 @@
 					$user      = $_POST[username];
 					$pass      = $_POST[password];
 					$email     = $_POST[email];
-
-					if (!$firstname || !$surname || !$address || !$city || !$country || !$user || !$pass || !$email) {
-						echo "<p class='error'>Form incomplete, please fill it completely.</p>";
-						printForm($firstname,$surname,$address,$city,$country,$user,$email);
-					}
 
 					if (strlen($pass)<8 || $pass != $_POST[passcheck]) {
 						echo "<p class='error'>Password invalid or too short.</p>";
