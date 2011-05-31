@@ -1,7 +1,6 @@
 <?php
-	session_start();
 	include './header.php';
-	printHeader($_GET[type],$_SESSION[name]);
+	printHeader($_GET[type]);
 
 	function printLaptop($type,$brand,$conn) {
 		$result = pg_query($conn,"SELECT id, model FROM laptop WHERE type='$type' and brand='$brand'");

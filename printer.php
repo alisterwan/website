@@ -1,7 +1,6 @@
 <?php
-	session_start();
 	include './header.php';
-	printHeader('Product page',$_SESSION[name]);
+	printHeader('Product page');
 
 	//Connexion & requete
 	$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");

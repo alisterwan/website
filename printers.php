@@ -1,7 +1,6 @@
 <?php
-	session_start();
 	include './header.php';
-	printHeader('Printers',$_SESSION[name]);
+	printHeader('Printers');
 ?>
 
 <div class='logo'>

@@ -1,7 +1,6 @@
 <?php
-	session_start();
 	include './header.php';
-	printHeader('Registration',$_SESSION[name]);
+	printHeader('Registration');
 
 	function printForm($firstname,$surname,$address,$city,$country,$user,$email) {
 		echo "

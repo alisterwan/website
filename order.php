@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	include './header.php';
 	if (!$_SESSION[name] or !$_SESSION[cart])
 		header("location: ./cart.php");
 
@@ -18,8 +18,7 @@
 		unset($_SESSION[cart]);
 	}
 
-	include './header.php';
-	printHeader('Your order',$_SESSION[name]);
+	printHeader('Your order');
 
 	if ($_SESSION[cart]) {
 		echo "	<p>Here is the summary of your order:</p>

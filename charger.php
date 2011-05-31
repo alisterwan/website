@@ -1,16 +1,12 @@
 <?php
-	session_start();
 	include './header.php';
-	printHeader('Product page',$_SESSION[name]);
-?>
-			<?php
-				$id = $_GET[id];
-				//Connexion & requete
-				$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-				$result = pg_query($conn,"SELECT * FROM charger WHERE id='$id'");
-				$i = pg_fetch_row($result);
+	printHeader('Product page');
 
-				echo "
+	//Connexion & requete
+	$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
+	$i = pg_fetch_row(pg_query($conn,"SELECT * FROM charger WHERE id='$_GET[id]'"));
+
+	echo "
 		<div id='product'>
 			<div class='title'>$i[1] $i[0]</div>
 			<div class='product'>

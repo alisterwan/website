@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	include './header.php';
 
 	//Session Administrateur
 	if ($_POST[username] == admin && $_POST[password] == laptopmlv) {
@@ -8,8 +8,7 @@
 		header("location: ./admin/index.php");
 	}
 
-	include './header.php';
-	printHeader('Login',$_SESSION[name]);
+	printHeader('Login');
 
 	function printForm($name) {
 		echo "

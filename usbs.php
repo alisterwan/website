@@ -1,7 +1,6 @@
 <?php
-	session_start();
 	include './header.php';
-	printHeader('USB Flash Drive',$_SESSION[name]);
+	printHeader('USB Flash Drive');
 ?>
 
 <div class='logo'>

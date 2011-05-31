@@ -1,8 +1,9 @@
 <?php
+	session_start();
 
-function printHeader($title,$name) {
+	function printHeader($title) {
 
-echo "
+		echo "
 <!doctype html>
 <html lang='en'>
 	<head>
@@ -18,12 +19,12 @@ echo "
 			<a href='./index.php'><img src='laptop.png' id='logo'></a>
 			<img src='MLV.png' id='mlv'>";
 
-if ($name)
-	echo "<span id='log'>Welcome <a>$name</a>. <a href='./logout.php'>Log out</a>.</span>";
-else
-	echo "<span id='log'>Welcome. <a href='./login.php'>Log in</a> or <a href='./registration.php'>register</a>.</span>";
+		if ($_SESSION[name])
+			echo "<span id='log'>Welcome <a>$_SESSION[name]</a>. <a href='./logout.php'>Log out</a>.</span>";
+		else
+			echo "<span id='log'>Welcome. <a href='./login.php'>Log in</a> or <a href='./registration.php'>register</a>.</span>";
 
-echo "
+		echo "
 			<a href='./cart.php' id='cart'>Cart <img src='cart.png'></a>
 		</div>
 		<div id='nav'>
@@ -56,15 +57,14 @@ echo "
 			<a href='./aboutus.php'>About us</a>
 		</div>
 		<div id='body'>";
+	}
 
-}
-
-function printFooter() {
-echo "
+	function printFooter() {
+		echo "
 		</div>
 		<div id='footer'>Copyright &#169; 2011, UMLV Inc. or its affiliates.</div>
 	</body>
 </html>";
-}
+	}
 
 ?>
