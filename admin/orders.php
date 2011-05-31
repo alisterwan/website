@@ -15,29 +15,8 @@
 	</head>
 	<body>
 
-		<?php include './navigation.php' ?>
-
 		<?php
-			function form($conn,$id) {
-				echo "<p>Here is the summary of this transaction.</p>";
-				$query = pg_query($conn,"SELECT * FROM orders WHERE time=$id");
-				$order = pg_fetch_row($query);
-				$customer = pg_fetch_row(pg_query($conn,"SELECT * FROM customers WHERE id_customer='$order[1]'"));
-				echo "<p>
-					<strong>$customer[0] $customer[1]</strong> (<a href='mailto:$customer[7]'>$customer[5]</a>)<br>
-					$customer[2], $customer[3]<br>$customer[4]
-				</p>";
-
-				do {
-					$prod = pg_fetch_row(pg_query($conn,"SELECT brand, model FROM $order[5] WHERE id=$order[0]"));
-					echo "<p>
-							Model: $prod[0] $prod[1]<br>
-							Quantity: $order[2]<br>
-							Total: $order[3] €
-						</p>";
-				} while ($order = pg_fetch_row($query));
-
-			}
+			include './navigation.php';
 
 			//Connexion à la base de donnée
 			$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
@@ -45,17 +24,30 @@
 					<form action='./orders.php' method='post'>
 						<button type='submit' name='select' value='true'>Select</button>
 						<select name='choice'>";
-			$query = pg_query($conn,"SELECT time FROM orders");
-			while ($order = pg_fetch_row($query))
-				if($order[0] != $old) {
-					echo "<option value='$order[0]'>$order[0]</option>";
-					$old = $order[0];
-				}
+			$query = pg_query($conn,"SELECT time, id_customers FROM orders");
+			while ($o = pg_fetch_row($query)) if($o[0] != $old) {
+				$c = pg_fetch_row(pg_query($conn,"SELECT firstname, surname, username FROM customers WHERE id_customer=$o[1]"));
+				echo "<option value='$o[0]'>".date('d M Y H:i:s',$o[0])." $c[0] $c[1] ($c[2])</option>";
+				$old = $o[0];
+			}
 			echo "</select></form>";
 
 			if ($_POST[select]) {
+				echo "<p>Here is the summary of this transaction.</p>";
 				$time = $_POST[choice];
-				form($conn,$time);
+				$query = pg_query($conn,"SELECT * FROM orders WHERE time=$time");
+				$o = pg_fetch_row($query);
+				$c = pg_fetch_row(pg_query($conn,"SELECT * FROM customers WHERE id_customer='$o[1]'"));
+				echo "<p>
+					".date('d M Y H:i:s',$time)."<br>
+					<strong>$c[0] $c[1]</strong> (<a href='mailto:$c[7]'>$c[5]</a>)<br>
+					$c[2], $c[3]<br>$c[4]
+				</p>";
+
+				do {
+					$p = pg_fetch_row(pg_query($conn,"SELECT brand, model FROM $o[5] WHERE id=$o[0]"));
+					echo "<p>Model: $p[0] $p[1]<br>Quantity: $o[2]<br>Total: $o[3] €</p>";
+				} while ($o = pg_fetch_row($query));
 			}
 		?>
 
