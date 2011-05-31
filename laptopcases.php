@@ -1,18 +1,8 @@
-<?php session_start(); ?>
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Laptop case</title>
-		<meta name="description" content="Projet web">
-		<meta name="author" content="Alister & Mayhem">
-		<link rel="stylesheet" href="stylesheet.css">
-	</head>
-	<body>
-		<?php include './header.php' ?>
-
-		<div id="body">
+<?php
+	session_start();
+	include './header.php';
+	printHeader('Laptop case',$_SESSION[name]);
+?>
 			<div class='logo'>
 				<img src='./typelogos/case.png'>
 			</div>
@@ -37,9 +27,6 @@
 				printCase(HP);
 				printCase(Incase);
 				printCase(Targus);
-			?>
-		</div>
 
-		<?php include './footer.php' ?>
-	</body>
-</html>
+	printFooter();
+?>

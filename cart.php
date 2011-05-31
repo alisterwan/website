@@ -1,18 +1,8 @@
-<?php session_start(); ?>
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Your cart</title>
-		<meta name="description" content="Projet web">
-		<meta name="author" content="Alister & Mayhem">
-		<link rel="stylesheet" href="stylesheet.css">
-	</head>
-	<body>
-		<?php include './header.php' ?>
-
-		<div id="body">
+<?php
+	session_start();
+	include './header.php';
+	printHeader('Your cart',$_SESSION[name]);
+?>
 			<?php
 				//Connexion a la bdd.
 				$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
@@ -79,9 +69,6 @@
 				}
 				else
 					echo "<strong>Empty cart.</strong>";
-			?>
-		</div>
 
-		<?php include './footer.php' ?>
-	</body>
-</html>
+	printFooter();
+?>

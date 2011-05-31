@@ -1,18 +1,8 @@
-<?php session_start(); ?>
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Product page</title>
-		<meta name="description" content="Projet web">
-		<meta name="author" content="Alister & Mayhem">
-		<link rel="stylesheet" href="stylesheet.css">
-	</head>
-	<body>
-		<?php include './header.php' ?>
-
-		<div id="body">
+<?php
+	session_start();
+	include './header.php';
+	printHeader('Product page',$_SESSION[name]);
+?>
 			<?php
 				$id = $_GET[id];
 				//Connexion & requete
@@ -33,10 +23,6 @@
 				<div id='picture'><img src='./Chargers/$i[1]/$i[0].png'></div>
 			</div>
 		</div>";
-			?>
-		</div>
 
-		<?php include './footer.php' ?>
-	</body>
-</html>
-
+	printFooter();
+?>

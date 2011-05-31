@@ -17,52 +17,41 @@
 		}
 		unset($_SESSION[cart]);
 	}
+
+	include './header.php';
+	printHeader('Your order',$_SESSION[name]);
+
+	if ($_SESSION[cart]) {
+		echo "	<p>Here is the summary of your order:</p>
+				<form action='./order.php' method='post'>";
+		foreach ($_SESSION[cart] as $type=>$id) {
+			foreach ($id as $id_product=>$quantity) {
+				$product = pg_fetch_row(pg_query($conn,"SELECT brand, model, price, quantity FROM $type WHERE id=$id_product"));
+				if($quantity > $product[3]) {
+					$_SESSION[cart][$type][$id_product] = $quantity = $product[3];
+				}
+				$price = $product[2]*$quantity;
+				if (!$price) {
+					unset($_SESSION[cart][$type][$id_product]);
+					continue;
+				}
+				$total += $price;
+				echo "	<input type='hidden' name='products[]' value='$type;$id_product;$quantity;$price'>
+						<div>$quantity x $product[0] $product[1] ($price €)</div>";
+			}
+		}
+		echo "	<input type='hidden' name='total' value='$total'>
+				<div>Total: $total €</div>
+				<p>Provide your credit card information:</p>
+				<div>Credit card number:</div>
+				<div><input type='number' name='card' required></div>
+				<div>Pictogram: </div>
+				<div><input type='password' name='pict' required></div>
+				<div><input type='submit' value='Proceed'></div>
+			</form>";
+	}
+	else
+		echo "<p>Transaction succesful.</p>";
+
+	printFooter();
 ?>
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Your order</title>
-		<meta name="description" content="Projet web">
-		<meta name="author" content="Alister & Mayhem">
-		<link rel="stylesheet" href="stylesheet.css">
-	</head>
-	<body>
-		<?php include './header.php' ?>
-
-		<div id="body">
-			<?php
-				if ($_SESSION[cart]) {
-				echo "	<p>Here is the summary of your order:</p>
-						<form action='./order.php' method='post'>";
-				foreach ($_SESSION[cart] as $type=>$id) {
-					foreach ($id as $id_product=>$quantity) {
-						$product = pg_fetch_row(pg_query($conn,"SELECT brand, model, price, quantity FROM $type WHERE id=$id_product"));
-						if($quantity > $product[3]) {
-							$_SESSION[cart][$type][$id_product] = $quantity = $product[3];
-						}
-						$price = $product[2]*$quantity;
-						$total += $price;
-						echo "<input type='hidden' name='products[]' value='$type;$id_product;$quantity;$price'>";
-						echo "<div>$quantity x $product[0] $product[1] ($price €)</div>";
-					}
-				}
-				echo "	<input type='hidden' name='total' value='$total'>
-						<div>Total: $total €</div>
-						<p>Provide your credit card information:</p>
-						<div>Credit card number:</div>
-						<div><input type='password' name='card' required></div>
-						<div>Pictogram: </div>
-						<div><input type='password' name='pict' required></div>
-						<div><input type='submit' value='Proceed'></div>
-					</form>";
-				}
-				else
-					echo "<p>Transaction succesful.</p>";
-			?>
-		</div>
-
-		<?php include './footer.php' ?>
-	</body>
-</html>

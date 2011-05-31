@@ -1,18 +1,8 @@
-<?php session_start(); ?>
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<?php echo "<title>$_GET[brand]</title>"; ?>
-		<meta name="description" content="Projet web">
-		<meta name="author" content="Alister & Mayhem">
-		<link rel="stylesheet" href="stylesheet.css">
-	</head>
-	<body>
-		<?php include './header.php' ?>
-
-		<div id="body">
+<?php
+	session_start();
+	include './header.php';
+	printHeader($_GET[brand],$_SESSION[name]);
+?>
 			<?php
 				function printLaptop($brand,$type) {
 					//Connexion & requete
@@ -38,9 +28,6 @@
 				printLaptop($brand,Performance);
 				printLaptop($brand,Multimedia);
 				printLaptop($brand,Gamers);
-			?>
-		</div>
 
-		<?php include './footer.php' ?>
-	</body>
-</html>
+	printFooter();
+?>

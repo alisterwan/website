@@ -1,18 +1,8 @@
-<?php session_start(); ?>
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>About us</title>
-		<meta name="description" content="Projet web">
-		<meta name="author" content="Alister & Mayhem">
-		<link rel="stylesheet" href="stylesheet.css">
-	</head>
-	<body>
-		<?php include './header.php' ?>
-
-		<div id="body">
+<?php
+	session_start();
+	include './header.php';
+	printHeader('About us',$_SESSION[name]);
+?>
 			<div class="col">
 				<h1>About us</h1>
 				<p>Laptop de Marne la Vallee © is a company founded in May 2011 based on a commercial website project for the second semester. This website is specialized on differents kind of laptops selling, computer's accessories: Universal Laptop Charger, USB devices, Laptop Cases and also Printers.
@@ -32,8 +22,7 @@
 				John was named one of the most student influencers. He was also named the "Best goal scorer" of the year by the DUT info 1 in 2011.
 				John is based in Tournan en Brie and divides his time between France and Mauritius Island.</p>
 			</div>
-		</div>
 
-		<?php include './footer.php' ?>
-	</body>
-</html>
+<?php
+	printFooter();
+?>
