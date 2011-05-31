@@ -10,9 +10,10 @@
 		$card     = crypt($_POST[card],$_POST[pict]);
 		$products = $_POST[products];
 		$customer = pg_fetch_row(pg_query($conn,"SELECT id_customer FROM customers WHERE username='$_SESSION[name]'"));
+		$time = time();
 		foreach ($products as $details) {
 			preg_match('/^([a-z]+);([0-9]+);([0-9]+);([0-9]+)$/',$details,$matches);
-			pg_query($conn,"INSERT INTO orders VALUES ('$matches[2]','$customer[0]','$matches[3]','$matches[4]','$card','$matches[1]')");
+			pg_query($conn,"INSERT INTO orders VALUES ('$matches[2]','$customer[0]','$matches[3]','$matches[4]','$card','$matches[1]','$time')");
 			pg_query($conn,"UPDATE $matches[1] SET quantity=quantity-$matches[3] WHERE id=$matches[2]");
 		}
 		unset($_SESSION[cart]);
