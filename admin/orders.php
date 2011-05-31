@@ -20,8 +20,8 @@
 		<?php
 			function form($conn,$id) {
 			$query = pg_query($conn,"SELECT * FROM orders WHERE time=$id");
-				$order = pg_fetch_row($query);
-				$quantity=$order[2]; 
+			while ($order = pg_fetch_row($query)) {
+				$quantity=$order[2];
 				$total=$order[3];
 				$table=$order[5]; 
 				
@@ -37,15 +37,16 @@
 			$model=$prod[0];
 				
 				}
-			
 					
 			echo "Here is the summary of this transaction. <br/> <br/>";
+			
+			
 			echo "model:$model <br/>";
 			echo "customer:$name <br/>";
 			echo "customer id:$order[1] <br/>";
 			echo "quantity:$quantity <br/>";
 			echo "Total:$total €";
-			
+			}
 			}
 			
 			//Connexion à la base de donnée
