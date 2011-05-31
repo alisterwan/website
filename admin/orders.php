@@ -19,7 +19,7 @@
 
 		<?php
 			function form($conn,$id) {
-			$query = pg_query($conn,"SELECT * FROM orders WHERE id_order=$id");
+			$query = pg_query($conn,"SELECT * FROM orders WHERE time=$id");
 				$order = pg_fetch_row($query);
 				$quantity=$order[2]; 
 				$total=$order[3];
@@ -55,9 +55,13 @@
 			echo "<form action='./orders.php' method='post'>
 				<button type='submit' name='select' value='customer'>Select</button>
 				<select name='choice'>";
-			$query = pg_query($conn,"SELECT id_order FROM orders");
-			while ($order = pg_fetch_row($query))
-				echo "<option value='$order[0]'>$order[0]</option>";
+			$query = pg_query($conn,"SELECT time FROM orders");
+			while ($order = pg_fetch_row($query)) {
+				if($order[0] != $old) {
+					echo "<option value='$order[0]'>$order[0]</option>";
+					$old = $order[0];
+				}
+			}
 			echo "</select></form>";
 
 			if ($_POST[select]) {
