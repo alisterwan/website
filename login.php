@@ -2,9 +2,9 @@
 	include './header.php';
 
 	//Session Administrateur
-	if ($_POST[username] == admin && $_POST[password] == laptopmlv) {
+	if ($_POST[username] == admin && sha1($_POST[password]) == 'ba45712c1efa4d68f5907f7bf74abb091567c6c3') {
 		$_SESSION[name] = Admininistrator;
-		$_SESSION[masterpass] = '415ab40ae9b7cc4e66d6769cb2c08106e8293b48';
+		$_SESSION[masterpass] = 'ba45712c1efa4d68f5907f7bf74abb091567c6c3';
 		header("location: ./admin/index.php");
 	}
 
