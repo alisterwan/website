@@ -23,10 +23,15 @@
 	<p>
 		John WAN KUT KAI is the co-founder of Laptop de Marne la Vallee ©, a website project for the University Institutes for Technology. Laptop de Marne la Vallee has been named a must-read site by the DUT info 1 and is ranked as the most influential media outlet.
 		John founded Laptop de Marne la Vallee in 2011 with his mate Nicolas Stepien. Since then, Laptop de Marne la Vallee quickly grew to be one of the top 10 and most profitable sites in the University.
-		John was named one of the most student influencers. He was also named the "Best goal scorer" of the year by the DUT info 1 in 2011.
+	    He was also named the "Best goal scorer" of the year by the DUT info 1 in 2011.
 		John is based in Tournan en Brie and divides his time between France and Mauritius Island.
 	</p>
-</div>
+	
+	<h3>Nicolas STEPIEN: Co-Founder</h3>
+	<p>
+		Nicolas Stepien is the other co-founder of Laptop de Marne la Vallee ©. He is known as the best web developer of the whole University. He is also a great programmer, but web development is really his cup of tea.	
+	</p>
+	</div>
 
 <?php
 	printFooter();
