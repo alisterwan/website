@@ -5,7 +5,7 @@
 	function printForm($customer) {
 	echo "
 	<div class='col'>
-	<p>Change your account information:</p>
+		<p>Change your account information:</p>
 		<form action='./account.php' method='post'>
 			<div><input type='text' name='username' value='$customer[5]' required> Username</div>
 			<div><input type='text' name='firstname' value='$customer[0]' required> Firstame</div>
@@ -18,7 +18,8 @@
 			<div><input type='password' name='newpasscheck'> Confirm new password (not  required)</div>
 			<div><input type='password' name='oldpass' required> Current password</div>
 			<div><input type='submit' value='Proceed'></div>
-		</form></div>";
+		</form>
+	</div>";
 	}
 
 	//Connexion
@@ -83,46 +84,32 @@
 					$_SESSION[name] = $user;
 			}
 		}
-
-
 	}
-
 	else
 		printForm($customer);
-		
-	echo "
-	<div class='col'>
-	<h3>Select to view your previous orders.</h3>
-					<form action='./account.php' method='post'>
-						<button type='submit' name='select' value='true'>Select</button>
-						<select name='choice'>";
-			$query = pg_query($conn,"SELECT time, id_customers FROM orders where id_customers=$customer[8]");
-			while ($o = pg_fetch_row($query)) if($o[0] != $old) {
-				$c = pg_fetch_row(pg_query($conn,"SELECT firstname, surname, username FROM customers WHERE id_customer=$o[1]"));
-				echo "<option value='$o[0]'>".date('d M Y H:i:s',$o[0])." $c[0] $c[1] ($c[2])</option>";
-				$old = $o[0];
-			}
-			echo "</select></form>";
 
-			if ($_POST[select]) {
-				echo "<p>Here is the summary of this transaction.</p>";
-				$time = $_POST[choice];
-				$query = pg_query($conn,"SELECT * FROM orders WHERE time=$time");
-				$o = pg_fetch_row($query);
-				$c = pg_fetch_row(pg_query($conn,"SELECT * FROM customers WHERE id_customer='$o[1]'"));
-				echo "<p>
-					".date('d M Y H:i:s',$time)."<br>
-					<strong>$c[0] $c[1]</strong>($c[5])
-						
-				</p>
-				</div>";
-			do {
-					$p = pg_fetch_row(pg_query($conn,"SELECT brand, model FROM $o[5] WHERE id=$o[0]"));
-					echo "<p>Model: $p[0] $p[1]<br>Quantity: $o[2]<br>Total: $o[3] €<br/></p>";
-				} while ($o = pg_fetch_row($query));
+
+	$c = pg_fetch_row(pg_query($conn,"SELECT id_customer FROM customers WHERE username='$_SESSION[name]'"));
+	$time = pg_query($conn,"SELECT time FROM orders WHERE id_customers=$c[0]");
+	if (pg_num_rows($time)) {
+		echo "<div class='col'><p>Here is the summary of your orders.</p>";
+		while ($t = pg_fetch_row($time)) {
+			if ($t[0] == $old)
+				continue;
+			echo "<p><strong>Date</strong>: ".date('d M Y H:i:s',$t[0])."<br>";
+			$order = pg_query($conn,"SELECT id_product, type, quantity, total FROM orders WHERE time=$t[0]");
+			while ($o = pg_fetch_row($order)) {
+				$p = pg_fetch_row(pg_query($conn,"SELECT brand, model FROM $o[1] WHERE id=$o[0]"));
+				echo "
+					<strong>Model</strong>: $p[0] $p[1]<br>
+					<strong>Quantity</strong>: $o[2]<br>
+					<strong>Total</strong>: $o[3] €<br>";
 			}
-		
-		
+			echo "</p>";
+			$old = $t[0];
+		}
+		echo "</div>";
+	}
 
 	printFooter();
 ?>
