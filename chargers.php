@@ -25,7 +25,7 @@
 	//Connexion
 	$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 	printCharger('iGoGreen',$conn);
-	printCharger('Targus',$conn);
 	printCharger('Kensington',$conn);
+	printCharger('Targus',$conn);
 	printFooter();
 ?>

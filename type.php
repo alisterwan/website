@@ -22,12 +22,12 @@
 	//Connexion
 	$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 	printLaptop($type,'Acer',$conn);
-	printLaptop($type,'Asus',$conn);
 	printLaptop($type,'Apple',$conn);
+	printLaptop($type,'Asus',$conn);
 	printLaptop($type,'Dell',$conn);
 	printLaptop($type,'HP',$conn);
-	printLaptop($type,'Toshiba',$conn);
 	printLaptop($type,'Samsung',$conn);
+	printLaptop($type,'Toshiba',$conn);
 
 	printFooter();
 ?>

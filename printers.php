@@ -24,9 +24,9 @@
 
 	//Connexion
 	$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-	printPrinter('HP',$conn);
-	printPrinter('Epson',$conn);
-	printPrinter('Samsung',$conn);
 	printPrinter('Canon',$conn);
+	printPrinter('Epson',$conn);
+	printPrinter('HP',$conn);
+	printPrinter('Samsung',$conn);
 	printFooter();
 ?>
