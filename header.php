@@ -5,6 +5,7 @@
 	if (!$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8"))
 		echo "<p class='error'>Connexion error.</p>";
 
+	//affiche l'entête
 	function printHeader($title) {
 
 		echo "
@@ -23,11 +24,13 @@
 			<a href='./index.php'><img src='laptop.png' id='logo'></a>
 			<img src='MLV.png' id='mlv'>";
 
+		//affiche le nom d'utilisatuer s'il est connecté en lien vers sa page perso.
 		if ($_SESSION[name])
 			echo "<span id='log'>Welcome <a href='./account.php'>$_SESSION[name]</a>. <a href='./logout.php'>Log out</a>.</span>";
 		else
 			echo "<span id='log'>Welcome. <a href='./login.php'>Log in</a> or <a href='./registration.php'>register</a>.</span>";
-
+		
+		//affichage du panier & la barre de navigation.
 		echo "
 			<a href='./cart.php' id='cart'>Cart <img src='cart.png'></a>
 		</div>
@@ -63,6 +66,7 @@
 		<div id='body'>";
 	}
 
+	// affichage du pied de la page.
 	function printFooter() {
 		echo "
 		</div>
