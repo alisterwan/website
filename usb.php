@@ -2,9 +2,11 @@
 	include './header.php';
 	printHeader('Product page');
 
-	//requête
+	//requête choisissant les donnees selon la methode get
 	$i = pg_fetch_row(pg_query($conn,"SELECT * FROM usb WHERE id='$_GET[id]'"));
 
+
+	//affichage des donnees recupérees.
 	echo "
 		<div id='product'>
 			<div class='title'>$i[1] $i[0]</div>
