@@ -1,8 +1,10 @@
 <?php
 	include './header.php';
+	//si l'utilisateur n'est pas connecté ou la variable de session du panier n'existe pas
 	if (!$_SESSION[name] or !$_SESSION[cart])
 		header("location: ./cart.php");
 
+	//sinon on recupere le numero de carte bancaire et le pictogramme du client et on le crypte
 	if ($_POST) {
 		$card     = crypt($_POST[card],$_POST[pict]);
 		$products = $_POST[products];
@@ -14,6 +16,8 @@
 				echo "Error transaction query";
 				return;
 			}
+			
+			//decrementer la quantité correpondante
 			pg_query($conn,"UPDATE $matches[1] SET quantity=quantity-$matches[3] WHERE id=$matches[2]");
 		}
 		unset($_SESSION[cart]);
@@ -24,6 +28,7 @@
 	if ($_SESSION[cart]) {
 		echo "	<p>Here is the summary of your order:</p>
 				<form action='./order.php' method='post'>";
+		//recuperation des achats dans la bdd
 		foreach ($_SESSION[cart] as $type=>$id) {
 			foreach ($id as $id_product=>$quantity) {
 				$product = pg_fetch_row(pg_query($conn,"SELECT brand, model, price, quantity FROM $type WHERE id=$id_product"));
@@ -36,10 +41,14 @@
 					continue;
 				}
 				$total += $price;
+				
+				//calcul le prix total
 				echo "	<input type='hidden' name='products[]' value='$type;$id_product;$quantity;$price'>
 						<div>$quantity x $product[0] $product[1] ($price €)</div>";
 			}
 		}
+		
+		// Affiche le prox total et affiche un formulaire demandant de rentrer les infos
 		echo "	<input type='hidden' name='total' value='$total'>
 				<div>Total: $total €</div>
 				<p>Provide your credit card information:</p>
