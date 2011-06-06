@@ -22,8 +22,7 @@
 	</div>";
 	}
 
-	//Connexion
-	$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
+	//requête
 	$customer = pg_fetch_row(pg_query($conn,"SELECT * FROM customers WHERE username='$_SESSION[name]'"));
 
 	if ($_POST) {

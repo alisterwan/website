@@ -2,8 +2,7 @@
 	include './header.php';
 	printHeader('Product page');
 
-	//Connexion & requete
-	$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
+	//requête
 	$i = pg_fetch_row(pg_query($conn,"SELECT * FROM laptop WHERE id='$_GET[id]'"));
 
 	echo "

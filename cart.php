@@ -2,10 +2,6 @@
 	include './header.php';
 	printHeader('Your cart');
 
-	//Connexion a la bdd.
-	$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-
-
 	if ($type = $_GET[type] or $type = $_POST[type]) {
 		if ($id = (int)$_GET[add] and is_int($id) and !$_SESSION[cart][$type][$id])
 			$_SESSION[cart][$type][$id] = 1;
