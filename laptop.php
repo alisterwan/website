@@ -2,7 +2,7 @@
 	include './header.php';
 	printHeader('Product page');
 
-	//requête
+	////lien qui recupere les informations de la table laptop grâce à la méthode GET et la redirige vers une autre page pour y charger les données.
 	$i = pg_fetch_row(pg_query($conn,"SELECT * FROM laptop WHERE id='$_GET[id]'"));
 
 	echo "
