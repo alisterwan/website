@@ -71,12 +71,6 @@
 			printForm($firstname,$surname,$address,$city,$country,$user,'');
 		}
 
-		//Connexion à la base de donnée
-		else if (!$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8")) {
-			echo "<p class='error'>Connexion error.</p>";
-			printForm($firstname,$surname,$address,$city,$country,$user,$email);
-		}
-
 		//Verification si le username du client est deja dans la base de donnée
 		else if (pg_num_rows(pg_query($conn,"SELECT username from customers where username='$user'"))) {
 			echo "<p class='error'>This username is already being used. Please change it.</p>";

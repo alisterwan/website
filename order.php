@@ -3,9 +3,6 @@
 	if (!$_SESSION[name] or !$_SESSION[cart])
 		header("location: ./cart.php");
 
-	//Connexion a la bdd.
-	$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-
 	if ($_POST) {
 		$card     = crypt($_POST[card],$_POST[pict]);
 		$products = $_POST[products];

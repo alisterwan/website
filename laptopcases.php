@@ -22,8 +22,6 @@
 		}
 	}
 
-	//Connexion
-	$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 	printCase('Belkin',$conn);
 	printCase('HP',$conn);
 	printCase('Incase',$conn);

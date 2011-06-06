@@ -22,10 +22,8 @@
 		}
 	}
 
-	//Connexion
-	$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-	printUsb('Sandisk',$conn);
 	printUsb('Corsair',$conn);
 	printUsb('Kingston',$conn);
+	printUsb('Sandisk',$conn);
 	printFooter();
 ?>

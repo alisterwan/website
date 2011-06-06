@@ -33,9 +33,6 @@
 		$user = $_POST[username];
 		$pass = sha1($_POST[password]);
 
-		//Connexion à la base de donnée
-		$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
-
 		//Verification du client dans la base de donnée
 		if (pg_num_rows(pg_query($conn,"SELECT * FROM customers WHERE username='$user' and password='$pass'"))) {
 			echo "<p>You are successfully logged in. Click <a href='./index.php'>here</a> to continue.</p>";

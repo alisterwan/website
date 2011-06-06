@@ -19,8 +19,6 @@
 
 	echo "<div class='logo'><img src='./logobrands/$brand.png'></div>";
 
-	//Connexion
-	$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 	printLaptop($brand,'Netbook',$conn);
 	printLaptop($brand,'Notebook',$conn);
 	printLaptop($brand,'Performance',$conn);

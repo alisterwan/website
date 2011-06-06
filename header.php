@@ -1,6 +1,10 @@
 <?php
 	session_start();
 
+	//Connexion à la base de donnée
+	if (!$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8"))
+		echo "<p class='error'>Connexion error.</p>";
+
 	function printHeader($title) {
 
 		echo "

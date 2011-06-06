@@ -18,7 +18,7 @@
 		<?php include './navigation.php' ?>
 
 		<?php
-			function productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic) {
+			function productForm($model,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic) {
 				echo "
 				<p>Here you can upload a new product, please fill in the blanks to store some information in our database.</p>
 				<form action='newlaptop.php' enctype='multipart/form-data' method='post'>
@@ -29,11 +29,27 @@
 						</tr>
 						<tr>
 							<td>Brand</td>
-							<td><input type='text' name='brand' value='$brand' required></td>
+							<td><select name='brand' required>
+								<option></option>
+								<option value='Acer'>Acer</option>
+								<option value='Apple'>Apple</option>
+								<option value='Asus'>Asus</option>
+								<option value='Dell'>Dell</option>
+								<option value='HP'>Hewlett Packard</option>
+								<option value='Samsung'>Samsung</option>
+								<option value='Toshiba'>Toshiba</option>
+							</select></td>
 						</tr>
 						<tr>
 							<td>Type</td>
-							<td><input type='text' name='type' value='$type' required></td>
+							<td><select name='type' required>
+								<option></option>
+								<option value='Netbook'>Netbook</option>
+								<option value='Notebook'>Notebook</option>
+								<option value='Performance'>Performance</option>
+								<option value='Multimedia'>Multimedia</option>
+								<option value='Gamers'>Gamers</option>
+							</select></td>
 						</tr>
 						<tr>
 							<td>Price</td>
@@ -102,20 +118,20 @@
 				$conn = pg_connect("host=sqletud.univ-mlv.fr port=5432 dbname=jwankutk_db user=jwankutk password=Tqeouoe8");
 				if (!$conn) {
 					echo "<p class='error'>Connexion error.</p>";
-					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
+					return productForm($model,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
 				//Verification si le modele du produit est deja dans la base de donnée
 				$result = pg_query($conn,"SELECT model from laptop where model='$model'");
 				if (pg_num_rows($result)) {
 					echo "<p class='error'>This model is already in our book. Please check the stock.</p>";
-					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
+					return productForm($model,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
 				//Envoie d'image
 				if (!move_uploaded_file($_FILES[picture][tmp_name],"../$brand/$type/$model.png")) {
 					echo "<p class='error'>File upload error.</p>";
-					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
+					return productForm($model,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
 				// Ajout d'un nouveau produit dans la base de donnée
@@ -123,7 +139,7 @@
 
 				if (!$req) {
 					echo "<p class='error'>Query error.</p>";
-					return productForm($model,$brand,$type,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
+					return productForm($model,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 				}
 
 				else
@@ -132,7 +148,7 @@
 			}
 
 			else
-				productForm('','','','','','','','','','','','');
+				productForm('','','','','','','','','','');
 		?>
 
 	</body>
