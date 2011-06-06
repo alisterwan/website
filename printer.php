@@ -2,9 +2,10 @@
 	include './header.php';
 	printHeader('Product page');
 
-	//requête
+	//requête selon le id choisit grace à la methode get.
 	$i = pg_fetch_row(pg_query($conn,"SELECT * FROM printer WHERE id='$_GET[id]'"));
 
+	//formulaire affichant les donnees associé a l'id choisit precedemment.
 	echo "
 <div id='product'>
 	<div class='title'>$i[1] $i[0]</div>
