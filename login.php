@@ -9,7 +9,7 @@
 	}
 
 	printHeader('Login');
-
+	//formulaire qui affiche le login et le mot de passe
 	function printForm($name) {
 		echo "
 <form action='login.php' method='post' name='login'>
