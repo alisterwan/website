@@ -17,6 +17,7 @@
 			</form>";
 	}
 
+	// On affiche tout les produits dans des listes par types.
 	echo "<p>Select a product in one of the drop-down list.</p>";
 
 	echo "<form action='./manageproducts.php' method='post'>
@@ -59,10 +60,12 @@
 		echo "<option value='$product[0]'>$product[1] $product[2]</option>";
 	echo "</select></form>";
 
+	// On affiche le prix et la quantité du produit
 	if ($type = $_POST[select]) {
 		$id = $_POST[choice];
 		form($conn,$type,$id);
 	}
+	// On met à jour
 	else if ($type = $_POST[update]) {
 		$id       = $_POST[productid];
 		$price    = $_POST[price];
@@ -75,6 +78,7 @@
 			form($conn,$type,$id);
 		}
 	}
+	// On supprime le produit
 	else if ($type = $_POST[delete]) {
 		$id = $_POST[productid];
 		pg_query($conn,"DELETE FROM $type WHERE id=$id;");

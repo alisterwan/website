@@ -1,8 +1,8 @@
 <?php
 	include './header.php';
 	printHeader('Registration');
-	
-	//formulaire affichant les champs a remplir pour l'inscription.
+
+	// Formulaire affichant les champs à remplir pour l'inscription.
 	function printForm($firstname,$surname,$address,$city,$country,$user,$email) {
 		echo "
 	<p>In order to register, please provide necessary information. You username will be used in order to log in. Your password must be at least 8 characters long.</p>
@@ -51,7 +51,6 @@
 
 	echo "<div class='form'>";
 
-	//si les champs ont été remplis alors on les stocke dans une varible.
 	if ($_POST) {
 
 		$firstname = $_POST[firstname];
@@ -63,25 +62,25 @@
 		$pass      = $_POST[password];
 		$email     = $_POST[email];
 
-		//verification si le mot de passe correspond a 8 caracteres minimum.
+		// On vérifie si le mdp est est de 8 charactères minimum et l'utilisateur l'a bien saisie.
 		if (strlen($pass)<8 || $pass != $_POST[passcheck]) {
 			echo "<p class='error'>Password invalid or too short.</p>";
 			printForm($firstname,$surname,$address,$city,$country,$user,$email);
 		}
 
-		//verification si le email possede la bonne syntaxe.
+		// On vérifie si la valeur du mail saisie correspond à une adresse valide.
 		else if (!preg_match('/^[^@]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$/',$email)) {
 			echo "<p class='error'>E-mail invalid.</p>";
 			printForm($firstname,$surname,$address,$city,$country,$user,'');
 		}
 
-		//Verification si le username du client est deja dans la base de donnée
+		// Vérification si le username du client est déjà dans la base de donnée
 		else if (pg_num_rows(pg_query($conn,"SELECT username from customers where username='$user'"))) {
 			echo "<p class='error'>This username is already being used. Please change it.</p>";
 			printForm($firstname,$surname,$address,$city,$country,'',$email);
 		}
 
-		//Verification si le mail n'est pas deja dans la base de donnée
+		// Vérification si le mail n'est pas déjà dans la base de donnée
 		else if (pg_num_rows(pg_query($conn,"SELECT mail from customers where mail='$email'"))) {
 			echo "<p class='error'>This e-mail is already registered. Please change it.</p>";
 			printForm($firstname,$surname,$address,$city,$country,$user,'');

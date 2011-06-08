@@ -2,7 +2,7 @@
 	include './header.php';
 	printHeader('Product page');
 
-	//requête qui charge en page les données de la bdd correspondant à l'identifiant 	    du produit recupéré grace à la méthode get.
+	// On affiche les données de la bdd correspondant à l'identifiant du produit recupéré grâce à la méthode get.
 	$i = pg_fetch_row(pg_query($conn,"SELECT * FROM charger WHERE id='$_GET[id]'"));
 
 	echo "

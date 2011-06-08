@@ -2,7 +2,7 @@
 	include './header.php';
 	printHeader('Product page');
 
-	////lien qui recupere les informations de la table laptop grâce à la méthode GET et la redirige vers une autre page pour y charger les données.
+	// On affiche les données de la bdd correspondant à l'identifiant du produit recupéré grâce à la méthode get.
 	$i = pg_fetch_row(pg_query($conn,"SELECT * FROM laptop WHERE id='$_GET[id]'"));
 
 	echo "

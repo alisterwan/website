@@ -6,6 +6,7 @@
 				<button type='submit' name='select' value='true'>Select</button>
 				<select name='choice'>";
 	$query = pg_query($conn,"SELECT time, id_customers FROM orders");
+	// On affiche la liste des commandes passées.
 	while ($o = pg_fetch_row($query)) if($o[0] != $old) {
 		$c = pg_fetch_row(pg_query($conn,"SELECT firstname, surname, username FROM customers WHERE id_customer=$o[1]"));
 		echo "<option value='$o[0]'>".date('d M Y H:i:s',$o[0])." $c[0] $c[1] ($c[2])</option>";
@@ -13,6 +14,7 @@
 	}
 	echo "</select></form>";
 
+	// On affiche les informations sur la commande sélectionnée
 	if ($_POST[select]) {
 		echo "<p>Here is the summary of this transaction.</p>";
 		$time = $_POST[choice];

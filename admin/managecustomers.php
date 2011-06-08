@@ -20,6 +20,7 @@
 			</form>";
 	}
 
+	// On affiche une liste des clients
 	echo "<p>Select a customer in the drop-down list.</p>";
 
 	echo "<form action='./managecustomers.php' method='post'>
@@ -30,10 +31,12 @@
 		echo "<option value='$customer[0]'>$customer[1] $customer[2] ($customer[3])</option>";
 	echo "</select></form>";
 
+	// On affiche les données du client à la selection
 	if ($_POST[select]) {
 		$id = $_POST[choice];
 		form($conn,$id);
 	}
+	// On met à jour ses données
 	else if ($id = $_POST[update]) {
 		$query = pg_query($conn,
 			"UPDATE
@@ -56,6 +59,7 @@
 			form($conn,$id);
 		}
 	}
+	// On supprime le client de la base de donnée
 	else if ($id = $_POST[delete]) {
 		pg_query($conn,"DELETE FROM customers WHERE id_customer=$id;");
 	}

@@ -8,8 +8,7 @@
 </div>
 
 <?php
-	
-	//affiche les imprimantes selon les modeles en mettant en lien en methode get
+	// Fonction qui affiche les produits par marques.
 	function printPrinter($brand,$conn) {
 		$result = pg_query($conn,"SELECT id, model FROM printer WHERE brand='$brand'");
 

@@ -2,7 +2,7 @@
 	include './header.php';
 	printHeader('Your account overview');
 
-	//formulaire qui affiche les données du client connecté.
+	// Formulaire qui affiche les données du client connecté.
 	function printForm($customer) {
 	echo "
 	<div class='col'>
@@ -23,7 +23,7 @@
 	</div>";
 	}
 
-	//requête qu choisit toutes les coordonnées du client
+	// Requête qui récupère toutes les coordonnées du client
 	$customer = pg_fetch_row(pg_query($conn,"SELECT * FROM customers WHERE username='$_SESSION[name]'"));
 
 	if ($_POST) {
@@ -47,13 +47,13 @@
 			printForm($customer);
 		}
 
-		//Verification si le username du client est deja dans la base de donnée
+		// Vérification si le username du client est deja dans la base de donnée
 		else if ($user != $customer[5] and pg_num_rows(pg_query($conn,"SELECT username from customers where username='$user'"))) {
 			echo "<p class='error'>This username is already being used. Chose another one.</p>";
 			printForm($customer);
 		}
 
-		//Verification si le mail n'est pas deja dans la base de donnée
+		// Vérification si le mail n'est pas deja dans la base de donnée
 		else if ($mail != $customer[7] and pg_num_rows(pg_query($conn,"SELECT mail from customers where mail='$email'"))) {
 			echo "<p class='error'>This e-mail is already registered. Please change it.</p>";
 			printForm($customer);
@@ -90,18 +90,18 @@
 
 
 	$c = pg_fetch_row(pg_query($conn,"SELECT id_customer FROM customers WHERE username='$_SESSION[name]'"));
-	
-	//requête
+
+	// Requête
 	$time = pg_query($conn,"SELECT time FROM orders WHERE id_customers=$c[0]");
 	if (pg_num_rows($time)) {
 		echo "<div class='col'><p>Here is the summary of your orders.</p>";
 		while ($t = pg_fetch_row($time)) {
 			if ($t[0] == $old)
 				continue;
-			//transforme time en la date actuelle avec les secondes heures et minute
+			// Transforme time en la date actuelle avec les secondes heures et minute
 			echo "<p><strong>Date</strong>: ".date('d M Y H:i:s',$t[0])."<br>";
-			
-			//requête de la commande du client correspondant a la date d'achat
+
+			// Requête de la commande du client correspondant à la date d'achat
 			$order = pg_query($conn,"SELECT id_product, type, quantity, total FROM orders WHERE time=$t[0]");
 			while ($o = pg_fetch_row($order)) {
 				$p = pg_fetch_row(pg_query($conn,"SELECT brand, model FROM $o[1] WHERE id=$o[0]"));

@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	// On redirige l'utilisateur s'il n'est pas connecté en tant qu'administrateur
 	if($_SESSION[masterpass] != 'ba45712c1efa4d68f5907f7bf74abb091567c6c3')
 		header("location: ../login.php");
 

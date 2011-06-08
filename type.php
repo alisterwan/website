@@ -1,17 +1,15 @@
 <?php
 	include './header.php';
-	printHeader($_GET[type]);
+	$type = $_GET[type];
+	printHeader($type);
 
-	//Affichage par type de laptop.
+	// Fonction qui affiche les produits par types.
 	function printLaptop($type,$brand,$conn) {
-		
-		//on recupere le libellé,modele du laptop correspondant.
 		$result = pg_query($conn,"SELECT id, model FROM laptop WHERE type='$type' and brand='$brand'");
 
 		if (pg_num_rows($result)) {
 			echo "<div class='type'><div class='title'>$brand</div>";
 			while ($i = pg_fetch_row($result))
-				//affiche le lien & image.
 				echo "<a class='unit' href='./laptop.php?id=$i[0]'>
 						<img src='./$brand/$type/$i[1].png'>
 						<div>$i[1]</div>
@@ -20,7 +18,7 @@
 		}
 	}
 
-	$type = $_GET[type];
+	// Affichage de l'image
 	echo "<div class='logo'><img src='./typelogos/$type.png'></div>";
 
 	printLaptop($type,'Acer',$conn);

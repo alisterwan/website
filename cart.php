@@ -2,6 +2,7 @@
 	include './header.php';
 	printHeader('Your cart');
 
+	// Actions: ajouter, in/décrémenter, supprimer un produit
 	if ($type = $_GET[type] or $type = $_POST[type]) {
 		if ($id = (int)$_GET[add] and is_int($id) and !$_SESSION[cart][$type][$id])
 			$_SESSION[cart][$type][$id] = 1;
@@ -26,6 +27,7 @@
 
 	if ($_SESSION[cart])
 		foreach ($_SESSION[cart] as $type=>$id) {
+			// On supprime une catégorie si elle est devenue vide.
 			if (!$_SESSION[cart][$type]) {
 				unset($_SESSION[cart][$type]);
 				continue;
@@ -36,10 +38,12 @@
 			foreach ($id as $id_product=>$quantity) {
 				$product = pg_fetch_row(pg_query($conn,"SELECT brand, model, price FROM $type WHERE id=$id_product"));
 				$price = $product[2]*$quantity;
+				// On supprime le produit si son prix est nulle, par exemple si le produit n'existe plus
 				if (!$price) {
 					unset($_SESSION[cart][$type][$id_product]);
 					continue;
 				}
+				// On incrément le total.
 				$total += $price;
 				$html   = "$html
 			<tr>
@@ -55,6 +59,7 @@
 			}
 		}
 
+	// On affiche le tableau que si le prix total existe.
 	if ($total) {
 		echo "$forms$html<tr><td colspan='3'>Total:</td><td>$total €</td><td>";
 		if ($_SESSION[name])

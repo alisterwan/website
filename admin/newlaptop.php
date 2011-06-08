@@ -95,14 +95,14 @@
 		$batterylife = $_POST[batterylife];
 		$graphic     = $_POST[graphic];
 
-		//Verification si le modele du produit est deja dans la base de donnée
+		// Vérification si le modèle existe déjà dans la base de donnée
 		$result = pg_query($conn,"SELECT model from laptop where model='$model'");
 		if (pg_num_rows($result)) {
 			echo "<p class='error'>This model is already in our book. Please check the stock.</p>";
 			return productForm($model,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);
 		}
 
-		//Envoie d'image
+		// Envoie d'image
 		if (!move_uploaded_file($_FILES[picture][tmp_name],"../$brand/$type/$model.png")) {
 			echo "<p class='error'>File upload error.</p>";
 			return productForm($model,$price,$size,$quantity,$system,$processor,$ram,$hdd,$batterylife,$graphic);

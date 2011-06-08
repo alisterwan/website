@@ -8,11 +8,10 @@
 </div>
 
 <?php
-	//fonction qui charge en donnée les chargeurs.
+	// Fonction qui affiche les produits par marques.
 	function printCharger($brand,$conn) {
-		//lien qui recupere l'id chargeur et le modele grace à la méthode GET et la 		                  redirige vers une autre page pour y charger les données.
 		$result = pg_query($conn,"SELECT id, model FROM charger WHERE brand='$brand'");
-		
+
 		//affichage par marque
 		if (pg_num_rows($result)) {
 			echo "<div class='type'><div class='title'>$brand</div>";
