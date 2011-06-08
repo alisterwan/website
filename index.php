@@ -41,5 +41,25 @@ Here is where you will find all your answers.
 	if (!$_SESSION[name])
 		echo "New customer? Register <a href='./registration.php'>here</a>.";
 	echo "</p>";
-	printFooter();
 ?>
+<div>
+<li>Safe Payment:</li>
+<p>Quick and safe payment methods:
+at Laptop de Marne la Vallee ©, <br/>
+we are pleased to offer you the best secured payment for your convenience.</p>
+</div>
+
+<div>
+<li>Free shipping:</li>
+<p>You don't have to move anymore!<br/>
+You don't have to pay anything for the shipping!<br/>
+All shipping charges are taken to Laptop de Marne la Vallee ©.</p>
+</div>
+
+<div>
+<li>Customer support:</li>
+<h1>01985736401000</h1>
+</div>
+
+
+<?php printFooter();?>
