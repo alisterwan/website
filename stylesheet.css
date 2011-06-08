@@ -71,6 +71,7 @@ a:hover {
   box-shadow: 0 0 30px rgba(0, 0, 0, .7);
   padding: 0 50px;
   position: relative;
+  z-index: 1;
 }
 
 #nav a {
@@ -127,6 +128,30 @@ a:hover {
   box-shadow: 0 0 20px #000;
 }
 
+#js {
+  float: right;
+  position: relative;
+}
+#js ~ p {
+  margin-right: 350px;
+}
+#js img {
+  max-width: 300px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transition: margin-right .6s ease-in-out, opacity .6s ease-in-out;
+  -moz-transition: opacity .6s ease-in-out;
+  -o-transition: opacity .6s ease-in-out;
+  transition: opacity .6s ease-in-out;
+}
+.visible {
+  opacity: 1;
+  margin-right: 50px;
+}
+.hidden {
+  opacity: 0;
+}
 
 /** CATEGORY BROWSING **/
 .logo {
@@ -163,7 +188,7 @@ a:hover {
 }
 
 
-/** LAPTOP PAGE **/
+/** PRODUCT PAGE **/
 #product {
   -webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
   -moz-box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
@@ -197,13 +222,6 @@ a:hover {
   padding: 10px;
 }
 
-#javascript{
-padding: 20px;	
-float: right;
-margin-bottom: -1px;
-max-width: 300px;
-border-left: 1px solid #CCC;
-}
 
 /** CART **/
 .cart {
