@@ -141,9 +141,9 @@ a:hover {
   right: 0;
   top: 0;
   -webkit-transition: margin-right .6s ease-in-out, opacity .6s ease-in-out;
-  -moz-transition: opacity .6s ease-in-out;
-  -o-transition: opacity .6s ease-in-out;
-  transition: opacity .6s ease-in-out;
+  -moz-transition: margin-right .6s ease-in-out, opacity .6s ease-in-out;
+  -o-transition: margin-right .6s ease-in-out, opacity .6s ease-in-out;
+  transition: margin-right .6s ease-in-out, opacity .6s ease-in-out;
 }
 .visible {
   opacity: 1;
