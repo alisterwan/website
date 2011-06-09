@@ -26,7 +26,7 @@
 	imgs[3]="./javascript/pic4.jpg";
 	imgs[4]="./javascript/pic5.jpg";
 	var cpt=0;
-	window.setInterval(rotate, 2500);
+	window.setInterval(rotate, 2900);
 
 }).call(this);
 </script>
