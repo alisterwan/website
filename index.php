@@ -43,21 +43,21 @@ Here is where you will find all your answers.
 	echo "</p>";
 ?>
 <div>
-<li>Safe Payment:</li>
+<li>Safe Payment:<img src="./index/secure.png"></li>
 <p>Quick and safe payment methods:
 at Laptop de Marne la Vallee ©, <br/>
 we are pleased to offer you the best secured payment for your convenience.</p>
 </div>
 
 <div>
-<li>Free shipping:</li>
+<li>Free shipping:<img src="./index/shipping.png"></li>
 <p>You don't have to move anymore!<br/>
 You don't have to pay anything for the shipping!<br/>
 All shipping charges are taken to Laptop de Marne la Vallee ©.</p>
 </div>
 
 <div>
-<li>Customer support:</li>
+<li>Customer support:<img src="./index/support.png"></li>
 <h1>01985736401000</h1>
 </div>
 
