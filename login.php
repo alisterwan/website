@@ -34,7 +34,7 @@
 		$pass = sha1($_POST[password]);
 
 		// Vérification du client dans la base de donnée
-		if (pg_num_rows(pg_query($conn,"SELECT * FROM customers WHERE username='$user' and password='$pass'"))) {
+		if (pg_num_rows(pg_query($conn,"SELECT firstname,surname,address,city,country,username,password,mail,id_customer FROM customers WHERE username='$user' and password='$pass'"))) {
 			echo "<p>You are successfully logged in. Click <a href='./index.php'>here</a> to continue.</p>";
 			$_SESSION[name] = $user;
 		}
