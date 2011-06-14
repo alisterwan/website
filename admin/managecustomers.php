@@ -2,7 +2,7 @@
 	include './header.php';
 
 	function form($conn,$id) {
-		$query = pg_query($conn,"SELECT * FROM customers WHERE id_customer=$id");
+		$query = pg_query($conn,"SELECT firstname,surname,address,city,country,username,password,mail,id_customer FROM customers WHERE id_customer=$id");
 		$customer = pg_fetch_row($query);
 		echo "<form action='./managecustomers.php' method='post'>
 			<p>Delete or update its details.</p>
