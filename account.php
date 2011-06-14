@@ -24,7 +24,7 @@
 	}
 
 	// Requête qui récupère toutes les coordonnées du client
-	$customer = pg_fetch_row(pg_query($conn,"SELECT * FROM customers WHERE username='$_SESSION[name]'"));
+	$customer = pg_fetch_row(pg_query($conn,"SELECT firstname,surname,address,city,country,username,password,mail,id_customer from customers where username='$_SESSION[name]'"));
 
 	if ($_POST) {
 		$user    = $_POST[username];
