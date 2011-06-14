@@ -18,19 +18,19 @@
 	if ($_POST[select]) {
 		echo "<p>Here is the summary of this transaction.</p>";
 		$time = $_POST[choice];
-		$query = pg_query($conn,"SELECT * FROM orders WHERE time=$time");
-		$o = pg_fetch_row($query);
-		$c = pg_fetch_row(pg_query($conn,"SELECT * FROM customers WHERE id_customer='$o[1]'"));
+
+		$query = pg_query($conn,"SELECT * FROM orders, customers WHERE orders.time=$time AND orders.id_customers=customers.id_customer");
+		$q = pg_fetch_row($query);
 		echo "<p>
 			".date('d M Y H:i:s',$time)."<br>
-			<strong>$c[0] $c[1]</strong> (<a href='mailto:$c[7]'>$c[5]</a>)<br>
-			$c[2], $c[3]<br>$c[4]
+			<strong>$q[7] $q[8]</strong> (<a href='mailto:$q[14]'>$q[12]</a>)<br>
+			$q[9], $q[10]<br>$q[11]
 		</p>";
 
 		do {
-			$p = pg_fetch_row(pg_query($conn,"SELECT brand, model FROM $o[5] WHERE id=$o[0]"));
-			echo "<p>Model: $p[0] $p[1]<br>Quantity: $o[2]<br>Total: $o[3] €</p>";
-		} while ($o = pg_fetch_row($query));
+			$p = pg_fetch_row(pg_query($conn,"SELECT brand, model FROM $q[5] WHERE id=$q[0]"));
+			echo "<p>Model: $p[0] $p[1]<br>Quantity: $q[2]<br>Total: $q[3] €</p>";
+		} while ($q = pg_fetch_row($query));
 	}
 
 	printFooter();
