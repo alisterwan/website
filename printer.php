@@ -3,7 +3,7 @@
 	printHeader('Product page');
 
 	// On affiche les données de la bdd correspondant à l'identifiant du produit recupéré grâce à la méthode get.
-	$i = pg_fetch_row(pg_query($conn,"SELECT * FROM printer WHERE id='$_GET[id]'"));
+	$i = pg_fetch_row(pg_query($conn,"SELECT model,brand,type,quantity,price,description,id FROM printer WHERE id='$_GET[id]'"));
 
 	echo "
 <div id='product'>
