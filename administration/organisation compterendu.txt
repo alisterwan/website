@@ -1,0 +1,20 @@
+1. Presentation du projet.
+* Diagramme des CU.
+2. La Phase de conception.
+
+A)Gestion du panier.
+*Diagramme des classes.
+*Maquette du panier
+
+-Fonctionnalité
+*Ajouter un produit dans le panier.
+*Suppression du produit dans le panier.
+*Mise à jour du total montant du panier.
+
+B)La commande:
+-Expliquer le passage du panier a la commande.
+
+C)La phase de réalisation
+-PHP Structure du panier.
+-Base de données.
+
